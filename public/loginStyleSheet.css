@@ -1,0 +1,102 @@
+/*
+    Team: Jimma Shanko, Tram-Anh Ngo, Dominic Cummings, Brittany Schaefer
+    Project: Fitavate
+    Page: styleSheet
+    Date Created: 2-8-22
+    Date Updated: 2-8-22
+    By: Brittany Schaefer
+*/
+/****************************
+*           General         *
+****************************/
+/*******  Body  **********/
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+}
+body{
+    background-color: #5E0B15;
+}
+/****************************
+*      Login Styling        *
+****************************/  
+/*******  Login Header  **********/
+#headerLogin{
+    background-color: #707070;
+    padding: 1%;
+}
+#headerLogin img{
+    background-color: #707070;
+    display: block;
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+/*******  Login Body  **********/
+.loginBody{
+    display: grid;
+    grid-template-columns: 40% 50%;
+}
+.loginLogo{
+    padding-top: 5%;
+    grid-column: 1/ span 1;
+}
+.loginFormHolder{
+    grid-column: 2/ span 1;
+    margin-top: 10%;
+    padding: 20px;
+    border: 3px solid goldenrod;
+    background-color: rgba(255, 255, 255, 0.858);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.loginForm{
+    padding: 3%;
+    display: flex;
+    flex-direction: column;
+}
+.loginForm label {
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+.loginForm input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="password"] {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}/* Style the submit button */
+.loginForm input[type="submit"] {
+  padding: 10px 20px;
+  background-color: goldenrod;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Style the links */
+.links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.links a {
+    text-decoration: none;
+    background-color: #707070;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+.btn{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+  
