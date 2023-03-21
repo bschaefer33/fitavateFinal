@@ -30,12 +30,33 @@ class Fitine
             $status = "private";
         }
         $date = date('m-d-Y', strtotime($this->dateCreated));
-        echo "<td class='fitinePic'>Pic</td>";
-        echo "<td class='owner'>" . $this->ownerName . "</td>";
-        echo "<td class='fitineName'>" . $this->fitineName . "</td>";
-        echo "<td class='status'>" . $status . "</td>";
-        echo "<td class='date'>" . $date . "</td>";
+        echo "<table>";
+        echo "<thead>";
+            echo "<tr>";
+                echo "<th colspan='2'>Created By: ".$this->ownerName."</th>";
+                echo "<th colspan='2'>Created On: ".$date."</th>";
+                echo "<th colspan='1'>".$status."</th>";
+            echo "</tr>";
+            echo "<tr>";
+                echo "<th>Lift</th>";
+                echo "<th>Muscle Group</th>";
+                echo "<th>Weight</th>";
+                echo "<th>Sets</th>";
+                echo "<th>Reps</th>";
+            echo "<tr>";
+        echo "</thead>";
+        echo "<tbody>";
+            foreach ($this->fitineLifts as $lift) {
+                echo "<tr>";
+                    $lift->printLift();
+                echo "</tr>";
+            }
+        echo "</tbody>";
+        echo "</table>";
     }
 
-    
+    public function printFitineTitle()
+    {
+        echo "<li>".$this->fitineName."</li>";
+    }
 }

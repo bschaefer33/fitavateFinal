@@ -20,4 +20,12 @@ class Lift
         $this->muscleGroupName  = $muscleGroupName;
     }
     
+    public function printLift()
+    {
+        echo "<td>".$this->liftName."</td>";
+        echo "<td>".$this->muscleGroupName."</td>";
+        echo "<td>".$this->liftWeight."</td>";
+        echo "<td>".$this->liftSet."</td>";
+        echo "<td>".$this->liftRep."</td>";
+    }
 }
