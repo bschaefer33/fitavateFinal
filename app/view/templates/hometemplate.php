@@ -41,7 +41,7 @@
                         <li class="navbar-nav"><a class="nav-link" href="?page=fitines/fitine">FitTines</a></li>
                         <li class="navbar-nav"><a class="nav-link" href="?page=followers/followers">Followers</a></li>
                         <li class="navbar-nav"><a class="nav-link" href="?page=following/following">Following</a></li>
-                        <li class="navbar-nav"><a class="nav-link" href="?page=messages/messages">Messages</a></li>
+                        <li class="navbar-nav"><a class="nav-link" href="?page=login/logout">Logout</a></li>
                     </ul>
                 </div>
             </div>
