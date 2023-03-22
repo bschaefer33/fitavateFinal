@@ -55,8 +55,5 @@ class Fitine
         echo "</table>";
     }
 
-    public function printFitineTitle()
-    {
-        echo "<li>".$this->fitineName."</li>";
-    }
+
 }

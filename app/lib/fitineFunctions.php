@@ -71,7 +71,6 @@ function findOwnerName($ownerID)
             return $value;
         }
     }
-
 }
 function getUserFitines()
 {
@@ -84,3 +83,13 @@ function getSavedFitines()
     return $fitineArrayOther;
 }
 
+function getAllLifts()
+{
+    global $connect;
+    $sql = "SELECT * FROM lift JOIN muscleGroup ON lift.muscleGroup_id = muscleGroup.muscleGroup_id";
+    return $connect->query($sql);
+}
+
+function newFitine(){
+    
+}
