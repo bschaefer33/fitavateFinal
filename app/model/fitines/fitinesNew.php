@@ -6,8 +6,8 @@
 
     $userLiftArray = [];
 
-    if(isset($_SESSION['newFitineName'])){
+    if (isset($_SESSION['newFitineName'])) {
         echo $_SESSION['newFitineName'];
-    }else{
+    } else {
         print_r($_SESSION);
     }

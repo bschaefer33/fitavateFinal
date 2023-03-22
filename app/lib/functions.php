@@ -2,17 +2,7 @@
 /*******************************************************
 *  Functions are in alphabetical order
 *******************************************************/
-function createConnection()
-{
-    // Create connection object
-    $conn = new mysqli(SERVER_NAME, DBF_USER_NAME, DBF_PASSWORD);
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    // Select the database
-    $conn->select_db(DATABASE_NAME);
-} // end of createConnection( )
+
 function get($name, $def='')
 {
     return isset($_REQUEST[$name]) ? $_REQUEST[$name] : $def;

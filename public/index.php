@@ -1,5 +1,4 @@
 <?php
-session_start();
 //sets application path
 defined('APPLICATION_PATH') || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../app'));
 //defines /
@@ -8,7 +7,7 @@ const DS = DIRECTORY_SEPARATOR;
 require APPLICATION_PATH . DS . 'config' . DS . 'config.php';
 
 //I think put in a condition if a session has started, home = home, else home = login form
-$page = get('page', 'home');
+$page = get('page', 'login/loginHome');
 
 //determines what template to use
 $template = $config['VIEW_PATH'] . 'templates/hometemplate.php';

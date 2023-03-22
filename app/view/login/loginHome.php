@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['userDisplayName'] = $username;
 
         // Redirect to the home page
-        header("Location: ../../../public/index.php");
+        header("Location: ?page=home");
         exit();
     } else {
         $message = "Invalid username or password";

@@ -18,7 +18,7 @@ $(document).ready(function() {
                 // Reset the form inputs
                 $('#loginForm')[0].reset();
                 // Redirect to the login page
-                window.location.href = "/fitavateFinal/app/view/login/loginHome.php";
+                window.location.href = "?page=login/loginHome";
             },
             // If there's an error, log it to the console
             error: function(error) {
