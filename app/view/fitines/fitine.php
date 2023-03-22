@@ -24,12 +24,26 @@
             <div class="card">
                 <div class="card-header">
                     <a class="card-link" data-toggle="collapse" href="#collapseOne">
-                        Fitine Name
+                        Create New Fitine
                     </a>
                 </div>
                 <div id="collapseOne" class="collapse show" data-parent="#accordion">
                     <div class="card-body">
-                        Some Text here
+                    <form action="?page=fitines/fitinesNew" method="post">
+                            <div class ="form-group">
+                                <label for="tempFitineName">Fitine Name</label>
+                                <input type="text" class="form-control" id="tempFitineName" value="<?php if(isset($_SESSION['tempFitineName'])) echo $_SESSION['tempFitineName'];?>">
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="tempViewStatus" id="public" value="1" checked>
+                                <label class="form-check-label" for="public">Public</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="tempViewStatus" id="private" value="0">
+                                <label class="form-check-label" for="private">Private</label>
+                            </div>
+                            <button type="submit" name="new">New Fitine</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -41,6 +55,8 @@
                         <div id="<?= $fitine->fitineID ?>" class="collapse" data-parent="#accordion">
                             <div class="card-body">
                                 <?= $fitine->printFitine(); ?>
+                                <a href="?page=fitines/fitinesEdit" class="btn btn-primary">Edit</a>
+                                <a href="" class="btn btn-primary">Delete</a>
                             </div>
                         </div>
                     </div>
@@ -67,4 +83,7 @@
     <a href="?page=fitines/fitinesEdit">Edit</a>
     <a href="?page=fitines/fitinesNew">Create New</a>
 </div>
+<script>
+
+</script>
 </html>

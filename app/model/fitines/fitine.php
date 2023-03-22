@@ -14,3 +14,7 @@
     createFitine(1);
     $userArray = getUserFitines();
     $savedArray = getSavedFitines();
+
+    if(isset($_POST['new'])){
+      $_SESSION['tempFitineName'] = $_POST['newFitineName'];
+    }

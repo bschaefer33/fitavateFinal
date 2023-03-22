@@ -28,4 +28,6 @@ class Lift
         echo "<td>".$this->liftSet."</td>";
         echo "<td>".$this->liftRep."</td>";
     }
+
+
 }

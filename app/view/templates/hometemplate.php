@@ -67,5 +67,6 @@
         <p>CopyRight Fitavate 2023</p>
     </div>
     </div>
+
 </body>
 </html>
