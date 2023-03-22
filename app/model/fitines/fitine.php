@@ -15,6 +15,6 @@
     $userArray = getUserFitines();
     $savedArray = getSavedFitines();
 
-    if(isset($_POST['new'])){
-      $_SESSION['tempFitineName'] = $_POST['newFitineName'];
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      
     }

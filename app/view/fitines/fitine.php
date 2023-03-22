@@ -29,10 +29,10 @@
                 </div>
                 <div id="collapseOne" class="collapse show" data-parent="#accordion">
                     <div class="card-body">
-                    <form action="?page=fitines/fitinesNew" method="post">
+                    <form action="?page=fitines/fitinesNew" <?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?> method="POST">
                             <div class ="form-group">
-                                <label for="tempFitineName">Fitine Name</label>
-                                <input type="text" class="form-control" id="tempFitineName" value="<?php if(isset($_SESSION['tempFitineName'])) echo $_SESSION['tempFitineName'];?>">
+                                <label for="newFitineName">Fitine Name</label>
+                                <input type="text" class="form-control" id="newFitineName" value="<?php echo $_SESSION['newFitineName'];?>">
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="tempViewStatus" id="public" value="1" checked>
