@@ -41,6 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Redirect the user back to the signup page
-header("Location: /fitavateFinal/app/view/login/loginHome.php");
+header("Location: ?page=login/loginHome");
 exit();
 ?>

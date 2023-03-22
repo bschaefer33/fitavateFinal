@@ -9,7 +9,7 @@
 <body>
     <div class="loginFormHolder">
         <h2>Signup</h2>
-        <form class ="loginForm" action="/fitavateFinal/app/model/login/backend.php" method="POST">
+        <form class ="loginForm" action="?page=login/backend" method="POST">
           <label for="firstName">First Name:</label>
           <input type="text" id="firstName" name="firstName" required>
           <label for="lastName">Last Name:</label>
