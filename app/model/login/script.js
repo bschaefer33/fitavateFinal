@@ -10,7 +10,7 @@ $(document).ready(function() {
             // Use a POST request
             type: 'POST',
             // Submit the form data to this URL
-            url: 'backend.php',
+            url: '/fitavateFinal/app/model/login/backend.php',
             // Serialize the form data and send it as the payload
             data: $('#loginForm').serialize(),
             // If the request is successful, do the following
@@ -18,7 +18,7 @@ $(document).ready(function() {
                 // Reset the form inputs
                 $('#loginForm')[0].reset();
                 // Redirect to the login page
-                window.location.href = "loginHome.php";
+                window.location.href = "/fitavateFinal/app/view/login/loginHome.php";
             },
             // If there's an error, log it to the console
             error: function(error) {
