@@ -9,13 +9,13 @@
 <body>
     <div class="loginFormHolder">
         <h2>Signup</h2>
-        <form class ="loginForm" action="App/Models/backend.php" method="POST">
+        <form class ="loginForm" action="backend.php" method="POST">
           <label for="firstName">First Name:</label>
           <input type="text" id="firstName" name="firstName" required>
           <label for="lastName">Last Name:</label>
           <input type="text" id="lastName" name="lastName" required>
-          <label for="usernameDisplayName">Display Name:</label>
-          <input type="text" id="usernameDisplayName" name="usernameDisplayName" required>
+          <label for="userDisplayName">User Name:</label>
+          <input type="text" id="userDisplayName" name="userDisplayName" required>
           <label for="userPassword">Password:</label>
           <input type="text" id="userPassword" name="userPassword" required>
           <label for="email">Email:</label>
