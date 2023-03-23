@@ -1,4 +1,5 @@
 <?php
+    session_start();
 
     require $config['LIB_PATH'] . 'fitineFunctions.php';
 
@@ -6,8 +7,4 @@
 
     $userLiftArray = [];
 
-    if (isset($_SESSION['newFitineName'])) {
-        echo $_SESSION['newFitineName'];
-    } else {
-        print_r($_SESSION);
-    }
+    $newFitineName = $_SESSION['newFitineName'];

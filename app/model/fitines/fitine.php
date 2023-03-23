@@ -1,5 +1,10 @@
 <?php
-    require $config['LIB_PATH'] . 'fitineFunctions.php';
+  session_start();
+  if(isset($_POST['new'])){
+    $_SESSION['newFitineName'] = $_POST['newFitineName'];
+    header("Location: ?page=fitines/fitinesNew");
+  }
+  require $config['LIB_PATH'] . 'fitineFunctions.php';
     //Establish our database user name password and the name of the database
     //$DBF_PASS = "mysql";
     //$DBF_USER = "root";
@@ -11,10 +16,7 @@
       //      FROM userFitine
       //    JOIN fitine ON userFitine.fitine_id = fitine.fitine_id
     //$result = $connect->query($sql);
-    createFitine(1);
-    $userArray = getUserFitines();
-    $savedArray = getSavedFitines();
+  createFitine(1);
+  $userArray = getUserFitines();
+  $savedArray = getSavedFitines();
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      
-    }

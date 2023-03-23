@@ -1,6 +1,4 @@
-<?php
 
-?>
 <html lang="en">
 <head>
     <!--
@@ -24,7 +22,7 @@
     <form>
         <div class ="form-group">
             <label for="newFitineName">Fitine Name</label>
-            <input type="text" class="form-control" id="newFitineName" placeholder="<?php echo $_SESSION['newFitineName'];?>">
+            <input type="text" class="form-control" id="newFitineName" placeholder="<?php echo $newFitineName?>">
         </div>
         <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="viewStatus" id="public" value="1" checked>
