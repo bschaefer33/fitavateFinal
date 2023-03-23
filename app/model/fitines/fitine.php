@@ -25,7 +25,7 @@
   $fitineName = ($_POST['newFitineName']);
   $viewStatus = ($_POST['tempViewStatus']);
 
-  if(isset($_POST['newFitineName']) && isset($_POST['tempViewStatus'])) {
+  if (isset($_POST['newFitineName']) && isset($_POST['tempViewStatus'])) {
     $_SESSION['newFitine'] = $fitineName;
     $_SESSION['tempStatus'] = $viewStatus;
     header("Location: ?page=fitines/fitinesNew");

@@ -49,7 +49,7 @@
                         <div id="<?= $fitine->fitineID ?>" class="collapse" data-parent="#accordion">
                             <div class="card-body">
                                 <?= $fitine->printFitine(); ?>
-                                <a href="?page=fitines/fitinesEdit" class="btn btn-primary">Edit</a>
+                                <input name="fitineEdit" type="submit" value="Edit" />
                                 <a href="" class="btn btn-primary">Delete</a>
                             </div>
                         </div>
