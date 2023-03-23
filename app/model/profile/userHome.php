@@ -1,53 +1,39 @@
+<?php
+// Start the session
+session_start();
+
+
+//Get the user's information from the database
+$username = $_SESSION['userDisplayName'];
+$conn = mysqli_connect("localhost", "root", "mysql", "fitavate");
+$sql = "SELECT * FROM user_profile WHERE userDisplayName='$username'";
+$result = mysqli_query($conn, $sql);
+$user = mysqli_fetch_assoc($result);
+mysqli_close($conn);
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <!--
-    Team: Jimma Shanko, Tram-Anh Ngo, Dominic Cummings, Brittany Schaefer
-    Project: Fitavate
-    Page: User Home Page
-    Date Created: 2-8-22
-    Date Updated: 2-8-22
-    By: Brittany Schaefer
-    -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel= "styleSheet" href="styleSheet.css">
-    <title>Fitavate</title>
+    <title>Profile Page</title>
 </head>
+
 <body>
-    <header>
-        <?php
-            include("header.php");
-        ?>
-    </header>
-    <div class="pageContainer">
-        <div class="Column left">
-            <?php
-                include("leftNavBar.php");
-            ?>
-        </div>
-        <div class="Column middle">
-            <h1 class="PageHeader">Home</h1>
-            <form>
-                <input type="text" placeholder="Fitavator Display Name"><button type='submit'>+Follow</button>
-                <br>
-                <br>
-                <input type="text" placeholder=" "><button type='submit'>Comment</button>
-                <br>
-                <br>
-                <input type="text" placeholder="Fitavator Friend"><button type='submit'>Following</button>
-            </form>
-        </div>
-        <div class="Column right">
-            <?php
-                include("rightNavBar.php");
-            ?>
-        </div>
-    </div>
-    <footer>
-        <?php
-            include("footer.php");
-        ?>
-    </footer>
+    <div class="header">
+		<h1>User Profile</h1>
+	</div>
+	<div class="container">
+		<div class="profile-img">
+            <img src="<?php echo $user['userImage']; ?>" alt="Profile Picture">
+		</div>
+		<div class="profile-info">
+			<h2><?php echo $user['firstName '] . " " . $user['lastName']; ?></h2>
+			<p>Username: <?php echo $user['userDisplayName']; ?></p>
+			<p>Email: <?php echo $user['email']; ?></p>
+			<p>Location: <?php echo $user['city'] . ", " . $user['userState']; ?></p>
+			<p>Birthday: <?php echo $user['birthday']; ?></p>
+			<a class="edit-profile-btn" href="edit_profile.php">Edit Profile</a>
+		</div>
+	</div>
+    
 </body>
 </html>

@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['userDisplayName'];
@@ -15,10 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) === 1) {
-        // Save the username in the session
+        //Save the username in the session
         $_SESSION['userDisplayName'] = $username;
-
-        // Redirect to the home page
+        //Redirect to the home page
         header("Location: ?page=home");
         exit();
     } else {
