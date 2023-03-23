@@ -10,12 +10,14 @@
         <img src="graphic/fitavate.png" alt="Logo">
     </div>
     </header>
-    <div class="loginBody">
+    <div class ="container-fluid p-0 m-0" id="loginBody">
         <div class="loginLogo">
             <img src="graphic/logo.png" alt="Logo">
         </div>
-    <?php
-        include($main_content);
-    ?>
+        <div class ="loginContent">
+            <?php
+                include($main_content);
+            ?>
+        </div>
 </body>
 </html>

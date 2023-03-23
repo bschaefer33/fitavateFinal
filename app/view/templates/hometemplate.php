@@ -54,9 +54,6 @@
         </div>
         <div class="Column right">
             <div class="rightNavigationBar">
-                <div class="searchBar">
-                    <p>searchBar</p>
-                </div>
                 <div class="rightLogo">
                     <img src="graphic/logo.png" alt="logo">
                 </div>

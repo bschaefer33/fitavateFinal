@@ -1,14 +1,6 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <!--
-    Team: Jimma Shanko, Tram-Anh Ngo, Dominic Cummings, Brittany Schaefer
-    Project: Fitavate
-    Page: User Home Page
-    Date Created: 2-8-22
-    Date Updated: 3-6-22
-    By: Brittany Schaefer
-    -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -16,6 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <link rel= "styleSheet" href="styleSheet.css">
+    <title>fitine</title>
 </head>
 <div class="Column middle">
     <h1 class="PageHeader">Fitines</h1>
@@ -30,20 +23,20 @@
                 </div>
                 <div id="collapseOne" class="collapse show" data-parent="#accordion">
                     <div class="card-body">
-                    <form action="?page=fitines/fitinesNew" method="POST">
+                    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" name="startNewFitine" >
                             <div class ="form-group">
                                 <label for="newFitineName">Fitine Name</label>
-                                <input type="text" class="form-control" id="newFitineName" name="newFitineName">
+                                <input type="text" class="form-control" id="newFitineName" name="newFitineName" />
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="tempViewStatus" id="public" value="1" checked>
+                                <input class="form-check-input" type="radio" name="tempViewStatus" id="public" value="1" />
                                 <label class="form-check-label" for="public">Public</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="tempViewStatus" id="private" value="0">
+                                <input class="form-check-input" type="radio" name="tempViewStatus" id="private" value="0"/>
                                 <label class="form-check-label" for="private">Private</label>
                             </div>
-                            <input type="submit" value="New Fitine">
+                            <input name="fitineSubmit" type="submit" value="New Fitine" />
                         </form>
                     </div>
                 </div>
