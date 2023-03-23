@@ -14,6 +14,8 @@ require $config['LIB_PATH'] . 'Lift.php';
 
 $fitineArrayOther = [];
 $fitineArrayUser = [];
+$newFitineName;
+$tempStatus;
 function createFitine($user)
 {
     global $connect,$fitineArrayOther, $fitineArrayUser;
@@ -90,6 +92,21 @@ function getAllLifts()
     return $connect->query($sql);
 }
 
-function newFitine(){
-    
+function startNewFitine($name, $viewStatus)
+{
+    global $newFitineName, $tempStatus;
+    $newFitineName =$name;
+    $tempStatus = $viewStatus;
+}
+
+function getNewFitine()
+{
+    global $newFitineName;
+    return $newFitineName;
+}
+
+function getNewStatus()
+{
+    global $tempStatus;
+    return $tempStatus;
 }

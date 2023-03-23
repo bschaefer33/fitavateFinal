@@ -1,10 +1,11 @@
 <?php
-    session_start();
-
     require $config['LIB_PATH'] . 'fitineFunctions.php';
-
     $fullLiftArray = getAllLifts();
 
     $userLiftArray = [];
 
-    $newFitineName = $_SESSION['newFitineName'];
+    $fitineName = getNewFitine();
+    $status = getNewStatus();
+
+    $test= "does this work";
+

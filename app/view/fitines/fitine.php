@@ -1,3 +1,4 @@
+
 <html lang="en">
 <head>
     <!--
@@ -29,10 +30,10 @@
                 </div>
                 <div id="collapseOne" class="collapse show" data-parent="#accordion">
                     <div class="card-body">
-                    <form action="" method="POST">
+                    <form action="?page=fitines/fitinesNew" method="POST">
                             <div class ="form-group">
                                 <label for="newFitineName">Fitine Name</label>
-                                <input type="text" class="form-control" id="newFitineName" value="<?php if(isset($_SESSION['newFitineName'])) echo $_SESSION['newFitineName'];?>">
+                                <input type="text" class="form-control" id="newFitineName" name="newFitineName">
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="tempViewStatus" id="public" value="1" checked>
@@ -42,7 +43,7 @@
                                 <input class="form-check-input" type="radio" name="tempViewStatus" id="private" value="0">
                                 <label class="form-check-label" for="private">Private</label>
                             </div>
-                            <button type="submit" name="new">New Fitine</button>
+                            <input type="submit" value="New Fitine">
                         </form>
                     </div>
                 </div>
@@ -64,24 +65,43 @@
         </div>
     </div>
 
-    
-    <a href="?page=fitines/fitinesView">View</a>
-    <a href="?page=fitines/fitinesEdit">Edit</a>
-    <a href="?page=fitines/fitinesNew">Create New</a>
-    <h1 class = "SectionHeader">My Fitines</h1>
-    <table class = "fitineTable">
-        <th></th>
-        <tr class = "fitineRow">
-            <?php
-                foreach ($savedArray as $fitine) {
-                    $fitine->printFitine();
-                }
-            ?>
-        </tr>
-    </table>
-    <a href="?page=fitines/fitinesView">View</a>
-    <a href="?page=fitines/fitinesEdit">Edit</a>
-    <a href="?page=fitines/fitinesNew">Create New</a>
+    <h1 class = "SectionHeader">Saved Fitines</h1>
+    <div id="fitineTable">
+        <div id="accordion">
+            
+            <?php foreach ($savedArray as $fitine) :?>
+                <?php if($count == 0): ?>
+                    <div class="card">
+                        <div class="card-header">
+                            <a class="card-link" data-toggle="collapse" href="#<?= $fitine->fitineID?>"><?= $fitine->fitineName ?></a>
+                        </div>
+                        <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                            <div class="card-body">
+                                <?= $fitine->printFitine(); ?>
+                                <?php $count=1; ?>
+                                <a href="?page=fitines/fitinesEdit" class="btn btn-primary">Edit</a>
+                                <a href="" class="btn btn-primary">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <div class="card">
+                        <div class="card-header">
+                            <a class='collapsed card-link' data-toggle='collapse' href='#<?= $fitine->fitineID?>'><?= $fitine->fitineName ?></a>
+                        </div>
+                        <div id="<?= $fitine->fitineID ?>" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                <?= $fitine->printFitine(); ?>
+                                <a href="?page=fitines/fitinesEdit" class="btn btn-primary">Edit</a>
+                                <a href="" class="btn btn-primary">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
 </div>
 <script>
 

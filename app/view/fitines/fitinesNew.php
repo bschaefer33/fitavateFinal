@@ -1,4 +1,3 @@
-
 <html lang="en">
 <head>
     <!--
@@ -19,10 +18,11 @@
 </head>
 <div class="Column middle">
     <h1 class="PageHeader">New Fitine</h1>
+    <div id="fitineFormContainer">
     <form>
         <div class ="form-group">
-            <label for="newFitineName">Fitine Name</label>
-            <input type="text" class="form-control" id="newFitineName" placeholder="<?php echo $newFitineName?>">
+            <label for="fitineName">Fitine Name</label>
+            <input type="text" class="form-control" id="fitineName" placeholder="<?php echo $fitineName ?>">
         </div>
         <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="viewStatus" id="public" value="1" checked>
@@ -53,8 +53,9 @@
                     <input type="text" class="form-control" id="liftRep">
                 </div>
             </div>
-            <button class="btn">Add Another Lift</button>
+            <button type="submit" class="btn">Add Another Lift</button>
         </div>
     </form>
+    </div>
 </div>
 
