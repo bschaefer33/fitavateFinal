@@ -70,3 +70,17 @@
 
 </body>
 </html>
+        <!--<div id="headerLeft">
+            <img src="graphic/logo.png" alt="DSE logo" >
+        </div>
+        <div id="headerRight">
+            <nav class="navbar">
+                <i class="fa-solid fa-bars"></i>
+                
+                <a class="nav-link" href="?page=capabilities">Capabilities</a>
+                <a class="nav-link" href="?page=quality">Quality</a>
+                <a class="nav-link" href="?page=gallery">Gallery</a>
+                <a class="nav-link" href="?page=about">About</a>
+                <a class="nav-link" href="?page=contactUs">Contact Us</a>
+            </nav>
+        </div>-->
