@@ -27,7 +27,8 @@
             <label class="form-check-label" for="private">Private</label>
         </div>
         <div class="form-group">
-            <select class="custom-select" id="lifts" name="lift">
+            <?php addlift(); ?>
+            <!--<select class="custom-select" id="lifts" name="lift">
                 <option selected>Add New Lift</option>
                 <?php foreach($fullLiftArray as $lift) :?>
                     <option value ="<?= $lift['lift_id'] ?>"><?= $lift['liftName']?></option>
@@ -46,7 +47,10 @@
                     <label for="liftRep">LiftRep</label>
                     <input type="text" class="form-control" id="liftRep" />
                 </div>
-            </div>
+            </div>-->
+        </div>
+        <div class="form-group" id="addMoreLifts">
+        
         </div>
         <input type="submit" value="Add Another Lift" name="liftbutton">
         <input type="submit" value="Create FiTine" name="submitForm">
