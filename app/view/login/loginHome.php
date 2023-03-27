@@ -1,7 +1,7 @@
 <?php
 session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['userDisplayName'];
+    $email = $_POST['email'];
     $password = $_POST['userPassword'];
 
     $conn = mysqli_connect("localhost", "root", "mysql", "fitavate");
@@ -10,12 +10,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Connection failed: " . mysqli_connect_error());
     }
 
-    $sql = "SELECT * FROM user_profile WHERE userDisplayName='$username' AND userPassword='$password'";
+    $sql = "SELECT * FROM user_profile WHERE email='$email' AND userPassword='$password'";
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) === 1) {
         //Save the username in the session
-        $_SESSION['userDisplayName'] = $username;
+        $_SESSION['email'] = $email;
+        $_SESSION['userPassword'] = $password;
         //Redirect to the home page
         header("Location: ?page=home");
         exit();
@@ -40,10 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         ?>
         <form class ="loginForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-            <label for="userDisplayName">Username:</label>
-            <input type="text" id="userDisplayName" name="userDisplayName" required>
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required>
             <label for="userPassword">Password:</label>
-            <input type="userPassword" id="userPassword" name="userPassword" required>
+            <input type="password" id="userPassword" name="userPassword" required>
             <input type="submit" value="Log In">
         </form>
         <div class="links">
