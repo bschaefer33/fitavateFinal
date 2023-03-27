@@ -1,14 +1,6 @@
 <?php
 session_start();
 
-// Check if the user is logged in
-if (!isset($_SESSION['userDisplayName'])) {
-    // If the user is not logged in, redirect to the login page
-    header("Location: ?page=login/loginHome");
-    exit();
-}
-
-
 //Get the user's information from the database
 $conn = mysqli_connect("localhost", "root", "mysql", "fitavate");
 
@@ -16,9 +8,10 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$username = $_SESSION['userDisplayName'];
+$email = $_SESSION['email'];
+$password = $_SESSION['userPassword'];
 
-$sql = "SELECT * FROM user_profile WHERE userDisplayName='$username'";
+$sql = "SELECT * FROM user_profile WHERE email='$email' AND userPassword='$password'";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) === 1) {
@@ -36,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $city = $_POST['city'];
     $state = $_POST['userState'];
     $birthday = $_POST['birthday'];
+    $password = $_POST['userPassword'];
 
     //Check if the user has already uploaded a profile picture
     if ($user['userImage'] !== null) {
@@ -52,13 +46,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $extensions = array("jpg", "jpeg", "png");
 
         if (in_array($file_ext, $extensions)) {
-            $file_dest = "uploads/" . $username . "." . $file_ext;
+            $file_dest = "/fitavateFinal/public/graphic/" . $email . "." . $file_ext;
             move_uploaded_file($file_tmp, $file_dest);
         }
     }
 
     //Update the user's information in the database
-    $sql = "UPDATE user_profile SET firstName='$first_name', lastName='$last_name', email='$email', city='$city', userState='$state', birthday='$birthday', userImage='$file_dest' WHERE userDisplayName='$username'";
+    $sql = "UPDATE user_profile SET firstName='$first_name', lastName='$last_name', email='$email', userPassword='$password', city='$city', userState='$state', birthday='$birthday', userImage='$file_dest' WHERE email='$email'";
 
 
     //Reload the page to show the updated information
@@ -91,6 +85,8 @@ mysqli_close($conn);
           <input type="text" id="lastName" name="lastName" value="<?php echo $user['lastName']; ?>" required>
           <label for="email">Email:</label>
           <input type="email" id="email" name="email" value="<?php echo $user['email']; ?>" required>
+          <label for="userPassword">Password:</label>
+          <input type="userPassword" id="userPassword" name="userPassword" value="<?php echo $user['userPassword']; ?>" required>
           <label for="city">City:</label>
           <input type="text" id="city" name="city" value="<?php echo $user['city']; ?>" required>
           <label for="userState">State:</label>
