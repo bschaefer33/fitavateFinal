@@ -49,8 +49,11 @@
                         <div id="<?= $fitine->fitineID ?>" class="collapse" data-parent="#accordion">
                             <div class="card-body">
                                 <?= $fitine->printFitine(); ?>
-                                <input name="fitineEdit" type="submit" value="Edit" />
-                                <a href="" class="btn btn-primary">Delete</a>
+                                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+                                    <input name= "tempFitID" type="hidden" value="<?php echo $fitine->fitineID ?>" />
+                                    <input name="fitineEdit" type="submit" class="btn" value="Edit" />
+                                    <input name="fitineDelete" type="submit" class="btn" value="Delete" />
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -72,8 +75,10 @@
                             <div class="card-body">
                                 <?= $fitine->printFitine(); ?>
                                 <?php $count=1; ?>
-                                <a href="?page=fitines/fitinesEdit" class="btn btn-primary">Edit</a>
-                                <a href="" class="btn btn-primary">Delete</a>
+                                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+                                    <input name= "tempSaveID" type="hidden" value="<?php echo $fitine->fitineID ?>" />
+                                    <input name="unfollowFitine" type="submit" class="btn" value="Unfollow" />
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -85,8 +90,7 @@
                         <div id="<?= $fitine->fitineID ?>" class="collapse" data-parent="#accordion">
                             <div class="card-body">
                                 <?= $fitine->printFitine(); ?>
-                                <a href="?page=fitines/fitinesEdit" class="btn btn-primary">Edit</a>
-                                <a href="" class="btn btn-primary">Delete</a>
+                                <a href="" class="btn btn-primary">Unfollow</a>
                             </div>
                         </div>
                     </div>

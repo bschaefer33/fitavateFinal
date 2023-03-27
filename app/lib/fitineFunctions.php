@@ -110,4 +110,19 @@ function addNewFitine($name, $viewStatus, $liftArray)
     }
 }
 
-
+function deleteUserFitine($fitineID)
+{
+    global $connect;
+    $sql = "DELETE FROM fitineLift WHERE fitineLift.fitine_id = $fitineID";
+    $sql1 = "DELETE FROM userFitine WHERE userFitine.fitine_id = $fitineID";
+    $sql2 = "DELETE FROM fitine WHERE fitine.fitine_id = $fitineID";
+    $connect->query($sql);
+    $connect->query($sql1);
+    $connect->query($sql2);
+}
+function unfollowFitine($user, $fitineID)
+{
+    global $connect;
+    $sql = "DELETE FROM userFitine WHERE userFitine.fitine_id = $fitineID AND userFitine.user_id = $user";
+    $connect->query($sql);
+}

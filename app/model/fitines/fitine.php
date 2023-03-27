@@ -16,13 +16,23 @@
   $fitineName = ($_POST['newFitineName']);
   $viewStatus = ($_POST['tempViewStatus']);
 
-  if (isset($_POST['newFitineName']) && isset($_POST['tempViewStatus'])) {
-    $_SESSION['newFitine'] = $fitineName;
-    $_SESSION['tempStatus'] = $viewStatus;
-    header("Location: ?page=fitines/fitinesNew");
+  if(isset($_POST['fitineSubmit'])){
+    if (isset($_POST['newFitineName']) && isset($_POST['tempViewStatus'])) {
+      $_SESSION['newFitine'] = $fitineName;
+      $_SESSION['tempStatus'] = $viewStatus;
+      header("Location: ?page=fitines/fitinesNew");
+    }
   }
-  
 
+  if(isset($_POST['fitineDelete'])){
+      $fitineID = $_POST['tempFitID'];
+      deleteUserFitine($fitineID);
+  }
+
+  if(isset($_POST['unfollowFitine'])){
+    $fitineID = $_POST['tempSaveID'];
+    unfollowFitine($user, $fitineID);
+}
 
  
 

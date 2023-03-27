@@ -30,5 +30,6 @@
         }
         addNewFitine($fitineName,$fitineStatus,$newUserLifts);
         $numOfLifts = 0;
+        header("Location: ?page=fitines/fitine");
     }
 
