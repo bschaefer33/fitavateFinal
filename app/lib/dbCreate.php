@@ -181,7 +181,6 @@ Database Testing
         runQuery($sqlCreateUserFitine, "Creating User FiTine", false);
 
         $sqlCreateFiTineLift = "CREATE TABLE IF NOT EXISTS fitineLift(
-            fitineLift_id INTEGER PRIMARY KEY AUTO_INCREMENT,
             fitine_id INTEGER,
             lift_id INTEGER,
             liftWeight INTEGER,
@@ -241,10 +240,10 @@ Database Testing
                     ('2', 'Get Swoll', FALSE, '2000-11-04 22:32:33')";
         runQuery($insertFiTineData, "Inserting FiTine", false);
 
-        $insertFiTineLiftData = "INSERT INTO fitineLift(fitineLift_id, fitine_id, lift_id, liftWeight, liftSet, liftRep)
-            VALUES  ('1', '1', '2', '100', '3', '10'),
-                    ('2', '1', '4', '20', '3', '20'),
-                    ('3', '2', '1', '200', '3', '12')";
+        $insertFiTineLiftData = "INSERT INTO fitineLift(fitine_id, lift_id, liftWeight, liftSet, liftRep)
+            VALUES  ('1', '2', '100', '3', '10'),
+                    ('1', '4', '20', '3', '20'),
+                    ('2', '1', '200', '3', '12')";
         runQuery($insertFiTineLiftData, "Inserting FiTine Lift", false);
         
         $insertUserFiTineData = "INSERT INTO userFitine(user_id, fitine_id, owner_id)

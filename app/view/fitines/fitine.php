@@ -90,7 +90,10 @@
                         <div id="<?= $fitine->fitineID ?>" class="collapse" data-parent="#accordion">
                             <div class="card-body">
                                 <?= $fitine->printFitine(); ?>
-                                <a href="" class="btn btn-primary">Unfollow</a>
+                                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+                                    <input name= "tempSaveID" type="hidden" value="<?php echo $fitine->fitineID ?>" />
+                                    <input name="unfollowFitine" type="submit" class="btn" value="Unfollow" />
+                                </form>
                             </div>
                         </div>
                     </div>
