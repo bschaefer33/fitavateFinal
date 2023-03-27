@@ -38,6 +38,31 @@ function createFitine($user)
         }
     }
 }
+
+function getFitine($fitineID)
+{
+    global $connect;
+    $sql = "SELECT fitine.fitineName,
+                fitine.viewStatus
+            FROM fitine
+            WHERE fitine.fitine_id = $fitineID";
+    $result = $connect->query($sql);
+    return $result->fetch_assoc();
+}
+function getLift($fitineID)
+{
+    global $connect;
+    $sql = "SELECT fitineLift.lift_id,
+                fitineLift.liftWeight,
+                fitineLift.liftSet,
+                fitineLift.liftRep
+            FROM fitine
+            JOIN fitineLift ON fitine.fitine_id = fitineLift.fitine_id
+            JOIN lift ON fitineLift.lift_id = lift.lift_id
+            WHERE fitine.fitine_id = $fitineID";
+    $result = $connect->query($sql);
+    return $result->fetch_assoc();
+}
 function createLift($fitineId)
 {
     global $connect;

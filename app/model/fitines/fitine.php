@@ -24,6 +24,12 @@
     }
   }
 
+  if(isset($_POST['fitineEdit'])){
+    $fitineID = $_POST['tempFitID'];
+    $_SESSION['editFitID'] = $fitineID;
+    header("Location: ?page=fitines/fitinesEdit");
+  }
+
   if(isset($_POST['fitineDelete'])){
       $fitineID = $_POST['tempFitID'];
       deleteUserFitine($fitineID);

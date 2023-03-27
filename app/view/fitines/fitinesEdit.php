@@ -10,46 +10,49 @@
     <link rel= "styleSheet" href="styleSheet.css">
     <title>FitineEdit</title>
 </head>
+<body>
 <div class="Column middle">
     <h1 class="PageHeader">New Fitine</h1>
     <div id="fitineFormContainer">
-    <form>
-        <div class ="form-group">
-            <label for="fitineName">Fitine Name</label>
-            <input type="text" class="form-control" id="fitineName" placeholder="<?php $newFitineName ?>">
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="viewStatus" id="public" value="1" checked>
-            <label class="form-check-label" for="public">Public</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="viewStatus" id="private" value="0">
-            <label class="form-check-label" for="private">Private</label>
-        </div>
-        <div class="form-group">
-            <select class="custom-select" id="lifts">
-                <option selected>Add New Lift</option>
-                <?php foreach($fullLiftArray as $lift) :?>
-                    <option value ="<?= $lift['lift_id'] ?>"><?= $lift['liftName']?></option>
-                <?php endforeach; ?>
-            </select>
-            <div class="row">
-                <div class="col">
-                    <label for="liftWt">Weight (lbs.)</label>
-                    <input type="text" class="form-control" id="liftWt">
-                </div>
-                <div class="col">
-                    <label for="liftSet">Sets</label>
-                    <input type="text" class="form-control" id="liftSet">
-                </div>
-                <div class="col">
-                    <label for="liftRep">LiftRep</label>
-                    <input type="text" class="form-control" id="liftRep">
-                </div>
+    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+            <label class ="form-group row" for="fitineName">Fitine Name</label>
+            <input class ="form-group row" type="text" class="form-control" id="fitineName" name="fitineName" value="<?php echo $fitine['fitineName'] ?>" />
+        <div class ="form-group row">
+            <div class="form-check form-check-inline ">
+                <input class="form-check-input" type="radio" name="viewStatus" id="public" value="1" <?php echo $true ?> />
+                <label class="form-check-label" for="public">Public</label>
             </div>
-            <button type="submit" class="btn">Add Another Lift</button>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="viewStatus" id="private" value="0" <?php echo $false ?> />
+                <label class="form-check-label" for="private">Private</label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col" for="liftNameInput">Lift</label>
+            <label class="col" for="liftWtInput">Weight</label>
+            <label class="col" for="liftSetsInput">Sets</label>
+            <label class="col" for="liftRepsInput">Reps</label>
+        </div>
+        <?php foreach($liftArray as $key=>$value): ?>
+            <div class="form-group row" id="liftSel">
+                <select class="col" id="listLifts" name="liftID[]">
+                    <?php foreach ($fullLiftArray as $lift) : ?>
+                        <option <?php selectdCheck($lift['lift_id'], $value['lift_id']); ?>value ="<?php echo $lift['lift_id'] ?>"><?= $lift['liftName'] ?></option>;
+                    <?php endforeach; ?>
+                </select>
+                <input class="col" type="text" id="liftWtInput" name="liftWt[]" value="<?php echo $value['liftWeight'] ?>" />
+                <input class="col" type="text" id="liftSetsInput" name="liftSet[]" value="<?php echo $fitine['liftSet'] ?>" />
+                <input class="col" type="text" id="liftRepsInput" name="liftRep[]" value="<?php echo $fitine['fitineRep'] ?>" />
+            </div>
+        <?php endforeach; ?>
+        
+
+        <div class="form-group row">
+            <button id="rowAdder" type="button" class="btn">Add Another Lift</button>
+            <button id="fitineSubmit" type="submit" class="btn">Submit Fitine</button>
         </div>
     </form>
     </div>
 </div>
-
+</body>
+</html>
