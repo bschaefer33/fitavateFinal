@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="email">Email:</label>
             <input type="text" id="email" name="email" required>
             <label for="userPassword">Password:</label>
-            <input type="userPassword" id="userPassword" name="userPassword" required>
+            <input type="password" id="userPassword" name="userPassword" required>
             <input type="submit" value="Log In">
         </form>
         <div class="links">

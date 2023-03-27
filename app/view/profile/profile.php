@@ -9,6 +9,8 @@ $conn = mysqli_connect("localhost", "root", "mysql", "fitavate");
 $sql = "SELECT * FROM user_profile WHERE email='$email' AND userPassword='$password'";
 $result = mysqli_query($conn, $sql);
 $user = mysqli_fetch_assoc($result);
+
+
 mysqli_close($conn);
 ?>
 <!DOCTYPE html>
@@ -23,7 +25,14 @@ mysqli_close($conn);
 	</div>
 	<div class="container">
 		<div class="profile-img">
-            <img src="<?php echo $user['userImage']; ?>" alt="Profile Picture">
+           <?php 
+            //Fetch the user's profile picture from the database
+            $userImage = $user['userImage'];
+            //Convert the binary data into a base64-encoded string
+            $userImageEncoded = base64_encode($userImage);
+            // Embed the base64-encoded string in an HTML img tag
+            echo '<img src="data:image/jpeg;base64,' . $userImageEncoded . '" alt="Image" />';
+           ?>
 		</div>
 		<div class="profile-info">
 			<h2><?php echo $user['firstName'] . " " . $user['lastName']; ?></h2>
