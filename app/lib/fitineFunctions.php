@@ -1,4 +1,5 @@
 <?php
+session_start();
 //Establish our database user name password and the name of the database
 $DBF_PASS = "mysql";
 $DBF_USER = "root";
@@ -14,8 +15,6 @@ require $config['LIB_PATH'] . 'Lift.php';
 
 $fitineArrayOther = [];
 $fitineArrayUser = [];
-$newFitineName;
-$tempStatus;
 function createFitine($user)
 {
     global $connect,$fitineArrayOther, $fitineArrayUser;
@@ -92,21 +91,23 @@ function getAllLifts()
     return $connect->query($sql);
 }
 
-function startNewFitine($name, $viewStatus)
+function addNewFitine($name, $viewStatus, $liftArray)
 {
-    global $newFitineName, $tempStatus;
-    $newFitineName =$name;
-    $tempStatus = $viewStatus;
+    global $connect;
+    $user = 1;
+    $sql = "INSERT INTO fitine(fitineName, viewStatus) VALUES ('$name', '$viewStatus')";
+    if ($connect->query($sql) === true) {
+        $fitineID = $connect->insert_id;
+        $sqlUser = "INSERT INTO userFitine(user_id, fitine_id, owner_id) VALUES ('$user', '$fitineID', '$user')";
+        $connect->query($sqlUser);
+        foreach ($liftArray as $lift) {
+            $sqlFitLift = "INSERT INTO fitineLift(fitine_id,lift_id,liftWeight,liftSet,liftRep)
+                VALUES ('$fitineID','$lift[liftID]','$lift[liftWt]', '$lift[liftSet]', '$lift[liftRep]')";
+            $connect->query($sqlFitLift);
+        }
+    } else {
+        echo "Error";
+    }
 }
 
-function getNewFitine()
-{
-    global $newFitineName;
-    return $newFitineName;
-}
 
-function getNewStatus()
-{
-    global $tempStatus;
-    return $tempStatus;
-}

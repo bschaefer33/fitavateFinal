@@ -11,53 +11,62 @@
     <title>fitineNew</title>
 </head>
 <div class="Column middle">
-    <h1 class="PageHeader">New Fitine <?php echo $viewStatus ?></h1>
+    <h1 class="PageHeader">New Fitine</h1>
     <div id="fitineFormContainer">
     <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-        <div class ="form-group">
-            <label for="fitineName">Fitine Name</label>
-            <input type="text" class="form-control" id="fitineName" name="fitineName" value="<?php echo $newFitineName ?>" />
+            <label class ="form-group row" for="fitineName">Fitine Name</label>
+            <input class ="form-group row" type="text" class="form-control" id="fitineName" name="fitineName" value="<?php echo $newFitineName ?>" />
+        <div class ="form-group row">
+            <div class="form-check form-check-inline ">
+                <input class="form-check-input" type="radio" name="viewStatus" id="public" value="1" <?php echo $true ?> />
+                <label class="form-check-label" for="public">Public</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="viewStatus" id="private" value="0" <?php echo $false ?> />
+                <label class="form-check-label" for="private">Private</label>
+            </div>
         </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="viewStatus" id="public" value="1" <?php echo $true ?> />
-            <label class="form-check-label" for="public">Public</label>
+        <div class="form-group row">
+            <label class="col" for="liftNameInput">Lift</label>
+            <label class="col" for="liftWtInput">Weight</label>
+            <label class="col" for="liftSetsInput">Sets</label>
+            <label class="col" for="liftRepsInput">Reps</label>
         </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="viewStatus" id="private" value="0" <?php echo $false ?> />
-            <label class="form-check-label" for="private">Private</label>
+        <div class="form-group row" id="liftSel">
+                <select class="col" id="listLifts" name="liftID[]">
+                    <option value="null" selected>Add New Lift</option>
+                        <?php foreach ($fullLiftArray as $lift) : ?>
+                            <option value ="<?php echo $lift['lift_id'] ?>"><?= $lift['liftName'] ?></option>;
+                        <?php endforeach; ?>>
+                </select>
+            <input class="col" type="text" id="liftWtInput" name="liftWt[]"/>
+            <input class="col" type="text" id="liftSetsInput" name="liftSet[]"/>
+            <input class="col" type="text" id="liftRepsInput" name="liftRep[]"/>
         </div>
-        <div class="form-group">
-            <?php addlift(); ?>
-            <!--<select class="custom-select" id="lifts" name="lift">
-                <option selected>Add New Lift</option>
-                <?php foreach($fullLiftArray as $lift) :?>
-                    <option value ="<?= $lift['lift_id'] ?>"><?= $lift['liftName']?></option>
-                <?php endforeach; ?>
-            </select>
-            <div class="row">
-                <div class="col">
-                    <label for="liftWt">Weight (lbs.)</label>
-                    <input type="text" class="form-control" id="liftWt" />
-                </div>
-                <div class="col">
-                    <label for="liftSet">Sets</label>
-                    <input type="text" class="form-control" id="liftSet" />
-                </div>
-                <div class="col">
-                    <label for="liftRep">LiftRep</label>
-                    <input type="text" class="form-control" id="liftRep" />
-                </div>
-            </div>-->
+        <div id="newInput"></div>
+        <div class="form-group row">
+            <button id="rowAdder" type="button" class="btn">Add Another Lift</button>
+            <button id="fitineSubmit" type="submit" class="btn">Submit Fitine</button>
         </div>
-        <div class="form-group" id="addMoreLifts">
-        
-        </div>
-        <input type="submit" value="Add Another Lift" name="liftbutton">
-        <input type="submit" value="Create FiTine" name="submitForm">
     </form>
     </div>
 </div>
 <script>
-    
-</script>
+    $("#rowAdder").click(function () {
+        
+        newRowAdd =
+        '<div class="form-group row" id="liftSel">' +
+                '<select class="col" id="listLifts" name="liftID[]">' +
+                    '<option value="null" selected>Add New Lift</option>' +
+                        '<?php foreach($fullLiftArray as $lift) : ?>' +
+                            '<option value ="<?php echo $lift['lift_id'] ?>"><?= $lift['liftName'] ?></option>'+
+                        '<?php endforeach; ?>'+
+                '</select>'+
+            '<input class="col" type="text" id="liftWtInput" name="liftWt[]"/>'+
+            '<input class="col" type="text" id="liftSetsInput" name="liftSet[]"/>' +
+            '<input class="col" type="text" id="liftRepsInput" name="liftRep[]"/></div>'
+            $('#newInput').append(newRowAdd);
+            <?= $numOfLifts++; ?>
+    });
 
+</script>
