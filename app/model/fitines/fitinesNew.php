@@ -15,12 +15,12 @@
         $false = "checked";
     }
     //number of lifts
-    $numOfLifts = 1;
     $lift = [];
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $numOfLifts =
         $fitineName = $_POST['fitineName'];
         $fitineStatus = $_POST['viewStatus'];
-        for ($i=0; $i<= $numOfLifts; $i++){
+        for ($i=0; $i<= count($_POST['liftID']); $i++) {
             $liftID = $_POST['liftID'][$i];
             $liftWt = $_POST['liftWt'][$i];
             $liftSet = $_POST['liftSet'][$i];
@@ -28,8 +28,7 @@
             $lift = array('liftID'=>$liftID, 'liftWt'=>$liftWt, 'liftSet'=>$liftSet, 'liftRep'=>$liftRep);
             array_push($newUserLifts, $lift);
         }
-        addNewFitine($fitineName,$fitineStatus,$newUserLifts);
-        $numOfLifts = 0;
+        addNewFitine($fitineName, $fitineStatus, $newUserLifts);
         header("Location: ?page=fitines/fitine");
     }
 

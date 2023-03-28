@@ -16,6 +16,7 @@
   $fitineName = ($_POST['newFitineName']);
   $viewStatus = ($_POST['tempViewStatus']);
 
+  //Sets session variables for when the user wants to create a new fitine
   if(isset($_POST['fitineSubmit'])){
     if (isset($_POST['newFitineName']) && isset($_POST['tempViewStatus'])) {
       $_SESSION['newFitine'] = $fitineName;
@@ -24,20 +25,24 @@
     }
   }
 
+
   if(isset($_POST['fitineEdit'])){
-    $fitineID = $_POST['tempFitID'];
-    $_SESSION['editFitID'] = $fitineID;
-    header("Location: ?page=fitines/fitinesEdit");
+      $fitineID = $_POST['tempFitID'];
+      $_SESSION['editFitID'] = $fitineID;
+      header("Location: ?page=fitines/fitinesEdit");
   }
 
+  //Deletes fitine and reloads the page
   if(isset($_POST['fitineDelete'])){
       $fitineID = $_POST['tempFitID'];
       deleteUserFitine($fitineID);
+      header("Location: ?page=fitines/fitine");
   }
 
   if(isset($_POST['unfollowFitine'])){
-    $fitineID = $_POST['tempSaveID'];
-    unfollowFitine($user, $fitineID);
+      $fitineID = $_POST['tempSaveID'];
+      unfollowFitine(1, $fitineID);
+      header("Location: ?page=fitines/fitine");
 }
 
  

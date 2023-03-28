@@ -1,6 +1,7 @@
 <?php
 class Lift
 {
+    public $fitineID;
     public $liftID;
     public $liftWeight;
     public $liftSet;
@@ -9,8 +10,9 @@ class Lift
     public $muscleGroupID;
     public $muscleGroupName;
 
-    public function __construct($liftID, $liftWeight, $liftSet, $liftRep, $liftName, $muscleGroupID, $muscleGroupName)
+    public function __construct($fitineID, $liftID, $liftWeight, $liftSet, $liftRep, $liftName, $muscleGroupID, $muscleGroupName)
     {
+        $this->fitineID         = $fitineID;
         $this->liftID           = $liftID;
         $this->liftWeight       = $liftWeight;
         $this->liftSet          = $liftSet;

@@ -52,7 +52,7 @@
                                 <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
                                     <input name= "tempFitID" type="hidden" value="<?php echo $fitine->fitineID ?>" />
                                     <input name="fitineEdit" type="submit" class="btn" value="Edit" />
-                                    <input name="fitineDelete" type="submit" class="btn" value="Delete" />
+                                    <input name="fitineDelete" type="submit" class="btn" value="Delete"/>
                                 </form>
                             </div>
                         </div>

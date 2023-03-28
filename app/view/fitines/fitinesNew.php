@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,7 +67,6 @@
             '<input class="col" type="text" id="liftSetsInput" name="liftSet[]"/>' +
             '<input class="col" type="text" id="liftRepsInput" name="liftRep[]"/></div>'
             $('#newInput').append(newRowAdd);
-            <?= $numOfLifts++; ?>
     });
 
 </script>

@@ -15,6 +15,10 @@ require $config['LIB_PATH'] . 'Lift.php';
 
 $fitineArrayOther = [];
 $fitineArrayUser = [];
+
+
+
+//Used on Fitine Home page to display the user's created and saved fitines.
 function createFitine($user)
 {
     global $connect,$fitineArrayOther, $fitineArrayUser;
@@ -35,6 +39,57 @@ function createFitine($user)
             array_push($fitineArrayUser, $fitine);
         } else {
             array_push($fitineArrayOther, $fitine);
+        }
+    }
+}
+
+//Used on Fitine Home page to display the user's created and saved fitines.
+function createLift($fitineId)
+{
+    global $connect;
+    $liftArray = [];
+    $sql = "SELECT fitine.fitine_id,
+                fitineLift.lift_id,
+                fitineLift.liftWeight,
+                fitineLift.liftSet,
+                fitineLift.liftRep,
+                lift.liftName,
+                muscleGroup.muscleGroup_id,
+                muscleGroup.muscleGroupName
+            FROM fitine
+            JOIN fitineLift ON fitine.fitine_id = fitineLift.fitine_id
+            JOIN lift ON fitineLift.lift_id = lift.lift_id
+            JOIN muscleGroup ON lift.muscleGroup_id = muscleGroup.muscleGroup_id
+            WHERE fitine.fitine_id = $fitineId";
+    $result = $connect->query($sql);
+    while ($row = $result->fetch_assoc()) {
+        $lift = new Lift($row['fitine_id'], $row['lift_id'], $row['liftWeight'], $row['liftSet'], $row['liftRep'], $row['liftName'], $row['muscleGroup_id'], $row['muscleGroupName']);
+        array_push($liftArray, $lift);
+    }
+    return $liftArray;
+}
+
+//sends the sorted fitines to the fitine homepage model
+function getUserFitines()
+{
+    global $fitineArrayUser;
+    return $fitineArrayUser;
+}
+function getSavedFitines()
+{
+    global $fitineArrayOther;
+    return $fitineArrayOther;
+}
+
+//Used to get the owner id's name
+function findOwnerName($ownerID)
+{
+    global $connect;
+    $sql = "SELECT userDisplayName FROM user_profile WHERE user_profile.user_id = $ownerID";
+    $result = $connect->query($sql);
+    while ($row = $result->fetch_assoc()) {
+        foreach ($row as $value) {
+            return $value;
         }
     }
 }
@@ -68,41 +123,8 @@ function getLift($fitineID)
     }
     return $liftArray;
 }
-function createLift($fitineId)
-{
-    global $connect;
-    $liftArray = [];
-    $sql = "SELECT fitine.fitine_id,
-                fitineLift.lift_id,
-                fitineLift.liftWeight,
-                fitineLift.liftSet,
-                fitineLift.liftRep,
-                lift.liftName,
-                muscleGroup.muscleGroup_id,
-                muscleGroup.muscleGroupName
-            FROM fitine
-            JOIN fitineLift ON fitine.fitine_id = fitineLift.fitine_id
-            JOIN lift ON fitineLift.lift_id = lift.lift_id
-            JOIN muscleGroup ON lift.muscleGroup_id = muscleGroup.muscleGroup_id
-            WHERE fitine.fitine_id = $fitineId";
-    $result = $connect->query($sql);
-    while ($row = $result->fetch_assoc()) {
-        $lift = new Lift($row['lift_id'], $row['liftWeight'], $row['liftSet'], $row['liftRep'], $row['liftName'], $row['muscleGroup_id'], $row['muscleGroupName']);
-        array_push($liftArray, $lift);
-    }
-    return $liftArray;
-}
-function findOwnerName($ownerID)
-{
-    global $connect;
-    $sql = "SELECT userDisplayName FROM user_profile WHERE user_profile.user_id = $ownerID";
-    $result = $connect->query($sql);
-    while ($row = $result->fetch_assoc()) {
-        foreach ($row as $key=>$value) {
-            return $value;
-        }
-    }
-}
+
+
 function updateFitine($fitineID, $fitineName,$fitineStatus,$newUserLifts)
 {
     global $connect;
@@ -120,17 +142,8 @@ function updateFitine($fitineID, $fitineName,$fitineStatus,$newUserLifts)
         $connect->query($sqlFitLift);
     }
 }
-function getUserFitines()
-{
-    global $fitineArrayUser;
-    return $fitineArrayUser;
-}
-function getSavedFitines()
-{
-    global $fitineArrayOther;
-    return $fitineArrayOther;
-}
 
+//Used in the edit and new fitine pages to display lifts in the select/dropdown element
 function getAllLifts()
 {
     global $connect;
