@@ -33,26 +33,37 @@
             <label class="col" for="liftSetsInput">Sets</label>
             <label class="col" for="liftRepsInput">Reps</label>
         </div>
-        <?php foreach($liftArray as $key=>$value): ?>
-            <div class="form-group row" id="liftSel">
-                <select class="col" id="listLifts" name="liftID[]">
-                    <?php foreach ($fullLiftArray as $lift) : ?>
-                        <option <?php selectdCheck($lift['lift_id'], $value['lift_id']); ?>value ="<?php echo $lift['lift_id'] ?>"><?= $lift['liftName'] ?></option>;
-                    <?php endforeach; ?>
-                </select>
-                <input class="col" type="text" id="liftWtInput" name="liftWt[]" value="<?php echo $value['liftWeight'] ?>" />
-                <input class="col" type="text" id="liftSetsInput" name="liftSet[]" value="<?php echo $fitine['liftSet'] ?>" />
-                <input class="col" type="text" id="liftRepsInput" name="liftRep[]" value="<?php echo $fitine['fitineRep'] ?>" />
-            </div>
+        <?php foreach($liftArray as $lift): ?>
+            <?php printLifts($lift); ?>
+            <?php $numOfLifts++; ?>
         <?php endforeach; ?>
-        
+        <div id="newInput"></div>
 
         <div class="form-group row">
             <button id="rowAdder" type="button" class="btn">Add Another Lift</button>
+            <button id="rowdeleter" type="button" class="btn">Add Another Lift</button>
             <button id="fitineSubmit" type="submit" class="btn">Submit Fitine</button>
         </div>
     </form>
     </div>
 </div>
+<script>
+  $("#rowAdder").click(function () {
+        
+        newRowAdd =
+        '<div class="form-group row" id="liftSel">' +
+                '<select class="col" id="listLifts" name="liftID[]">' +
+                    '<option value="null" selected>Add New Lift</option>' +
+                        '<?php foreach($fullLiftArray as $lifSelect) : ?>' +
+                            '<option value ="<?php echo $liftSelect['lift_id'] ?>"><?= $liftSelect['liftName'] ?></option>'+
+                        '<?php endforeach; ?>'+
+                '</select>'+
+            '<input class="col" type="text" id="liftWtInput" name="liftWt[]" value="'<?= $lift["liftWeight"] ?>'"/>'+
+            '<input class="col" type="text" id="liftSetsInput" name="liftSet[]" value="'<?= $lift["liftSet"] ?>'"/>'+
+            '<input class="col" type="text" id="liftRepsInput" name="liftRep[]" value="'<?= $lift["liftRep"] ?>'"/></div>'
+            $('#newInput').append(newRowAdd);
+            <?= $numOfLifts++; ?>
+    });
+</script>
 </body>
 </html>

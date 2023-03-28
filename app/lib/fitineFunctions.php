@@ -52,16 +52,21 @@ function getFitine($fitineID)
 function getLift($fitineID)
 {
     global $connect;
+    $liftArray = [];
     $sql = "SELECT fitineLift.lift_id,
                 fitineLift.liftWeight,
                 fitineLift.liftSet,
-                fitineLift.liftRep
+                fitineLift.liftRep,
+                lift.liftName
             FROM fitine
             JOIN fitineLift ON fitine.fitine_id = fitineLift.fitine_id
             JOIN lift ON fitineLift.lift_id = lift.lift_id
             WHERE fitine.fitine_id = $fitineID";
     $result = $connect->query($sql);
-    return $result->fetch_assoc();
+    while ($row = $result->fetch_assoc()) {
+        array_push($liftArray, $row);
+    }
+    return $liftArray;
 }
 function createLift($fitineId)
 {
@@ -96,6 +101,23 @@ function findOwnerName($ownerID)
         foreach ($row as $key=>$value) {
             return $value;
         }
+    }
+}
+function updateFitine($fitineID, $fitineName,$fitineStatus,$newUserLifts)
+{
+    global $connect;
+    $user = 1;
+    $sql = "UPDATE fitine
+            SET fitineName = $fitineName,
+                viewStatus =$fitineStatus
+            WHERE fitine_id = $fitineID";
+    $connect->query($sql);
+    $sqlDel = "DELETE FROM fitineLift WHERE fitineLift.fitine_id = $fitineID";
+    $connect->query($sqlDel);
+    foreach ($newUserLifts as $lift) {
+        $sqlFitLift = "INSERT INTO fitineLift(fitine_id,lift_id,liftWeight,liftSet,liftRep)
+            VALUES ('$fitineID','$lift[liftID]','$lift[liftWt]', '$lift[liftSet]', '$lift[liftRep]')";
+        $connect->query($sqlFitLift);
     }
 }
 function getUserFitines()
