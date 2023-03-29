@@ -22,7 +22,7 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $fitineName = $_POST['fitineName'];
         $fitineStatus = $_POST['viewStatus'];
-        for ($i=0; $i<= count($_POST['editLiftWt']); $i++) {
+        for ($i=0; $i<= count($_POST['editLiftID']); $i++) {
             $liftID = $_POST['editLiftID'][$i];
             $liftWt = $_POST['editLiftWt'][$i];
             $liftSet = $_POST['editLiftSet'][$i];
@@ -30,8 +30,8 @@
             $editedLift = array('liftID'=>$liftID, 'liftWt'=>$liftWt, 'liftSet'=>$liftSet, 'liftRep'=>$liftRep);
             array_push($updatedLifts, $editedLift);
         }
-        print_r($updatedLifts);
-        updateFitine($fitineID, $user, $fitineName, $fitineStatus, $updatedLifts);
+        updateFitine($fitineID, $fitineName, $fitineStatus, $updatedLifts);
+        header("Location: ?page=fitines/fitine");
     }
    
     

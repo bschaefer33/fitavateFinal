@@ -65,15 +65,15 @@
         
     newRowAdd =
         '<div class="form-group row" id="liftSel">' +
-                '<select class="col" id="listLifts" name="liftID[]">' +
+                '<select class="col" id="listLifts" name="editLiftID[]">' +
                     '<option value="null" selected>Add New Lift</option>' +
                         '<?php foreach($fullLiftArray as $lift) : ?>' +
                             '<option value ="<?php echo $lift['lift_id'] ?>"><?= $lift['liftName'] ?></option>'+
                         '<?php endforeach; ?>'+
                 '</select>'+
-            '<input class="col" type="text" id="liftWtInput" name="liftWt[]"/>'+
-            '<input class="col" type="text" id="liftSetsInput" name="liftSet[]"/>' +
-            '<input class="col" type="text" id="liftRepsInput" name="liftRep[]"/></div>'
+            '<input class="col" type="text" id="liftWtInput" name="editLiftWt[]"/>'+
+            '<input class="col" type="text" id="liftSetsInput" name="editLiftSet[]"/>' +
+            '<input class="col" type="text" id="liftRepsInput" name="editLiftRep[]"/></div>'
             $('#newInput').append(newRowAdd);
     });
 </script>
