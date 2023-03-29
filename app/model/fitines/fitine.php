@@ -25,7 +25,7 @@
     }
   }
 
-
+  //edit current fitine and set the session variable
   if(isset($_POST['fitineEdit'])){
       $fitineID = $_POST['tempFitID'];
       $_SESSION['editFitID'] = $fitineID;
@@ -39,6 +39,7 @@
       header("Location: ?page=fitines/fitine");
   }
 
+  //unfollow the saved fitine 
   if(isset($_POST['unfollowFitine'])){
       $fitineID = $_POST['tempSaveID'];
       unfollowFitine(1, $fitineID);

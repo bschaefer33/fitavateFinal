@@ -125,22 +125,19 @@ function getLift($fitineID)
 }
 
 
-function updateFitine($fitineID, $fitineName,$fitineStatus,$newUserLifts)
+function updateFitine($fitineID, $fitineName, $fitineStatus, $editUserLifts)
 {
     global $connect;
-    $user = 1;
-    $sql = "UPDATE fitine
-            SET fitineName = $fitineName,
-                viewStatus =$fitineStatus
-            WHERE fitine_id = $fitineID";
+    $sql = "UPDATE fitine SET fitineName = '$fitineName', viewStatus = '$fitineStatus' WHERE fitine_id = '$fitineID'";
     $connect->query($sql);
-    $sqlDel = "DELETE FROM fitineLift WHERE fitineLift.fitine_id = $fitineID";
-    $connect->query($sqlDel);
-    foreach ($newUserLifts as $lift) {
+    $sqlDelete = "DELETE FROM fitineLift WHERE fitineLift.fitine_id = $fitineID";
+    $connect->query($sqlDelete);
+    foreach ($editUserLifts as $lift) {
         $sqlFitLift = "INSERT INTO fitineLift(fitine_id,lift_id,liftWeight,liftSet,liftRep)
-            VALUES ('$fitineID','$lift[liftID]','$lift[liftWt]', '$lift[liftSet]', '$lift[liftRep]')";
+                VALUES ('$fitineID','$lift[liftID]','$lift[liftWt]', '$lift[liftSet]', '$lift[liftRep]')";
         $connect->query($sqlFitLift);
     }
+
 }
 
 //Used in the edit and new fitine pages to display lifts in the select/dropdown element
@@ -151,10 +148,9 @@ function getAllLifts()
     return $connect->query($sql);
 }
 
-function addNewFitine($name, $viewStatus, $liftArray)
+function addNewFitine($user, $name, $viewStatus, $liftArray)
 {
     global $connect;
-    $user = 1;
     $sql = "INSERT INTO fitine(fitineName, viewStatus) VALUES ('$name', '$viewStatus')";
     if ($connect->query($sql) === true) {
         $fitineID = $connect->insert_id;
