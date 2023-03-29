@@ -3,9 +3,9 @@
   
   //require the fitines functions from library
   require $config['LIB_PATH'] . 'fitineFunctions.php';
-  
+  $user = $_SESSION['user_id'];
   //get the user fitines and assign them as saved or user created
-  createFitine(1);
+  createFitine($user);
   $userArray = getUserFitines();
   $savedArray = getSavedFitines();
 

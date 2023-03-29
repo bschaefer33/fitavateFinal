@@ -19,125 +19,61 @@
 }
 body{
     background-color: #5E0B15;
-}
-/****************************
-*           Mobile          *
-****************************/ 
-
-/****************************
-*       Tablet/Desktop      *
-****************************/
-@media (min-width: 768px) {
-
-}  
+} 
 /*******  Header  **********/
-#headerContainer{
+.headerContainer{
     background-color: #707070;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
     padding: 1%;
-    width: 100%;
-    display: inline-flex;
-    align-content: center;
-}
-#headerContentLeft{
-    max-width: 30%;
-}
-#headerContentLeft img{
-    background-color: #707070;
-    display: block;
-    max-width: 70%;
-    margin-left: auto;
-    margin-right: auto;
-}
-#headerContentMiddle{
-    max-width: 60%;
-}
-#headerContentMiddle img{
-    background-color: #707070;
-    display: block;
-    padding-top: .7em;
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
 }
 /*******  Main Content  **********/
 .pageContainer{
-    padding: 1%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    display: flex;
+    flex-wrap: nowrap;
 }
-.Column{
-    float: left;
+.middleContent{
+    border-left: #707070 solid .4rem;
+    border-right: #707070 solid .4rem;
 }
-.left{
-    width: 20%;
-}
-.middle{
-    width: 60%;
-}
-.right{
-    width: 15%;
-}
-.pageContainer::after{
-    content: "";
-    display: table;
-    clear: both;
-}
-.PageHeader{
+.pageHeader{
     padding: 3%;
     color: white;
-    font-size: 1.5em;
+    font-size: 1.5rem;
 }
-.SectionHeader{
+.sectionHeader{
     padding: 5%;
     color: white;
 }
 /*******  Left Navigation Bar  **********/
 .leftNavigationBar{
-    border-right:3px solid #707070 ;
-    height: 75vmin;
+    padding-left: auto;
+    padding-right: auto;
 }
 .leftNavigationBar img{
-    max-width: 80%;
-    border-radius: 50%;
-    padding: 10% 0;
+    justify-content: center;
 }
-.leftNavigationBar ul{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-}
-.leftNavigationBar li a{
-    display: block;    
-    padding: .5em .2em;
+.leftNavigationBar li a{  
     color: white;
-    width: 100%;
     text-decoration: none;
-    font-size: 100%;
+    font-size:large;
 }
 /*******  Right Navigation Bar  **********/
-.rightNavigationBar{
-    border-left: 3px solid #707070;
-    min-height: 75vmin;
-    max-height: 100vmax;
-}
-.searchBar{
-    position: relative;
-    top: 0;
-    text-align: center;
-    color: white;
-}
 .rightLogo img{
     max-width: 100%;
     bottom: 0;
     
 }
 /*******  Footer  **********/
-#footer{
+.footer{
     background-color: #707070;
     color: white;
     text-align: center;
-}
-footer{
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
 }
@@ -156,9 +92,35 @@ footer{
 }
 
 /****************************
-*           Mobile          *
-****************************/  
-
+*          Profile          *
+****************************/ 
+.profileHeader{
+    display: flex;
+    flex-wrap: nowrap;
+}
+.circular--portrait { 
+    position: relative; 
+    width: 200px; 
+    height: 200px;
+    overflow: hidden; 
+    border-radius: 50%; 
+} 
+.circular--portrait img { 
+    width: 100%; 
+    height: auto; 
+}
+.circular--landscape { 
+    display: inline-block; 
+    position: relative; 
+    width: 200px;
+    height: 200px; 
+    overflow: hidden; 
+    border-radius: 50%; 
+} .circular--landscape img { 
+    width: auto; 
+    height: 100%; 
+    margin-left: -50px; 
+}
 /*******  Header  **********/
 
 /*******   Body   **********/

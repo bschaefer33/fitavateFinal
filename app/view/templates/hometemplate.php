@@ -1,3 +1,13 @@
+<?php
+    session_start();
+    $usrImageEncoded = $_SESSION['usrImage'];
+    if ($_SESSION == "landscape") {
+        // Embed the base64-encoded string in an HTML img tag
+        $usrImage ='<div class="circular--landscape"><img src="data:image/jpeg;base64,' . $usrImageEncoded . '" alt="Image" /></div>';
+    } else {
+        $usrImage ='<div class="circular--portrait"><img src="data:image/jpeg;base64,' . $usrImageEncoded . '" alt="Image" /></div>';
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,49 +30,40 @@
 </head>
 <body>
     <div class="container-fluid p-0 m-0">
-        <div class="container-fluid p-0 m-0">
-            <div id="headerContainer">
-                <div id="headerContentLeft">
-                    <img src="graphic/logo.png" alt="Logo">
-                </div>
-                <div id="headerContentMiddle">
-                    <img src="graphic/fitavate.png" alt="Fitavate">
-                </div>
+        <div class="row headerContainer">
+            <div class="col-md-3 headerContentLeft">
+                <img class="img-fluid" src="graphic/logo.png" alt="Logo">
+            </div>
+            <div class="col-md-8 headerContentMiddle">
+                <img class="img-fluid" src="graphic/fitavate.png" alt="Fitavate">
             </div>
         </div>
-    <div class="pageContainer">
-        <nav class="navebar bg-light">
-            <div class= "Column left">
-                <div class="leftNavigationBar">
-                    <ul>
-                        <li class="navbar-nav"><a class="nav-link" href="?page=profile/profile"><img src="graphic/profilePic.jpg" alt="Profile Picture"></a>
-                        <li class="navbar-nav"><a class="nav-link" href="?page=home">Home</a></li>
-                        <li class="navbar-nav"><a class="nav-link" href="?page=notifications/notifications">Notifications</a></li>
-                        <li class="navbar-nav"><a class="nav-link" href="?page=fitines/fitine">FitTines</a></li>
-                        <li class="navbar-nav"><a class="nav-link" href="?page=followers/followers">Followers</a></li>
-                        <li class="navbar-nav"><a class="nav-link" href="?page=following/following">Following</a></li>
-                        <li class="navbar-nav"><a class="nav-link" href="?page=login/logout">Logout</a></li>
-                    </ul>
-                </div>
+        <div class="row pageContainer">
+            <nav class="col-md-2 navbar leftNavigationBar">
+                <ul>
+                    <li class="navbar-brand"><a class="nav-link" href="?page=profile/profile"><?php echo $usrImage ?></a></li>
+                    <li class="navbar-nav"><a class="nav-link" href="?page=home">Home</a></li>
+                    <li class="navbar-nav"><a class="nav-link" href="?page=notifications/notifications">Notifications</a></li>
+                    <li class="navbar-nav"><a class="nav-link" href="?page=fitines/fitine">FitTines</a></li>
+                    <li class="navbar-nav"><a class="nav-link" href="?page=followers/followers">Followers</a></li>
+                    <li class="navbar-nav"><a class="nav-link" href="?page=following/following">Following</a></li>
+                    <li class="navbar-nav"><a class="nav-link" href="?page=login/logout">Logout</a></li>
+                </ul>
+            </nav>
+            <div class="col-md-8 middleContent">
+                <?php
+                    include($main_content);
+                ?>
             </div>
-        </nav>
-        
-        <div>
-        <?php
-            include($main_content);
-        ?>
-        </div>
-        <div class="Column right">
-            <div class="rightNavigationBar">
+            <div class="col-md-2 rightNavigationBar">
                 <div class="rightLogo">
                     <img src="graphic/logo.png" alt="logo">
                 </div>
             </div>
         </div>
-    </div>
-    <div id = "footer">
-        <p>CopyRight Fitavate 2023</p>
-    </div>
+        <div class="row footer">
+            <p>CopyRight Fitavate 2023</p>
+        </div>
     </div>
 
 </body>

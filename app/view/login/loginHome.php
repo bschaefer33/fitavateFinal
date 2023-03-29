@@ -12,11 +12,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $sql = "SELECT * FROM user_profile WHERE email='$email' AND userPassword='$password'";
     $result = mysqli_query($conn, $sql);
-
     if (mysqli_num_rows($result) === 1) {
         //Save the username in the session
         $_SESSION['email'] = $email;
         $_SESSION['userPassword'] = $password;
+        //Set user id variables-Brittany
+        $row = $result->fetch_assoc();
+        $_SESSION['user_id'] = $row['user_id'];
+        $_SESSION['userDisplayName'] = $row['userDisplayName'];
         //Redirect to the home page
         header("Location: ?page=home");
         exit();
@@ -28,15 +31,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
+    <title>Login</title>
 </head>
 <body>
-    <div class="loginFormHolder">
+    <div class="container-fluid p-0 m-0 loginFormHolder">
         <h1>Login</h1>
         <?php
-            if(isset($message)) {
+            if (isset($message)) {
                 echo '<div class="error">' . $message . '</div>';
             }
         ?>

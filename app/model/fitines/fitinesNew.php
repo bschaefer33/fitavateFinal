@@ -9,7 +9,7 @@
     //session variables from fitine page
     $newFitineName = $_SESSION['newFitine'];
     $viewStatus = $_SESSION['tempStatus'];
-    $user = 1;
+    $user = $_SESSION['user_id'];
     //to select the correct radio button
     if ($viewStatus == 1) {
         $true = "checked";

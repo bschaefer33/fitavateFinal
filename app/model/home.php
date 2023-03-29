@@ -1,2 +1,4 @@
 <?php
-    $title = 'testing';
+    session_start();
+
+    
