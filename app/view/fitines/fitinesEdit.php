@@ -36,20 +36,20 @@
         </div>
         <?php foreach($liftArray as $lift): ?>
             <div class="form-group row" id="liftSel">
-                <select class="col" id="listLifts" name="liftID[]">
+                <select class="col" id="listLifts" name="editLiftID[]">
                     <option value="null" selected>Add New Lift</option>
                         <?php foreach ($fullLiftArray as $liftSelect): ?>
-                            <?php if ($lift['lift_id'] == $liftSelect['lift_id']) : ?>
+                            <?php if ($lift['lift_id'] == $liftSelect['lift_id']): ?>
                                 <option selected value ="<?php echo $liftSelect["lift_id"] ?>"><?php echo $liftSelect["liftName"] ?></option>;
                             <?php else: ?>
                                 <option value ="<?php echo $liftSelect["lift_id"] ?>"><?php echo $liftSelect["liftName"] ?></option>;
                             <?php endif; ?>
                         <?php endforeach; ?>>
                 </select>
-            <input class="col" type="text" id="liftWtInput" name="liftWt[]" value="<?php echo $lift["liftWeight"] ?>"/>
-            <input class="col" type="text" id="liftSetsInput" name="liftSet[]" value="<?php echo $lift["liftSet"] ?>"/>
-            <input class="col" type="text" id="liftRepsInput" name="liftRep[]" value="<?php echo $lift["liftRep"] ?>"/>
-        </div>
+                <input class="col" type="text" id="liftWtInput" name="editLiftWt[]" value="<?php echo $lift["liftWeight"] ?>"/>
+                <input class="col" type="text" id="liftSetsInput" name="editLiftSet[]" value="<?php echo $lift["liftSet"] ?>"/>
+                <input class="col" type="text" id="liftRepsInput" name="editLiftRep[]" value="<?php echo $lift["liftRep"] ?>"/>
+            </div>
         <?php endforeach; ?>
         <div id="newInput"></div>
 
@@ -77,5 +77,3 @@
             $('#newInput').append(newRowAdd);
     });
 </script>
-</body>
-</html>

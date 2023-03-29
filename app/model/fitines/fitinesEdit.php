@@ -10,6 +10,7 @@
     $fitineName = $fitine['fitineName'];
     $viewStatus = $fitine['viewStatus'];
     $liftArray = getLift($fitineID);
+    $fullLiftArray = getAllLifts();
     //determines what radio button to select
     if ($fitine['viewStatus'] == 1) {
         $true = "checked";
@@ -19,18 +20,18 @@
     $updatedLifts = [];
     $editedLift= [];
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        print_r($fitine);
         $fitineName = $_POST['fitineName'];
         $fitineStatus = $_POST['viewStatus'];
-        for ($i=0; $i<= count($_POST['liftID']); $i++) {
-            $liftID = $_POST['liftID'][$i];
-            $liftWt = $_POST['liftWt'][$i];
-            $liftSet = $_POST['liftSet'][$i];
-            $liftRep = $_POST['liftRep'][$i];
+        for ($i=0; $i<= count($_POST['editLiftWt']); $i++) {
+            $liftID = $_POST['editLiftID'][$i];
+            $liftWt = $_POST['editLiftWt'][$i];
+            $liftSet = $_POST['editLiftSet'][$i];
+            $liftRep = $_POST['editLiftRep'][$i];
             $editedLift = array('liftID'=>$liftID, 'liftWt'=>$liftWt, 'liftSet'=>$liftSet, 'liftRep'=>$liftRep);
             array_push($updatedLifts, $editedLift);
         }
+        print_r($updatedLifts);
         updateFitine($fitineID, $user, $fitineName, $fitineStatus, $updatedLifts);
     }
-    $fullLiftArray = getAllLifts();
+   
     
