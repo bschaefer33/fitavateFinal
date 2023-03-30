@@ -23,21 +23,18 @@
     <title>Fitavate</title>
 </head>
 <body>
-    <div class="container-fluid p-0 m-0 siteContainer">
+    <div class="container-fluid p-0 m-0 no-gutters siteContainer">
         <div class="row headerContainer">
-            <div class="col-md-2 headerContentLeft">
+            <div class="col col-md-2 headerContentLeft">
                 <img class="img-fluid" src="graphic/logo.png" alt="Logo">
             </div>
-            <div class="col-md-8 headerContentMiddle">
+            <div class="col col-md-8 headerContentMiddle">
                 <img class="img-fluid" src="graphic/fitavate.png" alt="Fitavate">
             </div>
-            <div class="col-md-2"></div>
         </div>
-        <div class="row pageContainer">
-            <div class="col-sm-2 leftNavigationBar">
-                <div class="profileContainer">
-                    <a href="?page=profile/profile"><?php echo $usrImage ?></a>
-                </div>
+        <div class="row no-gutters pageContainer">
+            <div class="col col-sm-2 leftNavigationBar">
+                <a class="container profImg" href="?page=profile/profile"><?php echo $usrImage ?></a>
                 <nav class="navbar">
                     <ul>
                         <li class="navbar-nav"><a class="nav-link" href="?page=home">Home</a></li>
@@ -49,21 +46,19 @@
                     </ul>
                 </nav>
             </div>
-            <div class="col-sm-auto middleContent">
+            <div class="col col-sm-7 middleContent">
                 <?php
                     include($main_content);
                 ?>
             </div>
-            <div class="col-sm-2 rightNavigationBar">
-                <div class="rightLogo">
+            <div class="col rightNavigationBar">
+                <div class="container imgHolder">
                     <img src="graphic/logo.png" alt="logo">
                 </div>
             </div>
         </div>
-        <div class="row footer">
-            <div class= "col">
-                <h5>CopyRight Fitavate 2023</h5>
-            </div>
+        <div class="row justify-content-center footContainer">
+            <h5 class="col align-self-center">CopyRight Fitavate 2023</h5>
         </div>
     </div>
 

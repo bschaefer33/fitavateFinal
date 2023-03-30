@@ -16,20 +16,29 @@
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
-Body{
+body{
     background-color: #5E0B15;
 } 
+.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+}
+.col [class*="col-"] {
+      padding-right: 0;
+      padding-left: 0;
+}
 /**********************  Header  ***********************/
 .headerContainer{
     background-color: #707070;
     align-items: center;
     padding: 1%;
 }
-
 /********  Body Content:nav bars and content  **********/
 .pageContainer{
-    padding-top: 2%;
-    padding-bottom: 2%;
+    padding: 2% 0%;
+    display: flex;
+    flex-wrap: nowrap;
+    min-height: 75vh;
 }
 .middleContent{
     border-left: #707070 solid .4rem;
@@ -39,36 +48,46 @@ Body{
 .leftNavigationBar {
     display: flex;
     flex-direction: column;
+    min-width: fit-content;
+    padding-top: 2%;
 }
-.profileContainer{
+.profImg{
     max-width: 100%;
+    height: auto;
+    justify-self: center;
+    scale: 90%;
 }
-.leftNavigationBar .circular--landscape{
-    scale: 1;
-} 
-.leftNavigationBar .circular--portrait{
-    scale: 1;
-} 
+.navbar{
+    padding-left: 15%;
+}
 .leftNavigationBar li a{  
     color: white;
     text-decoration: none;
     font-size:large;
 }
-.navbar{
-    padding-left: 15%;
-}
 /*******  Right Navigation Bar  **********/
-.rightLogo img{
-    max-width: 100%;
+.imgHolder{
+    padding: 0;
+    margin: 0;
+    position:absolute;
     bottom: 0;
-    
+}
+.imgHolder img{
+    max-width: 90%;
 }
 /*******  Footer  **********/
-.footer{
+.footContainer{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    position: relative;
+    bottom: 0;
     background-color: #707070;
     color: white;
-    text-align: center;
-    width: 100%;
+}
+.footContainer h5{
+    justify-self: center;
+    font-size: small;
 }
 /****************************
 *           Fitines         *

@@ -50,6 +50,7 @@ mysqli_close($conn);
 			<a class="edit-profile-btn" href="?page=profile/edit_profile">Edit Profile</a>
 		</div>
 	</div>
+				</div>
 </body>
 </html>
 
