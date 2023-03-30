@@ -1,12 +1,6 @@
 <?php
     session_start();
-    $usrImageEncoded = $_SESSION['usrImage'];
-    if ($_SESSION == "landscape") {
-        // Embed the base64-encoded string in an HTML img tag
-        $usrImage ='<div class="circular--landscape"><img src="data:image/jpeg;base64,' . $usrImageEncoded . '" alt="Image" /></div>';
-    } else {
-        $usrImage ='<div class="circular--portrait"><img src="data:image/jpeg;base64,' . $usrImageEncoded . '" alt="Image" /></div>';
-    }
+    $usrImage = $_SESSION['usrImage'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,40 +23,47 @@
     <title>Fitavate</title>
 </head>
 <body>
-    <div class="container-fluid p-0 m-0">
+    <div class="container-fluid p-0 m-0 siteContainer">
         <div class="row headerContainer">
-            <div class="col-md-3 headerContentLeft">
+            <div class="col-md-2 headerContentLeft">
                 <img class="img-fluid" src="graphic/logo.png" alt="Logo">
             </div>
             <div class="col-md-8 headerContentMiddle">
                 <img class="img-fluid" src="graphic/fitavate.png" alt="Fitavate">
             </div>
+            <div class="col-md-2"></div>
         </div>
         <div class="row pageContainer">
-            <nav class="col-md-2 navbar leftNavigationBar">
-                <ul>
-                    <li class="navbar-brand"><a class="nav-link" href="?page=profile/profile"><?php echo $usrImage ?></a></li>
-                    <li class="navbar-nav"><a class="nav-link" href="?page=home">Home</a></li>
-                    <li class="navbar-nav"><a class="nav-link" href="?page=notifications/notifications">Notifications</a></li>
-                    <li class="navbar-nav"><a class="nav-link" href="?page=fitines/fitine">FitTines</a></li>
-                    <li class="navbar-nav"><a class="nav-link" href="?page=followers/followers">Followers</a></li>
-                    <li class="navbar-nav"><a class="nav-link" href="?page=following/following">Following</a></li>
-                    <li class="navbar-nav"><a class="nav-link" href="?page=login/logout">Logout</a></li>
-                </ul>
-            </nav>
-            <div class="col-md-8 middleContent">
+            <div class="col-sm-2 leftNavigationBar">
+                <div class="profileContainer">
+                    <a href="?page=profile/profile"><?php echo $usrImage ?></a>
+                </div>
+                <nav class="navbar">
+                    <ul>
+                        <li class="navbar-nav"><a class="nav-link" href="?page=home">Home</a></li>
+                        <li class="navbar-nav"><a class="nav-link" href="?page=notifications/notifications">Notifications</a></li>
+                        <li class="navbar-nav"><a class="nav-link" href="?page=fitines/fitine">FitTines</a></li>
+                        <li class="navbar-nav"><a class="nav-link" href="?page=followers/followers">Followers</a></li>
+                        <li class="navbar-nav"><a class="nav-link" href="?page=following/following">Following</a></li>
+                        <li class="navbar-nav"><a class="nav-link" href="?page=login/logout">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-sm-auto middleContent">
                 <?php
                     include($main_content);
                 ?>
             </div>
-            <div class="col-md-2 rightNavigationBar">
+            <div class="col-sm-2 rightNavigationBar">
                 <div class="rightLogo">
                     <img src="graphic/logo.png" alt="logo">
                 </div>
             </div>
         </div>
         <div class="row footer">
-            <p>CopyRight Fitavate 2023</p>
+            <div class= "col">
+                <h5>CopyRight Fitavate 2023</h5>
+            </div>
         </div>
     </div>
 

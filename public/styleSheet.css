@@ -6,61 +6,56 @@
     Date Updated: 2-8-22
     By: Brittany Schaefer
 */
-/****************************
-*           General         *
-****************************/
-/*******  Body  **********/
+/*******************************************************
+*                General/Home Template                 *
+*******************************************************/
+/**********************  Body  ************************/
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: medium;
 }
-body{
+Body{
     background-color: #5E0B15;
 } 
-/*******  Header  **********/
+/**********************  Header  ***********************/
 .headerContainer{
     background-color: #707070;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-evenly;
     align-items: center;
     padding: 1%;
 }
-/*******  Main Content  **********/
+
+/********  Body Content:nav bars and content  **********/
 .pageContainer{
     padding-top: 2%;
     padding-bottom: 2%;
-    display: flex;
-    flex-wrap: nowrap;
 }
 .middleContent{
     border-left: #707070 solid .4rem;
     border-right: #707070 solid .4rem;
 }
-.pageHeader{
-    padding: 3%;
-    color: white;
-    font-size: 1.5rem;
+/*****************  Left Navigation Bar  *****************/
+.leftNavigationBar {
+    display: flex;
+    flex-direction: column;
 }
-.sectionHeader{
-    padding: 5%;
-    color: white;
+.profileContainer{
+    max-width: 100%;
 }
-/*******  Left Navigation Bar  **********/
-.leftNavigationBar{
-    padding-left: auto;
-    padding-right: auto;
-}
-.leftNavigationBar img{
-    justify-content: center;
-}
+.leftNavigationBar .circular--landscape{
+    scale: 1;
+} 
+.leftNavigationBar .circular--portrait{
+    scale: 1;
+} 
 .leftNavigationBar li a{  
     color: white;
     text-decoration: none;
     font-size:large;
+}
+.navbar{
+    padding-left: 15%;
 }
 /*******  Right Navigation Bar  **********/
 .rightLogo img{
@@ -73,8 +68,6 @@ body{
     background-color: #707070;
     color: white;
     text-align: center;
-    position: relative;
-    bottom: 0;
     width: 100%;
 }
 /****************************
@@ -116,7 +109,8 @@ body{
     height: 200px; 
     overflow: hidden; 
     border-radius: 50%; 
-} .circular--landscape img { 
+} 
+.circular--landscape img { 
     width: auto; 
     height: 100%; 
     margin-left: -50px; 
@@ -126,7 +120,15 @@ body{
 /*******   Body   **********/
 
 /*******  Footer  **********/
-
+.pageHeader{
+    padding: 3%;
+    color: white;
+    font-size: 1.5rem;
+}
+.sectionHeader{
+    padding: 5%;
+    color: white;
+}
 
 
 /****************************
