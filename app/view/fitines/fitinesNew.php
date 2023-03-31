@@ -42,6 +42,7 @@
             <input class="col" type="text" id="liftWtInput" name="liftWt[]"/>
             <input class="col" type="text" id="liftSetsInput" name="liftSet[]"/>
             <input class="col" type="text" id="liftRepsInput" name="liftRep[]"/>
+            <button class="btn" id="rowDelete" type="button">Remove</button>
         </div>
         <div id="newInput"></div>
         <div class="form-group row">
@@ -64,8 +65,13 @@
                 '</select>'+
             '<input class="col" type="text" id="liftWtInput" name="liftWt[]"/>'+
             '<input class="col" type="text" id="liftSetsInput" name="liftSet[]"/>' +
-            '<input class="col" type="text" id="liftRepsInput" name="liftRep[]"/></div>'
+            '<input class="col" type="text" id="liftRepsInput" name="liftRep[]"/>'+
+            '<button class="btn" id="rowDelete" type="button">Remove</button></div>'
             $('#newInput').append(newRowAdd);
     });
+    
+    $("body").on("click", "#rowDelete", function () {
+        $(this).parents("#liftSel").remove();
+    })
 
 </script>

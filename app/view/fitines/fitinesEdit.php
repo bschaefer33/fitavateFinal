@@ -49,6 +49,7 @@
                 <input class="col" type="text" id="liftWtInput" name="editLiftWt[]" value="<?php echo $lift["liftWeight"] ?>"/>
                 <input class="col" type="text" id="liftSetsInput" name="editLiftSet[]" value="<?php echo $lift["liftSet"] ?>"/>
                 <input class="col" type="text" id="liftRepsInput" name="editLiftRep[]" value="<?php echo $lift["liftRep"] ?>"/>
+                <button class="btn" id="rowDelete" type="button">Remove</button>
             </div>
         <?php endforeach; ?>
         <div id="newInput"></div>
@@ -73,7 +74,12 @@
                 '</select>'+
             '<input class="col" type="text" id="liftWtInput" name="editLiftWt[]"/>'+
             '<input class="col" type="text" id="liftSetsInput" name="editLiftSet[]"/>' +
-            '<input class="col" type="text" id="liftRepsInput" name="editLiftRep[]"/></div>'
+            '<input class="col" type="text" id="liftRepsInput" name="editLiftRep[]"/>' +
+            '<button class="btn" id="rowDelete" type="button">Remove</button></div>'
             $('#newInput').append(newRowAdd);
     });
+
+    $("body").on("click", "#rowDelete", function () {
+        $(this).parents("#liftSel").remove();
+    })
 </script>

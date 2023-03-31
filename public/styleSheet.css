@@ -95,15 +95,30 @@ body{
 ****************************/
 .fitineTable{
     margin-left: 10%;
-    color: black;
     border: 2px solid goldenrod;
     background-color: white;
     width: 80%;
 }  
+.fitineFormContainer{
+    color: black;
+}
 .fitineRow td{
     padding: 1em;
 }
+.card-link{
+    color: black;
+}
+label{
+    color: black;
+}
+.fitineSubmit{
+    padding: .3rem;
+    background-color: goldenrod;
+}
 
+.card-body{
+    color: black;
+}
 /****************************
 *          Profile          *
 ****************************/ 
@@ -164,10 +179,10 @@ body{
 .pageHeader{
     padding: 3%;
     color: white;
-    font-size: 1.5rem;
+    text-align: center;
 }
 .sectionHeader{
-    padding: 5%;
+    padding-left: 3%;
     color: white;
 }
 

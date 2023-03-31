@@ -11,9 +11,9 @@
     <title>fitine</title>
 </head>
 <div class="Column middle">
-    <h1 class="PageHeader">Fitines</h1>
-    <h1 class="SectionHeader">My Fitines</h1>
-    <div id="fitineTable">
+    <h1 class="pageHeader">Fitines</h1>
+    <h1 class="sectionHeader">My Fitines</h1>
+    <div class="fitineTable">
         <div id="accordion">
             <div class="card">
                 <div class="card-header">
@@ -36,7 +36,9 @@
                                 <input class="form-check-input" type="radio" name="tempViewStatus" id="private" value="0"/>
                                 <label class="form-check-label" for="private">Private</label>
                             </div>
-                            <input name="fitineSubmit" type="submit" value="New Fitine" />
+                            <div class="form-inline justify-content-end">
+                                <input class="btn fitineSubmit" name="fitineSubmit" type="submit" value="New Fitine" />
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -61,7 +63,7 @@
         </div>
     </div>
 
-    <h1 class = "SectionHeader">Saved Fitines</h1>
+    <h1 class = "sectionHeader">Saved Fitines</h1>
     <div id="fitineTable">
         <div id="accordion">
             

@@ -45,8 +45,3 @@ function printImage($image)
         echo '<img class="circular--portrait" src="data:image/jpeg;base64,' . $userImageEncoded . '" alt="Image" />';
     }
 }
-
-function getUserVariables($user)
-{
-    $sql = "SELECT * FROM user_profile";
-}
