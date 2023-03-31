@@ -11,8 +11,7 @@ $result = mysqli_query($conn, $sql);
 $user = mysqli_fetch_assoc($result);
 
 mysqli_close($conn);
-//Stop the session
-session_write_close();
+$userImage = $_SESSION['userImage'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +45,7 @@ session_write_close();
         </div>
         <div class="row no-gutters pageContainer">
             <div class="col col-sm-2 leftNavigationBar">
-                <a class="container profImg" href="?page=profile/profile"><?php echo $usrImage ?></a>
+                <a class="container profImg" href="?page=profile/profile"><?php printImage($userImage) ?></a>
                 <nav class="navbar">
                     <ul>
                         <li class="navbar-nav"><a class="nav-link" href="?page=home">Home</a></li>

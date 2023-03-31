@@ -13,18 +13,9 @@ $user = mysqli_fetch_assoc($result);
 mysqli_close($conn);
 //Fetch the user's profile picture from the database
 $userImage = $user['userImage'];
-//Convert the binary data into a base64-encoded string
-$userImageEncoded = base64_encode($userImage);
-//check if image is portriat or landscape and apply correct css - BLS
-list($w, $h, $t, $a) = getimagesizefromstring($userImage);
-if ($w > $h) {
-// Embed the base64-encoded string in an HTML img tag
-$usrImage = '<img class="circular--landscape" src="data:image/jpeg;base64,' . $userImageEncoded . '" alt="Image" />';
-} else {
-$usrImage='<img class="circular--portrait" src="data:image/jpeg;base64,' . $userImageEncoded . '" alt="Image" />';
-}
+
 $birthday = date('m-d', strtotime($user['birthday']));
-$_SESSION['usrImage'] = $usrImage;
+$_SESSION['userImage'] = $userImage;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +27,7 @@ $_SESSION['usrImage'] = $usrImage;
 	<div class="container profilePage">
 		<div class="row align-items-center justify-content-center profileHeader">
 			<div class="col col-sm-4 profile-img">
-				<?php echo $usrImage; ?>
+				<?php printImage($userImage) ?>
 			</div>
 			<div class="col profile-info">
 				<div class="row userName">
