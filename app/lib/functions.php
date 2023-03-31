@@ -32,3 +32,6 @@ function displayResult($result, $sql){
         echo "<strong>zero results using SQL: </strong>". $sql;
     }
 }
+function printImage(){
+    
+}

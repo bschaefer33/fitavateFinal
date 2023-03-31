@@ -1,6 +1,18 @@
 <?php
-    session_start();
-    $usrImage = $_SESSION['usrImage'];
+//Start the session
+session_start();
+
+//Get the user's information from the database
+$email = $_SESSION['email'];
+$password = $_SESSION['userPassword'];
+$conn = mysqli_connect("localhost", "root", "mysql", "fitavate");
+$sql = "SELECT * FROM user_profile WHERE email='$email' AND userPassword='$password'";
+$result = mysqli_query($conn, $sql);
+$user = mysqli_fetch_assoc($result);
+
+mysqli_close($conn);
+//Stop the session
+session_write_close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
