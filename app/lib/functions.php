@@ -32,7 +32,8 @@ function displayResult($result, $sql){
         echo "<strong>zero results using SQL: </strong>". $sql;
     }
 }
-function printImage($image){
+function printImage($image)
+{
     //Convert the binary data into a base64-encoded string
     $userImageEncoded = base64_encode($image);
     //check if image is portriat or landscape and apply correct css - BLS
@@ -43,4 +44,9 @@ function printImage($image){
     } else {
         echo '<img class="circular--portrait" src="data:image/jpeg;base64,' . $userImageEncoded . '" alt="Image" />';
     }
+}
+
+function getUserVariables($user)
+{
+    $sql = "SELECT * FROM user_profile";
 }
