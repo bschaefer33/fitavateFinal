@@ -7,8 +7,3 @@ $config = [
 ];
 
 require $config['LIB_PATH'] . 'functions.php';
-
-define("SERVER_NAME", "localhost");
-define("DBF_USER_NAME", "root");
-define("DBF_PASSWORD", "mysql");
-define("DATABASE_NAME", "prjProcess");

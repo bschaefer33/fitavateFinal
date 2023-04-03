@@ -8,7 +8,7 @@ $DBF_NAME = "fitavate";
 $connect = mysqli_connect("localhost", "$DBF_USER", "$DBF_PASS", "$DBF_NAME");
 //check connection
 if ($connect->connect_error) {
-    die("Connection failed: ".$conn->connect_error);
+    die("Connection failed: ".$connect->connect_error);
 }
 require $config['LIB_PATH'] . 'Fitine.php';
 require $config['LIB_PATH'] . 'Lift.php';

@@ -14,21 +14,18 @@
 	<div class="container profilePage">
 		<div class="row align-items-center justify-content-center profileHeader">
 			<div class="col col-sm-4 profile-img">
-				<?php printImage($userImage) ?>
+                <?php printImage($secUserImage) ?>
 			</div>
 			<div class="col profile-info">
 				<div class="row userName">
-					<h1 class="col col-sm-10"><?php echo $userDisplayName ?></h1>
-					<div class="col col-sm-2">
-						<a class="btn editButton" href="?page=profile/edit_profile">Edit Profile</a>
-					</div>
+					<h1 class="col col-sm-10"><?php echo $secUserDisplayName ?></h1>
 				</div>
 				<div class="row profStats">
-					<h5 class="col"><?php echo $userCity . ", " . $userState; ?></h5>
-					<h5 class="col">Birthday: <?php echo $birthday; ?></h5>
+					<h5 class="col"><?php echo $secUserCity . ", " . $secUserState; ?></h5>
+					<h5 class="col">Birthday: <?php echo $secUserBirthday; ?></h5>
 				</div>
-				<div class="row bioRow">
-					<h5 class="col"><?php echo $userBio; ?></h5>
+                <div class="row bioRow">
+					<h5 class="col"><?php echo $secUserBio; ?></h5>
 				</div>
 			</div>
 		</div>
@@ -56,34 +53,8 @@
 				</div>
 				<!--Shows the fitines of the user-->
 				<div class="tab-pane fade" id="fitines" role="tabpanel">
-					<h1 class="sectionHeader">User Created Fitines</h1>
+                <h1 class="sectionHeader">User Created Fitines</h1>
 					<div id="accordion">
-						<div class="card">
-							<div class="card-header">
-								<a class="card-link" data-toggle="collapse" href="#collapseOne">Create New Fitine</a>
-							</div>
-							<div id="collapseOne" class="collapse show" data-parent="#accordion">
-								<div class="card-body">
-									<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" name="startNewFitine" >
-										<div class ="form-group">
-											<label for="newFitineName">Fitine Name</label>
-											<input type="text" class="form-control" id="newFitineName" name="newFitineName" />
-										</div>
-										<div class="form-check form-check-inline">
-											<input class="form-check-input" type="radio" name="tempViewStatus" id="public" value="1" />
-											<label class="form-check-label" for="public">Public</label>
-										</div>
-										<div class="form-check form-check-inline">
-											<input class="form-check-input" type="radio" name="tempViewStatus" id="private" value="0"/>
-											<label class="form-check-label" for="private">Private</label>
-										</div>
-										<div class="form-inline justify-content-end">
-											<input class="btn fitineSubmit" name="fitineSubmit" type="submit" value="New Fitine" />
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
 						<?php foreach ($userArray as $fitine) :?>
 						<div class="card">
 							<div class="card-header">
@@ -92,11 +63,6 @@
 							<div id="<?= $fitine->fitineID ?>" class="collapse" data-parent="#accordion">
 								<div class="card-body">
 									<?= $fitine->printFitine(); ?>
-									<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-										<input name= "tempFitID" type="hidden" value="<?php echo $fitine->fitineID ?>" />
-										<input name="fitineEdit" type="submit" class="btn" value="Edit" />
-										<input name="fitineDelete" type="submit" class="btn" value="Delete"/>
-									</form>
 								</div>
 							</div>
 						</div>
@@ -138,25 +104,11 @@
 								</div>
 							<?php endif ?>
 						<?php endforeach; ?>
-					</div>
+                    </div>
 				</div>
 				<!--Shows the user's follower-->
 				<div class="tab-pane fade" id="followers" role="tabpanel">
-					<ul class="list-group">
-						<?php foreach ($resultFollowers as $follower): ?>
-							<?php $secUserID= $follower['following_id']; ?>
-							<?php $secUser = createSecondaryUser($follower['following_id']); ?>
-							<form class="row" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-								<label><?php printImage($secUser['userImage']); ?></label>
-								<label><?php echo $secUser['userDisplay']; ?></label>
-								<input name="secUserID" type="hidden" name="secUserID" value="<?php echo $secUserID ?>" />
-								<input name="secUserProf"id="secUserProf" type="submit" class="btn" value="ViewProfile" />
-							</form>
-						<?php endforeach; ?>
-					</ul>
-					<div>
 
-					</div>
 				</div>
 				<!--Shows who the user is following-->
 				<div class="tab-pane fade" id="following" role="tabpanel">
@@ -167,3 +119,4 @@
 	</div>
 </body>
 </html>
+
