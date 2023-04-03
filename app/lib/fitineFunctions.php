@@ -13,15 +13,13 @@ if ($connect->connect_error) {
 require $config['LIB_PATH'] . 'Fitine.php';
 require $config['LIB_PATH'] . 'Lift.php';
 
-$fitineArrayOther = [];
-$fitineArrayUser = [];
-
-
-
 //Used on Fitine Home page to display the user's created and saved fitines.
 function createFitine($user)
 {
-    global $connect,$fitineArrayOther, $fitineArrayUser;
+    global $connect;
+    $fitineArrayOther= [];
+    $fitineArrayUser = [];
+    $fitines = [];
     $sql = "SELECT userFitine.fitine_id,
                 userFitine.owner_id,
                 fitine.fitineName,
@@ -34,13 +32,16 @@ function createFitine($user)
     while ($row = $result->fetch_assoc()) {
         $liftArray = createLift($row['fitine_id']);
         $ownerName = findOwnerName($row['owner_id']);
-        $fitine = new Fitine($row['user_id'], $row['fitine_id'], $row['owner_id'], $ownerName, $row['fitineName'], $row['viewStatus'], $row['date_created'], $liftArray);
+        $fitine = new Fitine($user, $row['fitine_id'], $row['owner_id'], $ownerName, $row['fitineName'], $row['viewStatus'], $row['date_created'], $liftArray);
         if ($user == $row['owner_id']) {
             array_push($fitineArrayUser, $fitine);
         } else {
             array_push($fitineArrayOther, $fitine);
         }
     }
+    array_push($fitines, $fitineArrayUser);
+    array_push($fitines, $fitineArrayOther);
+    return $fitines;
 }
 
 //Used on Fitine Home page to display the user's created and saved fitines.

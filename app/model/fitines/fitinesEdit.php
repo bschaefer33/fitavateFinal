@@ -4,7 +4,7 @@
     require $config['LIB_PATH'] . 'fitineFunctions.php';
     //the fitine to edit
     $fitineID = $_SESSION['editFitID'];
-    $user = 1;
+    $user = $_SESSION['user_id'];
     //get the fitine information
     $fitine = getFitine($fitineID);
     $fitineName = $fitine['fitineName'];
