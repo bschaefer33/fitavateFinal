@@ -146,17 +146,14 @@
 						<?php foreach ($resultFollowers as $follower): ?>
 							<?php $secUserID= $follower['following_id']; ?>
 							<?php $secUser = createSecondaryUser($follower['following_id']); ?>
-							<form class="row" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-								<label><?php printImage($secUser['userImage']); ?></label>
-								<label><?php echo $secUser['userDisplay']; ?></label>
-								<input name="secUserID" type="hidden" name="secUserID" value="<?php echo $secUserID ?>" />
-								<input name="secUserProf"id="secUserProf" type="submit" class="btn" value="ViewProfile" />
-							</form>
+								<form class="row" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+									<label class="col secProfImg"><?php printImage($secUser['userImage']); ?></label>
+									<label class="col"><?php echo $secUser['userDisplay']; ?></label>
+									<input class="col" type="hidden" name="secUserID" value="<?php echo $secUserID ?>" />
+									<input name="secUserProf"id="secUserProf" type="submit" class="btn col" value="ViewProfile" />
+								</form>
 						<?php endforeach; ?>
 					</ul>
-					<div>
-
-					</div>
 				</div>
 				<!--Shows who the user is following-->
 				<div class="tab-pane fade" id="following" role="tabpanel">

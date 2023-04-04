@@ -15,7 +15,6 @@
     padding: 0;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
 }
 body{
     background-color: #5E0B15;
@@ -115,10 +114,6 @@ label{
     padding: .3rem;
     background-color: goldenrod;
 }
-
-.card-body{
-    color: black;
-}
 /****************************
 *          Profile          *
 ****************************/ 
@@ -137,6 +132,7 @@ label{
 .profile-info{
     max-width: fit-content;
     align-items: center;
+    color: white;
 }
 .profStats{
     padding-top: .4rem;
@@ -169,6 +165,15 @@ label{
     margin-left: -50px; 
 }
 .pageContent{
+    width: 100%;
+} 
+/****************************
+*    Secondary Profile      *
+****************************/ 
+.secProfImg{
+    scale: 30%;
+}
+.userLink{
     width: 100%;
 }
 /*******  Header  **********/

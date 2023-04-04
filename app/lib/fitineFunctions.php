@@ -183,3 +183,9 @@ function unfollowFitine($user, $fitineID)
     $sql = "DELETE FROM userFitine WHERE userFitine.fitine_id = $fitineID AND userFitine.user_id = $user";
     $connect->query($sql);
 }
+function saveFitine($userID,$fitineID,$ownerID)
+{
+    global $connect;
+    $sqlFitine = "INSERT INTO userFitine(user_id, fitine_id, owner_id) VALUES ('$userID', '$fitineID', '$ownerID')";
+    $connect->query($sqlFitine);
+}

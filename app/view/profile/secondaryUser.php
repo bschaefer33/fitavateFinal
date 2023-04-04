@@ -56,22 +56,52 @@
                 <h1 class="sectionHeader">User Created Fitines</h1>
 					<div id="accordion">
 						<?php foreach ($userArray as $fitine) :?>
-						<div class="card">
-							<div class="card-header">
-								<a class='collapsed card-link' data-toggle='collapse' href='#<?= $fitine->fitineID?>'><?= $fitine->fitineName ?></a>
-							</div>
-							<div id="<?= $fitine->fitineID ?>" class="collapse" data-parent="#accordion">
-								<div class="card-body">
-									<?= $fitine->printFitine(); ?>
-								</div>
-							</div>
-						</div>
+                            <?php if($count == 0): ?>
+                                <?php if($fitine->viewStatus == 1): ?>
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <a class="card-link" data-toggle="collapse" href="#collapseOne"><?= $fitine->fitineName ?></a>
+                                        </div>
+                                        <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                                            <div class="card-body">
+                                                <?= $fitine->printFitine(); ?>
+                                                <?php $count=1; ?>
+                                                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+                                                    <input name= "saveFitineID" type="hidden" value="<?php echo $fitine->fitineID ?>" />
+                                                    <input name= "saveOwnerID" type="hidden" value="<?php echo $fitine->ownerID ?>" />
+                                                    <input name="saveFitine" type="submit" class="btn" value="Save Fitine" />
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php endif; ?>
+                                <?php elseif($count > 0): ?>
+                                    <?php if($fitine->viewStatus == 1): ?>
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <a class='collapsed card-link' data-toggle='collapse' href='#<?= $fitine->fitineID?>'><?= $fitine->fitineName ?></a>
+                                            </div>
+                                            <div id="<?= $fitine->fitineID ?>" class="collapse" data-parent="#accordion">
+                                                <div class="card-body">
+                                                    <?= $fitine->printFitine(); ?>
+                                                    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+                                                        <input name= "saveFitineID" type="hidden" value="<?php echo $fitine->fitineID ?>" />
+                                                        <input name= "saveOwnerID" type="hidden" value="<?php echo $fitine->ownerID ?>" />
+                                                        <input name="saveFitine" type="submit" class="btn" value="Save Fitine" />
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?php endif; ?>
+                                <?php else: ?>
+                                    <h4>Error</h4>
+                                <?php endif; ?>
 						<?php endforeach; ?>
 					</div>
 					<h1 class = "sectionHeader">User's Saved Fitines</h1>
 					<div id="accordion">
 						<?php foreach ($savedArray as $fitine) :?>
-							<?php if($count == 0): ?>
+							<?php if($savedCount == 0): ?>
 								<div class="card">
 									<div class="card-header">
 										<a class="card-link" data-toggle="collapse" href="#<?= $fitine->fitineID?>"><?= $fitine->fitineName ?></a>
@@ -79,10 +109,11 @@
 									<div id="collapseOne" class="collapse show" data-parent="#accordion">
 										<div class="card-body">
 											<?= $fitine->printFitine(); ?>
-											<?php $count=1; ?>
+											<?php $savedCount=1; ?>
 											<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-												<input name= "tempSaveID" type="hidden" value="<?php echo $fitine->fitineID ?>" />
-												<input name="unfollowFitine" type="submit" class="btn" value="Unfollow" />
+												<input name= "saveFitineID" type="hidden" value="<?php echo $fitine->fitineID ?>" />
+                                                <input name= "saveOwnerID" type="hidden" value="<?php echo $fitine->ownerID ?>" />
+												<input name="saveFitine" type="submit" class="btn" value="Save Fitine" />
 											</form>
 										</div>
 									</div>
@@ -96,8 +127,8 @@
 										<div class="card-body">
 											<?= $fitine->printFitine(); ?>
 											<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-												<input name= "tempSaveID" type="hidden" value="<?php echo $fitine->fitineID ?>" />
-												<input name="unfollowFitine" type="submit" class="btn" value="Unfollow" />
+												<input name= "saveFitineID" type="hidden" value="<?php echo $fitine->fitineID ?>" />
+												<input name="saveFitine" type="submit" class="btn" value="Save Fitine" />
 											</form>
 										</div>
 									</div>
