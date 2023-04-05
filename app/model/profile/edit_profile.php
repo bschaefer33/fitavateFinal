@@ -29,10 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $city = $_POST['city'];
     $state = $_POST['userState'];
     $birthday = $_POST['birthday'];
-    $new_password = $_POST['userPassword'];
-
-    //Hash the new password
-    $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+    $password = $_POST['userPassword'];
 
     //Check if the user has already uploaded a profile picture
     if ($user['userImage'] !== null) {
@@ -63,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     //Update the user's information in the database
-    $sql = "UPDATE user_profile SET firstName='$first_name', lastName='$last_name', userPassword='$hashed_password', city='$city', userState='$state', birthday='$birthday', userImage='$file_dest' WHERE email='$email'";
+    $sql = "UPDATE user_profile SET firstName='$first_name', lastName='$last_name', userPassword='$password', city='$city', userState='$state', birthday='$birthday', userImage='$file_dest' WHERE email='$email'";
 
     if (mysqli_query($conn, $sql)) {
         echo "Record updated successfully";

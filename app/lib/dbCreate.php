@@ -50,7 +50,7 @@ Database Testing
             user_id INTEGER PRIMARY KEY AUTO_INCREMENT,
             userDisplayName VARCHAR(50),
             email VARCHAR(255) UNIQUE,
-            userPassword VARCHAR(255),
+            userPassword VARCHAR(30),
             firstName VARCHAR(20),
             lastName VARCHAR(20),
             bio VARCHAR(255),
