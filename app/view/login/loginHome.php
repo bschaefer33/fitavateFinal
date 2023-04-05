@@ -24,7 +24,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['userPassword'] = $hashed_password;
             $_SESSION['user_id'] = $row['user_id'];
             $_SESSION['userDisplayName'] = $row['userDisplayName'];
+            $_SESSION['userBio'] = $row['bio'];
             $_SESSION['usrImage'] = $row['userImage'];
+            $_SESSION['userCity'] = $row['city'];
+            $_SESSION['userState'] = $row['userState'];
+            $_SESSION['userDOB'] = $row['birthday'];
             //Redirect to the home page
             header("Location: ?page=home");
             exit();
