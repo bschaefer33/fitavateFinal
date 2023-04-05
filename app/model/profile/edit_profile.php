@@ -11,9 +11,6 @@ if (!$conn) {
 $email = $_SESSION['email'];
 $password = $_SESSION['userPassword'];
 
-echo "Email: " . $email . "<br>";
-echo "Password: " . $password . "<br>";
-
 $sql = "SELECT * FROM user_profile WHERE email='$email' AND userPassword='$password'";
 $result = mysqli_query($conn, $sql);
 

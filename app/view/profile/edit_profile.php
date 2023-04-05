@@ -1,3 +1,26 @@
+<?php
+session_start();
+
+//Get the user's information from the database
+$conn = mysqli_connect("localhost", "root", "mysql", "fitavate");
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+$email = $_SESSION['email'];
+$password = $_SESSION['userPassword'];
+
+$sql = "SELECT * FROM user_profile WHERE email='$email' AND userPassword='$password'";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) === 1) {
+    $user = mysqli_fetch_assoc($result);
+} else {
+    die("Error: User not found");
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
