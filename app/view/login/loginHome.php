@@ -10,24 +10,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Connection failed: " . mysqli_connect_error());
     }
 
-    $sql = "SELECT * FROM user_profile WHERE email='$email' AND userPassword='$password'";
+    $sql = "SELECT * FROM user_profile WHERE email='$email'";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) === 1) {
-        //Save the username in the session
-        $_SESSION['email'] = $email;
-        $_SESSION['userPassword'] = $password;
-        //Set user id variables-Brittany
-        $row = $result->fetch_assoc();
-        $_SESSION['user_id'] = $row['user_id'];
-        $_SESSION['userDisplayName'] = $row['userDisplayName'];
-        $_SESSION['userBio'] = $row['bio'];
-        $_SESSION['userImage'] = $row['userImage'];
-        $_SESSION['userCity'] = $row['city'];
-        $_SESSION['userState'] = $row['userState'];
-        $_SESSION['userDOB'] = $row['birthday'];
-        //Redirect to the home page
-        header("Location: ?page=home");
-        exit();
+        //Get the hashed password from the database
+        $row = mysqli_fetch_assoc($result);
+        $hashed_password = $row['userPassword'];
+
+        //Verify the password
+        if (password_verify($password, $hashed_password)) {
+            //Save the user information in the session
+            $_SESSION['email'] = $email;
+            $_SESSION['userPassword'] = $hashed_password;
+            $_SESSION['user_id'] = $row['user_id'];
+            $_SESSION['userDisplayName'] = $row['userDisplayName'];
+            $_SESSION['usrImage'] = $row['userImage'];
+            //Redirect to the home page
+            header("Location: ?page=home");
+            exit();
+        } else {
+            $message = "Invalid username or password";
+        }
     } else {
         $message = "Invalid username or password";
     }

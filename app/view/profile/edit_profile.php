@@ -11,6 +11,7 @@ if (!$conn) {
 $email = $_SESSION['email'];
 $password = $_SESSION['userPassword'];
 
+
 $sql = "SELECT * FROM user_profile WHERE email='$email' AND userPassword='$password'";
 $result = mysqli_query($conn, $sql);
 
@@ -38,7 +39,7 @@ if (mysqli_num_rows($result) === 1) {
           <label for="email">Email:</label>
           <input type="email" id="email" name="email" value="<?php echo $user['email']; ?>" required>
           <label for="userPassword">Password:</label>
-          <input type="password" id="userPassword" name="userPassword" value="<?php echo $user['userPassword']; ?>" required>
+          <input type="password" id="userPassword" name="userPassword" value="" required>
           <label for="city">City:</label>
           <input type="text" id="city" name="city" value="<?php echo $user['city']; ?>" required>
           <label for="userState">State:</label>
