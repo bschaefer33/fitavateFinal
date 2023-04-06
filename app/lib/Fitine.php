@@ -74,5 +74,42 @@ class Fitine
             echo "</div>";
     }
 
-
+    public function printFitineProfile()
+    {
+        $date = date('m-d-Y', strtotime($this->dateCreated));
+            echo "<div class='row justify-content-center fitineTableHeader'>";
+                echo "<div class='col-2 align-self-start'>";
+                    printImageOthers($this->ownerImage);
+                echo "</div>";
+                echo "<div class='col-4 align-self-center'>";
+                    echo $this->ownerName;
+                echo "</div>";
+                echo "<div class='col-3 align-self-center'>";
+                    echo $date;
+                echo "</div>";
+                echo "<div class='col-2 align-self-center invisible'>";
+                        echo "";//put follow button here
+                echo "</div>";
+            echo "</div>";
+            echo "<div class='table-responsive'>";
+            echo "<table class='table fitineDisplay'>";
+            echo "<thead>";
+                echo "<tr>";
+                    echo "<th scope='row'>Lift</th>";
+                    echo "<th>Muscle Group</th>";
+                    echo "<th>Weight</th>";
+                    echo "<th>Sets</th>";
+                    echo "<th>Reps</th>";
+                echo "<tr>";
+            echo "</thead>";
+            echo "<tbody>";
+                foreach ($this->fitineLifts as $lift) {
+                    echo "<tr>";
+                        $lift->printLift();
+                    echo "</tr>";
+                }
+            echo "</tbody>";
+            echo "</table>";
+            echo "</div>";
+    }
 }

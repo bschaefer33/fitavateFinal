@@ -15,7 +15,16 @@ $sql = "SELECT * FROM user_profile WHERE email='$email' AND userPassword='$passw
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) === 1) {
-    $user = mysqli_fetch_assoc($result);
+    $row = $result->fetch_assoc();
+    $first_name = $row['firstName'];
+    $last_name = $row['lastName'];
+    $email = $row['email'];
+    $city = $row['city'];
+    $state = $row['userState'];
+    $birthday = $row['birthday'];
+    $password = $row['userPassword'];
+    $bio = $row['bio'];
+    $userDisplayName = $row['userDisplayName'];
 } else {
     die("Error: User not found");
 }
@@ -30,7 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $state = $_POST['userState'];
     $birthday = $_POST['birthday'];
     $password = $_POST['userPassword'];
-
+    $bio = $_POST['bio'];
+    $userDisplayName = $_POST['userDisplayName'];
     //Check if the user has already uploaded a profile picture
     if ($user['userImage'] !== null) {
         $file_dest = $user['userImage'];

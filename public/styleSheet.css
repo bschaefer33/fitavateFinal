@@ -81,6 +81,33 @@ body{
     height: 100%; 
     margin-left: -50px; 
 }
+.circular--portrait { 
+    position: relative; 
+    width: 200px; 
+    height: 200px;
+    overflow: hidden; 
+    border-radius: 50%; 
+} 
+.circular--portrait img { 
+    width: 100%; 
+    height: auto; 
+}
+.circular--landscape { 
+    display: inline-block; 
+    position: relative; 
+    width: 200px;
+    height: 200px; 
+    overflow: hidden; 
+    border-radius: 50%; 
+} 
+.circular--landscape img { 
+    width: auto; 
+    height: 100%; 
+    margin-left: -50px; 
+}
+.pageContent{
+    width: 100%;
+} 
 /*****************  Left Navigation Bar  *****************/
 .leftNavigationBar {
     display: flex;
@@ -185,17 +212,16 @@ body{
 #liftSel input{
     text-align: center;
 }
-/****************************
-*          Profile          *
-****************************/ 
-.profilePage{
-    padding: 0 3%;
+/*****************   Profile Fitines    *****************/
+.fitineNameProfile{
+    font-size: 1.5rem;
+    text-align: center;
 }
+/****************************************************
+*                       Profile                     *
+****************************************************/ 
 .profileHeader{
     padding: 3% 3%;
-}
-.userName{
-    border-bottom: goldenrod solid .4rem;
 }
 .profile-img{
     scale: 120%;
@@ -211,33 +237,34 @@ body{
 .editButton{
     background-color: white;
 }
-.circular--portrait { 
-    position: relative; 
-    width: 200px; 
-    height: 200px;
-    overflow: hidden; 
-    border-radius: 50%; 
-} 
-.circular--portrait img { 
-    width: 100%; 
-    height: auto; 
+.profilePage{
+    padding: 0 3%;
+    color: black;
 }
-.circular--landscape { 
-    display: inline-block; 
-    position: relative; 
-    width: 200px;
-    height: 200px; 
-    overflow: hidden; 
-    border-radius: 50%; 
-} 
-.circular--landscape img { 
-    width: auto; 
-    height: 100%; 
-    margin-left: -50px; 
+/*****************************************************
+*                     Edit Profile                   *
+*****************************************************/ 
+.profileEditPage{
+    color: white;
 }
-.pageContent{
-    width: 100%;
-} 
+.pageHeaderProfile{
+    margin: 0 2%;
+    border-bottom: goldenrod .4rem solid;
+}
+.editDisplay{
+    margin: 2%;
+}
+.userName{
+    border-bottom: goldenrod solid .4rem;
+}
+.privateInfo{
+    padding: 2%;
+}
+.privateInfo label{
+    text-align:right;
+}
+
+
 /****************************
 *    Secondary Profile      *
 ****************************/ 
