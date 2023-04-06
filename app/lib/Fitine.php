@@ -5,17 +5,19 @@ class Fitine
     public $fitineID;
     public $ownerID;
     public $ownerName;
+    public $ownerImage;
     public $fitineName;
     public $viewStatus;
     public $dateCreated;
     public $fitineLifts = [];
 
-    public function __construct($userID, $fitineID, $ownerID, $ownerName, $fitineName, $viewStatus, $dateCreated, $fitineLifts)
+    public function __construct($userID, $fitineID, $ownerID, $ownerName, $ownerImage, $fitineName, $viewStatus, $dateCreated, $fitineLifts)
     {
         $this->userID       = $userID;
         $this->fitineID     = $fitineID;
         $this->ownerID      = $ownerID;
         $this->ownerName    = $ownerName;
+        $this->ownerImage   = $ownerImage;
         $this->fitineName   = $fitineName;
         $this->viewStatus   = $viewStatus;
         $this->dateCreated  = $dateCreated;
@@ -25,34 +27,51 @@ class Fitine
     public function printFitine()
     {
         if ($this->viewStatus == 1) {
-            $status = "public";
+            $status = "Public";
         } else {
-            $status = "private";
+            $status = "Private";
         }
         $date = date('m-d-Y', strtotime($this->dateCreated));
-        echo "<table>";
-        echo "<thead>";
-            echo "<tr>";
-                echo "<th colspan='2'>Created By: ".$this->ownerName."</th>";
-                echo "<th colspan='2'>Created On: ".$date."</th>";
-                echo "<th colspan='1'>".$status."</th>";
-            echo "</tr>";
-            echo "<tr>";
-                echo "<th>Lift</th>";
-                echo "<th>Muscle Group</th>";
-                echo "<th>Weight</th>";
-                echo "<th>Sets</th>";
-                echo "<th>Reps</th>";
-            echo "<tr>";
-        echo "</thead>";
-        echo "<tbody>";
-            foreach ($this->fitineLifts as $lift) {
+            echo "<div class='row justify-content-center fitineTableHeader'>";
+                echo "<div class='col-2 align-self-start'>";
+                    printImageOthers($this->ownerImage);
+                echo "</div>";
+                echo "<div class='col-4 align-self-center'>";
+                    echo $this->ownerName;
+                echo "</div>";
+                echo "<div class='col-3 align-self-center'>";
+                    echo $date;
+                echo "</div>";
+                if ($this->userID == $this->ownerID) {
+                    echo "<div class='col-2 align-self-center'>";
+                        echo $status;
+                    echo "</div>";
+                } else {
+                    echo "<div class='col-2 align-self-center invisible'>";
+                        echo $status;
+                    echo "</div>";
+                }
+            echo "</div>";
+            echo "<div class='table-responsive'>";
+            echo "<table class='table fitineDisplay'>";
+            echo "<thead>";
                 echo "<tr>";
-                    $lift->printLift();
-                echo "</tr>";
-            }
-        echo "</tbody>";
-        echo "</table>";
+                    echo "<th scope='row'>Lift</th>";
+                    echo "<th>Muscle Group</th>";
+                    echo "<th>Weight</th>";
+                    echo "<th>Sets</th>";
+                    echo "<th>Reps</th>";
+                echo "<tr>";
+            echo "</thead>";
+            echo "<tbody>";
+                foreach ($this->fitineLifts as $lift) {
+                    echo "<tr>";
+                        $lift->printLift();
+                    echo "</tr>";
+                }
+            echo "</tbody>";
+            echo "</table>";
+            echo "</div>";
     }
 
 

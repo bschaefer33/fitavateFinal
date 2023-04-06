@@ -10,7 +10,7 @@
     <link rel= "styleSheet" href="styleSheet.css">
     <title>fitine</title>
 </head>
-<div class="Column middle">
+<div class="container middle">
     <h1 class="pageHeader">Fitines</h1>
     <h1 class="sectionHeader">My Fitines</h1>
     <div class="fitineTable">
@@ -44,42 +44,42 @@
                 </div>
             </div>
             <?php foreach ($userArray as $fitine) :?>
-                    <div class="card">
-                        <div class="card-header">
-                            <a class='collapsed card-link' data-toggle='collapse' href='#<?= $fitine->fitineID?>'><?= $fitine->fitineName ?></a>
-                        </div>
-                        <div id="<?= $fitine->fitineID ?>" class="collapse" data-parent="#accordion">
-                            <div class="card-body">
-                                <?= $fitine->printFitine(); ?>
-                                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-                                    <input name= "tempFitID" type="hidden" value="<?php echo $fitine->fitineID ?>" />
-                                    <input name="fitineEdit" type="submit" class="btn" value="Edit" />
-                                    <input name="fitineDelete" type="submit" class="btn" value="Delete"/>
-                                </form>
-                            </div>
+                <div class="card">
+                    <div class='card-header'>
+                        <a class='collapsed card-link' data-toggle='collapse' href='#<?= $fitine->fitineID?>'><?= $fitine->fitineName ?></a>
+                    </div>
+                    <div id="<?= $fitine->fitineID ?>" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                            <?= $fitine->printFitine(); ?>
+                            <form class="form-row justify-content-between m-3" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+                                <input name= "tempFitID" type="hidden" value="<?php echo $fitine->fitineID ?>" />
+                                <input id="fitineEdit" name="fitineEdit" type="submit" class="btn" value="Edit" />
+                                <input id="fitineDelete" name="fitineDelete" type="submit" class="btn" value="Delete"/>
+                            </form>
                         </div>
                     </div>
+                </div>
             <?php endforeach; ?>
         </div>
     </div>
 
     <h1 class = "sectionHeader">Saved Fitines</h1>
-    <div id="fitineTable">
+    <div class="fitineTable">
         <div id="accordion">
             
             <?php foreach ($savedArray as $fitine) :?>
                 <?php if($count == 0): ?>
                     <div class="card">
                         <div class="card-header">
-                            <a class="card-link" data-toggle="collapse" href="#<?= $fitine->fitineID?>"><?= $fitine->fitineName ?></a>
+                            <a class="collapsed card-link" data-toggle="collapse" href="#collapseOn"><?= $fitine->fitineName ?></a>
                         </div>
-                        <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                        <div id="collapseOn" class="collapse show" data-parent="#accordion">
                             <div class="card-body">
                                 <?= $fitine->printFitine(); ?>
                                 <?php $count=1; ?>
-                                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+                                <form class="form-row justify-content-end m-3" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
                                     <input name= "tempSaveID" type="hidden" value="<?php echo $fitine->fitineID ?>" />
-                                    <input name="unfollowFitine" type="submit" class="btn" value="Unfollow" />
+                                    <input id="unfollowFitine" name="unfollowFitine" type="submit" class="btn" value="Unfollow" />
                                 </form>
                             </div>
                         </div>
@@ -92,9 +92,9 @@
                         <div id="<?= $fitine->fitineID ?>" class="collapse" data-parent="#accordion">
                             <div class="card-body">
                                 <?= $fitine->printFitine(); ?>
-                                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+                                <form class="form-row justify-content-end m-3" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
                                     <input name= "tempSaveID" type="hidden" value="<?php echo $fitine->fitineID ?>" />
-                                    <input name="unfollowFitine" type="submit" class="btn" value="Unfollow" />
+                                    <input id="unfollowFitine" name="unfollowFitine" type="submit" class="btn" value="Unfollow" />
                                 </form>
                             </div>
                         </div>

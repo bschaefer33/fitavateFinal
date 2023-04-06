@@ -56,6 +56,19 @@ function printImage($image)
     }
 }
 
+function printImageOthers($image)
+{
+    //Convert the binary data into a base64-encoded string
+    $userImageEncoded = base64_encode($image);
+    //check if image is portriat or landscape and apply correct css - BLS
+    list($w, $h, $t, $a) = getimagesizefromstring($image);
+    if ($w > $h) {
+        // Embed the base64-encoded string in an HTML img tag
+        echo '<img class="smallProfileImgLand" src="data:image/jpeg;base64,' . $userImageEncoded . '" alt="Image" />';
+    } else {
+        echo '<img class="smallProfileImgPort" src="data:image/jpeg;base64,' . $userImageEncoded . '" alt="Image" />';
+    }
+}
 function getUserFollowers($userID)
 {
     global $connect;

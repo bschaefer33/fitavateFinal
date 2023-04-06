@@ -61,10 +61,9 @@ $userImage = $_SESSION['userImage'];
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center footContainer">
-            <h5 class="col align-self-center">CopyRight Fitavate 2023</h5>
+        <div class="row relative-bottom footContainer">
+            <h5 class="col-12 align-self-center">CopyRight Fitavate 2023</h5>
         </div>
     </div>
-
 </body>
 </html>

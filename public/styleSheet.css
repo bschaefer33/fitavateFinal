@@ -27,6 +27,7 @@ body{
       padding-right: 0;
       padding-left: 0;
 }
+
 /**********************  Header  ***********************/
 .headerContainer{
     background-color: #707070;
@@ -38,11 +39,47 @@ body{
     padding: 2% 0%;
     display: flex;
     flex-wrap: nowrap;
-    min-height: 75vh;
+    min-height: 80vh;
 }
 .middleContent{
     border-left: #707070 solid .4rem;
     border-right: #707070 solid .4rem;
+}
+.pageHeader{
+    padding: 3%;
+    color: white;
+    text-align: center;
+    font-size: 4rem;
+    border-bottom: goldenrod .3rem solid;
+}
+.sectionHeader{
+    padding: 3%;
+    color: white;
+    font-size: 2rem;
+}
+.smallProfileImgPort{
+    position: relative; 
+    width: 40px; 
+    height: 40px;
+    overflow: hidden; 
+    border-radius: 50%; 
+}
+.smallProfileImgPort img { 
+    width: 100%; 
+    height: auto; 
+}
+.smallProfileImgLand{
+    display: inline-block; 
+    position: relative; 
+    width: 40px;
+    height: 40px; 
+    overflow: hidden; 
+    border-radius: 50%; 
+}
+.smallProfileImgLand img{
+    width: auto; 
+    height: 100%; 
+    margin-left: -50px; 
 }
 /*****************  Left Navigation Bar  *****************/
 .leftNavigationBar {
@@ -77,42 +114,76 @@ body{
 }
 /*******  Footer  **********/
 .footContainer{
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    position: relative;
-    bottom: 0;
+    padding-top: .2rem;
     background-color: #707070;
     color: white;
+    text-align: center;
 }
 .footContainer h5{
-    justify-self: center;
     font-size: small;
 }
-/****************************
-*           Fitines         *
-****************************/
+/*********************************************************
+*                         Fitines                        *
+**********************************************************/
+/*****************   UserFitines view    *****************/
 .fitineTable{
     margin-left: 10%;
-    border: 2px solid goldenrod;
+    border: .2rem solid goldenrod;
     background-color: white;
     width: 80%;
-}  
-.fitineFormContainer{
-    color: black;
+} 
+.fitineTableHeader{
+    padding: .5rem;
+    font-size: large;
 }
-.fitineRow td{
-    padding: 1em;
+.fitineFormContainer{
+    margin-top: 4%;
+    padding: 5%;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.18);
+}
+.fitineName{
+    font-size: 1.5rem;
+}
+.fitineFormContainer .form-check-input{
+    font-size: 1rem;
+}
+.card-body{
+    padding-top: .3rem;
 }
 .card-link{
     color: black;
 }
-label{
-    color: black;
+.fitineDisplay{
+    border-top: #5E0B15 .4rem solid;
+    border-bottom: #5E0B15 .4rem solid;
+    text-align: center;
+}
+.fitineDisplay thead{
+    background-color: #70707098;
 }
 .fitineSubmit{
     padding: .3rem;
     background-color: goldenrod;
+}
+.hiddenStatus{
+    display: none;
+}
+#fitineEdit{
+    background-color: goldenrod;
+}
+#fitineDelete{
+    background-color: goldenrod;
+}
+#unfollowFitine{
+    justify-self: end;
+    background-color: goldenrod;
+}
+.tableHeadings{
+    text-align: center;
+}
+#liftSel input{
+    text-align: center;
 }
 /****************************
 *          Profile          *
@@ -181,15 +252,7 @@ label{
 /*******   Body   **********/
 
 /*******  Footer  **********/
-.pageHeader{
-    padding: 3%;
-    color: white;
-    text-align: center;
-}
-.sectionHeader{
-    padding-left: 3%;
-    color: white;
-}
+
 
 
 /****************************

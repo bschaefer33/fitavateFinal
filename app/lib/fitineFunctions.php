@@ -31,8 +31,8 @@ function createFitine($user)
     $result = $connect->query($sql);
     while ($row = $result->fetch_assoc()) {
         $liftArray = createLift($row['fitine_id']);
-        $ownerName = findOwnerName($row['owner_id']);
-        $fitine = new Fitine($user, $row['fitine_id'], $row['owner_id'], $ownerName, $row['fitineName'], $row['viewStatus'], $row['date_created'], $liftArray);
+        $owner = createOwnerDisplay($row['owner_id']);
+        $fitine = new Fitine($user, $row['fitine_id'], $row['owner_id'], $owner['ownerDisplay'], $owner['ownerImage'], $row['fitineName'], $row['viewStatus'], $row['date_created'], $liftArray);
         if ($user == $row['owner_id']) {
             array_push($fitineArrayUser, $fitine);
         } else {
@@ -83,16 +83,17 @@ function getSavedFitines()
 }
 
 //Used to get the owner id's name
-function findOwnerName($ownerID)
+function createOwnerDisplay($secondUser)
 {
     global $connect;
-    $sql = "SELECT userDisplayName FROM user_profile WHERE user_profile.user_id = $ownerID";
-    $result = $connect->query($sql);
-    while ($row = $result->fetch_assoc()) {
-        foreach ($row as $value) {
-            return $value;
-        }
-    }
+    $sqlSecondary = "SELECT userDisplayName,
+                    userImage
+                    FROM user_profile
+                    WHERE user_profile.user_id = $secondUser";
+    $row= $connect->query($sqlSecondary);
+    $result = $row->fetch_assoc();
+    return array("ownerDisplay"=>$result['userDisplayName'], "ownerImage"=>$result['userImage']);
+    
 }
 
 function getFitine($fitineID)
