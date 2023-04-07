@@ -11,6 +11,7 @@ $userImage = $_SESSION['userImage'];
 $userCity = $_SESSION['userCity'];
 $userState = $_SESSION['userState'];
 $userBirthday = $_SESSION['userDOB'];
+
 //get fitine information
 $fitineArray = createFitine($userID);
 $userArray = $fitineArray[0];
@@ -66,10 +67,5 @@ if (isset($_POST['unfollowFitine'])) {
     header("Location: ?page=fitines/fitine");
 }
 
-if (isset($_POST['secUserProf'])) {
-    $secUserID= $_POST['secUserID'];
-    $_SESSION['secondaryUser']= $secUserID;
-    header("Location: ?page=profile/secondaryUser");
-}
+//followers
 
-    

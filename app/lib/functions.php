@@ -86,7 +86,6 @@ function createSecondaryUser($secondUser)
     $row= $connect->query($sqlSecondary);
     $result = $row->fetch_assoc();
     return array("userDisplay"=>$result['userDisplayName'], "userImage"=>$result['userImage']);
-    
 }
 function secondaryUserProfile($secondUser)
 {

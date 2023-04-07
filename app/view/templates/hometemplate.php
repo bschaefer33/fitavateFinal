@@ -50,7 +50,7 @@ $userImage = $_SESSION['userImage'];
                     </ul>
                 </nav>
             </div>
-            <div class="col col-sm-7 middleContent">
+            <div class="col-7 middleContent">
                 <?php
                     include($main_content);
                 ?>

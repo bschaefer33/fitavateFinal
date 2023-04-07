@@ -222,22 +222,27 @@ body{
 *                       Profile                     *
 ****************************************************/ 
 .profileHeader{
-    padding: 3% 3%;
+    padding: 3% 0;
 }
 .profile-info{
-    max-width: fit-content;
-    align-items: center;
     color: white;
 }
 .profStats{
     padding-top: .4rem;
 }
+.bioRow{
+    margin-top: 2%;
+    background-color: rgba(255, 255, 255, 0.274);
+    border: #707070 .2rem solid;
+}
 .editButton{
     background-color: white;
 }
 .profilePage{
-    padding: 0 3%;
     color: black;
+}
+.userName{
+    border-bottom: goldenrod .4rem solid;
 }
 /*****************************************************
 *                     Edit Profile                   *

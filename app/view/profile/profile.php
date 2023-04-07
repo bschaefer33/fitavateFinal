@@ -11,24 +11,26 @@
     <title>Profile Page</title>
 </head>
 <body>
-	<div class="container profilePage">
-		<div class="row align-items-center justify-content-center profileHeader">
-			<div class="col-4 profile-img">
-				<?php printImage($userImage) ?>
-			</div>
-			<div class="col profile-info">
-				<div class="row userName">
-					<h1 class="col col-sm-10"><?php echo $userDisplayName ?></h1>
-					<div class="col col-sm-2">
-						<a class="btn editButton" href="?page=profile/edit_profile">Edit Profile</a>
+	<div class="container-fluid profilePage">
+		<div class="container">
+			<div class="row align-items-center justify-content-center profileHeader">
+				<div class="col-4 profile-img">
+					<?php printImage($userImage) ?>
+				</div>
+				<div class="col-7 profile-info">
+					<div class="row userName">
+						<h1 class="col-8"><?php echo $userDisplayName ?></h1>
+						<div class="col-3">
+							<a class="btn editButton" href="?page=profile/edit_profile">Edit Profile</a>
+						</div>
 					</div>
-				</div>
-				<div class="row profStats">
-					<h5 class="col"><?php echo $userCity . ", " . $userState; ?></h5>
-					<h5 class="col">Birthday: <?php echo $birthday; ?></h5>
-				</div>
-				<div class="row bioRow">
-					<h5 class="col"><?php echo $userBio; ?></h5>
+					<div class="row justify-content-between profStats">
+						<h5 class="col-6"><?php echo $userCity . ", " . $userState; ?></h5>
+						<h5 class="col-5">Birthday: <?php echo $birthday; ?></h5>
+					</div>
+					<div class="row bioRow">
+						<p class="col p-2"><?php echo $userBio; ?></p>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -147,14 +149,16 @@
 				<div class="tab-pane fade" id="followers" role="tabpanel">
 					<ul class="list-group">
 						<?php foreach ($resultFollowers as $follower): ?>
-							<?php $secUserID= $follower['following_id']; ?>
-							<?php $secUser = createSecondaryUser($follower['following_id']); ?>
-								<form class="row" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-									<label class="col secProfImg"><?php printImage($secUser['userImage']); ?></label>
-									<label class="col"><?php echo $secUser['userDisplay']; ?></label>
-									<input class="col" type="hidden" name="secUserID" value="<?php echo $secUserID ?>" />
-									<input name="secUserProf"id="secUserProf" type="submit" class="btn col" value="ViewProfile" />
-								</form>
+							<div class="card">
+								<?php $secUserID = $follower['following_id']?>
+								<?php $secUser = createSecondaryUser($secUserID); ?>
+								<div class="card-body">
+									<div class="button" onclick="goToProfile($secUserID)">
+										<?php printImageOthers($secUser['userImage']); ?>
+										<h5><?php echo $secUser['userDisplay']?></h5>
+									</div>
+								</div>
+							</div>
 						<?php endforeach; ?>
 					</ul>
 				</div>
@@ -165,5 +169,8 @@
 			</div>
 		</div>
 	</div>
+	<script>
+	
+	</script>
 </body>
 </html>
