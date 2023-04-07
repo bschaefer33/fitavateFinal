@@ -95,8 +95,9 @@ body{
 .circular--landscape { 
     display: inline-block; 
     position: relative; 
-    width: 200px;
-    height: 200px; 
+    width: 15vw;
+    height: 15vw;
+    max-width:100%; 
     overflow: hidden; 
     border-radius: 50%; 
 } 
@@ -223,9 +224,6 @@ body{
 .profileHeader{
     padding: 3% 3%;
 }
-.profile-img{
-    scale: 120%;
-}
 .profile-info{
     max-width: fit-content;
     align-items: center;
@@ -248,23 +246,18 @@ body{
     color: white;
 }
 .pageHeaderProfile{
-    margin: 0 2%;
+    margin: 0 4%;
     border-bottom: goldenrod .4rem solid;
 }
-.editDisplay{
-    margin: 2%;
+.form-control{
+    width:100%;
 }
-.userName{
-    border-bottom: goldenrod solid .4rem;
+.formContainer{
+    padding-top: 3%;
 }
-.privateInfo{
-    padding: 2%;
+.userImageInput{
+    margin-left: 3%;
 }
-.privateInfo label{
-    text-align:right;
-}
-
-
 /****************************
 *    Secondary Profile      *
 ****************************/ 

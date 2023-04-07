@@ -15,41 +15,47 @@
         <div class="row justify-content-center pageHeaderProfile">
             <h1 class="sectionHeaderProfile">Edit Profile</h1>
         </div>
-        <div class="container formContainer">
-            <form action="?page=profile/edit_profile" method="POST" enctype="multipart/form-data">
-                <div class="form-group row align-items-center justify-content-center editDisplay">
-                    <div class="form-group col">
+        <div class="container p-3 formContainer">
+            <form id="editForm" action="?page=profile/edit_profile" method="POST" enctype="multipart/form-data">
+                <div class="form-group row align-items-center justify-content-center">
+                    <div class="form-group col-4">
                         <?php printImage($userImage) ?>
-                        <input type="file" id="userImage" name="userImage" value="<?php $userImage ?>">
                     </div>
-                    <div class="form-group col">
-                        <div class="row userName">
-                            <input type="text" id="city" name="city" value="<?php echo $userDisplayName; ?>" required>
+                    <div class="form-group col-7">
+                        <div class="form-group row align-items-center justify-content-between">
+                            <label class="col-2" for="displayName">Display Name</label>
+                            <input class="form-control col-4" type="text" id="displayName" name="displayName" value="<?php echo $userDisplayName; ?>" required>
+                            <label class="col-2" for="birthday">Birthday</label>
+                            <input class="form-control col-3" type="date" id="birthday" name="birthday" value="<?php echo $birthday; ?>" required>
                         </div>
-                        <div class="row">
-                            <input type="text" id="city" name="city" value="<?php echo $city; ?>" required>
-                            <input type="text" id="userState" name="userState" value="<?php echo $state; ?>" required>
-                            <input type="date" id="birthday" name="birthday" value="<?php echo $birthday; ?>" required>
+                        <div class="form-group row align-items-center justify-content-between">
+                            <label class="col-2" for="firstName">First Name</label>
+                            <input class="form-control col-4" type="text" id="firstName" name="firstName" value="<?php echo $first_name; ?>" required>
+                            <label class="col-2" for="lastName">Last Name</label>
+                            <input class="form-control col-3" type="text" id="lastName" name="lastName" value="<?php echo $last_name; ?>" required>
                         </div>
-                        <div class="row">
-                            <input type="text" id="bio" name="bio" value="<?php echo $bio; ?>" required>
+                        <div class="form-group row align-items-center justify-content-between">
+                            <label class="col-2" for="email">Email</label>
+                            <input class="form-control col-4" type="email" id="email" name="email" value="<?php echo $email; ?>" required>
+                            <label class="col-2" for="userPassword">Password</label>
+                            <input class="form-control col-3" type="password" id="userPassword" name="userPassword" value="<?php echo $password; ?>" required>
                         </div>
-                        
+                        <div class="form-group row align-items-center justify-content-between">
+                            <label class="col-2" for="city">City</label>
+                            <input class="form-control col-4" type="text" id="city" name="city" value="<?php echo $city; ?>" required>
+                            <label class="col-2" for="userState">State</label>
+                            <input class="form-control col-3" type="text" id="userState" name="userState" value="<?php echo $state; ?>" required>
+                        </div>
                     </div>
                 </div>
-                <div class="row justify-content-center privateInfo">
-                    <label class="col-3" for="firstName">First Name:</label>
-                    <input class="col-3" type="text" id="firstName" name="firstName" value="<?php echo $first_name; ?>" required>
-                    <label class="col-3" for="lastName">Last Name:</label>
-                    <input class="col-3" type="text" id="lastName" name="lastName" value="<?php echo $last_name; ?>" required>
+                <div class="form-group row userImageInput">
+                    <input class="form-control-file" type="file" name="userImage" value="<?php $userImage ?>">
                 </div>
-                <div class="row justify-content-center privateInfo">
-                    <label class="col-3" for="email">Email:</label>
-                    <input class="col-3" type="email" id="email" name="email" value="<?php echo $email; ?>" required>
-                    <label class="col-3" for="userPassword">Password:</label>
-                    <input class="col-3" type="password" id="userPassword" name="userPassword" value="<?php echo $password; ?>" required>
+                <div class="form-group row align-items-center justify-content-center">
+                    <label for="bio">Update your Bio</label>
+                    <textarea class="form-control" id="bio" name="bio" value="<?php echo $bio; ?>" required></textarea>
                 </div>
-                <div class="row">
+                <div class="form-group row align-items-center justify-content-center">
                     <input type="submit" value="Submit">
                 </div>
             </form>

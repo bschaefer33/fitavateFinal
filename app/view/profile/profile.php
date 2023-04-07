@@ -13,7 +13,7 @@
 <body>
 	<div class="container profilePage">
 		<div class="row align-items-center justify-content-center profileHeader">
-			<div class="col col-sm-4 profile-img">
+			<div class="col-4 profile-img">
 				<?php printImage($userImage) ?>
 			</div>
 			<div class="col profile-info">
