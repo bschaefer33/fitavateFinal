@@ -26,6 +26,15 @@
           <input type="text" id="userState" name="userState" required>
           <label for="birthday">Birthday:</label>
           <input type="date" id="birthday" name="birthday" required>
+          <label for="security_question">Security Question:</label>
+          <select id="security_question" name="security_question" required>
+            <option value="">Select a security question</option>
+            <option value="favorite-color">What is your favorite color?</option>
+            <option value="mothers-maiden-name">What is your mother's maiden name?</option>
+            <option value="middle-name">What is your middle name?</option>
+          </select>
+          <label for="security_answer">Security Answer:</label>
+          <input type="text" id="security_answer" name="security_answer" required>
           <input type="submit" value="Submit">
         </form>
       </div>

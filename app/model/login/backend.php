@@ -13,6 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $city = $_POST['city'];
     $userState = $_POST['userState'];
     $birthday = $_POST['birthday'];
+    $securityQuestion = $_POST['security_question'];
+    $securityAnswer = $_POST['security_answer'];
 
     // Create a connection to the database
     $conn = mysqli_connect("localhost", "root", "mysql", "fitavate");
@@ -23,8 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Insert the user's information into the database
-    $sql = "INSERT INTO user_profile (userDisplayName, email, userPassword, firstName, lastName, birthday, city, userState)
-            VALUES ('$userDisplayName', '$email', '$userPassword', '$firstName', '$lastName', '$birthday', '$city', '$userState')";
+    $sql = "INSERT INTO user_profile (userDisplayName, email, userPassword, firstName, lastName, birthday, city, userState, security_question, security_answer)
+            VALUES ('$userDisplayName', '$email', '$userPassword', '$firstName', '$lastName', '$birthday', '$city', '$userState', '$securityQuestion', '$securityAnswer')";
     //$sql = "INSERT INTO users (first_name, last_name, username, password, email, city, state, birthday) 
       //      VALUES ('$first_name', '$last_name', '$username', '$password', '$email', '$city', '$state', '$birthday')";
 
