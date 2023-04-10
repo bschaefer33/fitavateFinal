@@ -2,10 +2,13 @@
 session_start();
 require $config['LIB_PATH'] . 'fitineFunctions.php';
 //get set session variables
-$secUserID = $_SESSION['secUserID'];
+$userID = $_SESSION['user_id'];
+$email = $_SESSION['email'];
+$password = $_SESSION['userPassword'];
+$secUserID = $_SESSION['secondUserID'];
 $row = secondaryUserProfile($secUserID);
 $secUserDisplayName = $row['userDisplayName'];
-/*$secUserBio = $row['bio'];
+$secUserBio = $row['bio'];
 $secUserBirthday = date('m-d', strtotime($row['birthday']));
 $secUserCity = $row['city'];
 $secUserState = $row['userState'];
@@ -13,17 +16,17 @@ $secUserImage = $row['userImage'];
 
 //follower information
 $resultFollowers = getUserFollowers($secUserID);
-**************************************************
+/**************************************************
  *                 FitinesTab                      *
  **************************************************/
-/*//get fitine information
+//get fitine information
 $fitineArray = createFitine($secUserID);
 $userArray = $fitineArray[0];
 $savedArray = $fitineArray[1];
 //used to control card output for saved arrays
 $count = 0;
 $savedCount = 0;
-unfollow the saved fitine
+//unfollow the saved fitine
 if (isset($_POST['unfollowFitine'])) {
     $fitineID = $_POST['tempSaveID'];
     unfollowFitine($user, $fitineID);
@@ -41,4 +44,3 @@ if (isset($_POST['saveFitine'])) {
     $saveOwnerID = $_POST['saveOwnerID'];
     saveFitine($userID, $secfitineID, $saveOwnerID);
 }
-*/

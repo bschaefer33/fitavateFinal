@@ -68,7 +68,8 @@ if (isset($_POST['unfollowFitine'])) {
 }
 
 //followers
-if (isset($_POST['view-profile'])) {
-    $_SESSION['secUserID'] = $secUserID;
+if (isset($_POST['submitView'])) {
+    $secondID = $_POST['secUserID'];
+    $_SESSION['secondUserID'] = $secondID;
     header("Location: ?page=profile/secondaryUser");
 }
