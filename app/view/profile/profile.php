@@ -152,13 +152,15 @@
 							<div class="card">
 								<?php $secUserID = $follower['following_id']?>
 								<?php $secUser = createSecondaryUser($secUserID); ?>
-								<div class="card-body">
-									<div class="follower">
-										<button class="view-profile" data-follower-id="<?= $secUserID?>">
+								<div class="row card-body">
+									<form class ="viewProfileForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+										<input type="hidden" id="secUserID" name="secUserID" value="<?php echo $follower['following_id']; ?>">
+										<button id="submitViewBtn" value="viewLink" onclick="this.form.submit();">
 											<?php printImageOthers($secUser['userImage']); ?>
 											<span class="follower-name"><?php echo $secUser['userDisplay']?></span>
 										</button>
-									</div>
+			
+									</form>
 								</div>
 							</div>
 						<?php endforeach; ?>
@@ -171,8 +173,5 @@
 			</div>
 		</div>
 	</div>
-	<script>
-		$('.view-profile').button();
-	</script>
 </body>
 </html>
