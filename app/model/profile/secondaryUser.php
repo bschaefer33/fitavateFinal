@@ -2,7 +2,7 @@
 session_start();
 require $config['LIB_PATH'] . 'fitineFunctions.php';
 //get set session variables
-$secUserID = $_POST['secUserID'];
+$secUserID = $_SESSION['secUserID'];
 $row = secondaryUserProfile($secUserID);
 $secUserDisplayName = $row['userDisplayName'];
 /*$secUserBio = $row['bio'];

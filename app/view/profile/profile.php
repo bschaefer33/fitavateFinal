@@ -153,9 +153,11 @@
 								<?php $secUserID = $follower['following_id']?>
 								<?php $secUser = createSecondaryUser($secUserID); ?>
 								<div class="card-body">
-									<div class="button" onclick="goToProfile($secUserID)">
-										<?php printImageOthers($secUser['userImage']); ?>
-										<h5><?php echo $secUser['userDisplay']?></h5>
+									<div class="follower">
+										<button class="view-profile" data-follower-id="<?= $secUserID?>">
+											<?php printImageOthers($secUser['userImage']); ?>
+											<span class="follower-name"><?php echo $secUser['userDisplay']?></span>
+										</button>
 									</div>
 								</div>
 							</div>
@@ -170,7 +172,7 @@
 		</div>
 	</div>
 	<script>
-	
+		$('.view-profile').button();
 	</script>
 </body>
 </html>
