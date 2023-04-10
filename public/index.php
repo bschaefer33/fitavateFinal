@@ -12,7 +12,7 @@ $page = get('page', 'login/loginHome');
 
 //determines what template to use
 $template = $config['VIEW_PATH'] . 'templates/hometemplate.php';
-if($page == 'login/loginHome' || $page == 'login/signup' || $page == 'login/fitavatorPassReset') {
+if($page == 'login/loginHome' || $page == 'login/signup' || $page == 'login/forgotPassword') {
     $template = $config['VIEW_PATH'] . 'templates/loginTemplate.php';
 }
 //Routing of urls
