@@ -32,33 +32,29 @@ mysqli_close($conn);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel= "styleSheet" href="styleSheet.css">
+    <link rel="stylesheet" type="text/css" href="loginStyleSheet.css">
     <title>Fitavate</title>
 </head>
 <body>
-    <header>
-        <?php
-            include("headerLogin.php");
-        ?>
-    </header>
-    <h1>Forgot Password</h1>
-    <form method="POST">
-        <label for="email">Email:</label>
-        <input type="text" name="email" id="email" required>
-        <label for="security_question">Security Question:</label>
-        <select name="security_question" required>
-        <option value="What is your favorite color?">What is your favorite color?</option>
-        <option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
-        <option value="What is your middle name?">What is your middle name?</option>
-        </select>
-        <label for="security_answer">Security Answer:</label>
-        <input type="text" id="security_answer" name="security_answer" required>
-        <label for="userPassword">New Password:</label>
-        <input type="password" id="userPassword" name="userPassword" required>
-        <button type="submit">Submit</button>
-    </form>
+    <div class="loginFormHolder">
+        <h1>Forgot Password</h1>
+        <form method="POST">
+            <label for="email">Email:</label>
+            <input type="text" name="email" id="email" required>
+            <label for="security_question">Security Question:</label>
+            <select name="security_question" required>
+            <option value="What is your favorite color?">What is your favorite color?</option>
+            <option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
+            <option value="What is your middle name?">What is your middle name?</option>
+            </select>
+            <label for="security_answer">Security Answer:</label>
+            <input type="text" id="security_answer" name="security_answer" required>
+            <label for="userPassword">New Password:</label>
+            <input type="password" id="userPassword" name="userPassword" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 </body>
 </html>

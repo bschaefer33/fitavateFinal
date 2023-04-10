@@ -50,14 +50,16 @@ Database Testing
             user_id INTEGER PRIMARY KEY AUTO_INCREMENT,
             userDisplayName VARCHAR(50),
             email VARCHAR(255) UNIQUE,
-            userPassword VARCHAR(30),
+            userPassword VARCHAR(60),
             firstName VARCHAR(20),
             lastName VARCHAR(20),
             bio VARCHAR(255),
             birthday DATE,
             city VARCHAR(255),
             userState VARCHAR(255),
-            userImage BLOB
+            userImage BLOB,
+            security_question VARCHAR(255),
+            security_answer VARCHAR(255)
         )";
         runQuery($sqlCreateUser, "Creating User", false);
 
