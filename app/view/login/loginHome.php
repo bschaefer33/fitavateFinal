@@ -3,7 +3,6 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['userPassword'];
-
     $conn = mysqli_connect("localhost", "root", "mysql", "fitavate");
 
     if (!$conn) {

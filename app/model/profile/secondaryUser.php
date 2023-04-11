@@ -2,10 +2,11 @@
 session_start();
 require $config['LIB_PATH'] . 'fitineFunctions.php';
 //get set session variables
-$userID = $_SESSION['user_id'];
+$secUserID = $_SESSION['secondUserID'];
+
 $email = $_SESSION['email'];
 $password = $_SESSION['userPassword'];
-$secUserID = $_SESSION['secondUserID'];
+
 $row = secondaryUserProfile($secUserID);
 $secUserDisplayName = $row['userDisplayName'];
 $secUserBio = $row['bio'];
@@ -19,7 +20,7 @@ $resultFollowers = getUserFollowers($secUserID);
 /**************************************************
  *                 FitinesTab                      *
  **************************************************/
-//get fitine information
+/*get fitine information
 $fitineArray = createFitine($secUserID);
 $userArray = $fitineArray[0];
 $savedArray = $fitineArray[1];
@@ -44,3 +45,4 @@ if (isset($_POST['saveFitine'])) {
     $saveOwnerID = $_POST['saveOwnerID'];
     saveFitine($userID, $secfitineID, $saveOwnerID);
 }
+*/

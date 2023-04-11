@@ -13,8 +13,6 @@
 <body>
 	<div class="container-fluid profilePage">
 		<h1> User ID</h1>
-
-        <h1><?php echo $secUserID ?><h1>
 </div>
 
 </body>

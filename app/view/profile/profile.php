@@ -69,7 +69,6 @@
 											<form class="col-2" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
                                                     <input name= "saveFitineID" type="hidden" value="<?php echo $fitine->fitineID ?>" />
                                                     <input name= "saveOwnerID" type="hidden" value="<?php echo $fitine->ownerID ?>" />
-                                                    <input name="saveFitine" type="submit" class="btn" value="Save Fitine" />
                                             </form>
                                         </div>
                                         <div id="collapseOne" class="collapse show" data-parent="#accordion">
@@ -114,7 +113,7 @@
 										<form class="col-2" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
 											<input name= "saveFitineID" type="hidden" value="<?php echo $fitine->fitineID ?>" />
                                             <input name= "saveOwnerID" type="hidden" value="<?php echo $fitine->ownerID ?>" />
-											<input name="saveFitine" type="submit" class="btn" value="Save Fitine" />
+											<input id="unfollowFitine" name="unfollowFitine" type="submit" class="btn" value="Unfollow" />
 										</form>
 									</div>
 									<div id="collapseOne" class="collapse show" data-parent="#accordion">
@@ -131,7 +130,7 @@
 										<a class='collapsed card-link col-10 fitineNameProfile' data-toggle='collapse' href='#<?= $fitine->fitineID?>'><?= $fitine->fitineName ?></a>
 										<form class="col-2" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
 											<input name= "saveFitineID" type="hidden" value="<?php echo $fitine->fitineID ?>" />
-											<input name="saveFitine" type="submit" class="btn" value="Save Fitine" />
+											<input id="unfollowFitine" name="unfollowFitine" type="submit" class="btn" value="Unfollow" />
 										</form>
 									</div>
 									<div id="<?= $fitine->fitineID ?>" class="collapse" data-parent="#accordion">
@@ -147,28 +146,27 @@
 				</div>
 				<!--Shows the user's follower-->
 				<div class="tab-pane fade" id="followers" role="tabpanel">
-					<ul class="list-group">
-						<?php foreach ($resultFollowers as $follower): ?>
-							<div class="card">
-								<?php $secUserID = $follower['following_id']?>
-								<?php $secUser = createSecondaryUser($secUserID); ?>
-								<div class="row card-body">
-									<form class ="viewProfileForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-										<input type="hidden" id="secUserID" name="secUserID" value="<?php echo $follower['following_id']; ?>">
-										<button id="submitViewBtn" value="viewLink" onclick="this.form.submit();">
-											<?php printImageOthers($secUser['userImage']); ?>
-											<span class="follower-name"><?php echo $secUser['userDisplay']?></span>
-										</button>
-			
-									</form>
-								</div>
-							</div>
-						<?php endforeach; ?>
-					</ul>
+					<?php foreach ($resultFollowers as $follower): ?>
+						<div class="card">
+  							<div class="card-body">
+    							<?php $secUserInfo = createSecondaryUser($follower['following_id']); ?>
+								<?php printImageOthers($secUserInfo['userImage']); ?>
+								<?php echo $secUserInfo['userDisplay']; ?>
+  							</div>
+						</div>
+					<?php endforeach; ?>
 				</div>
 				<!--Shows who the user is following-->
 				<div class="tab-pane fade" id="following" role="tabpanel">
-
+					<?php foreach ($userFollowing as $following): ?>
+						<div class="card">
+							<div class="card-body">
+								<?php $secUserInfo = createSecondaryUser($following['user_id']); ?>
+								<?php printImageOthers($secUserInfo['userImage']); ?>
+								<?php echo $secUserInfo['userDisplay']; ?>
+							</div>
+						</div>
+					<?php endforeach; ?>
 				</div>
 			</div>
 		</div>

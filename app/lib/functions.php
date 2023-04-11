@@ -17,31 +17,6 @@ function get($name, $def='')
 {
     return isset($_REQUEST[$name]) ? $_REQUEST[$name] : $def;
 }
-function displayResult($result, $sql){
-    if ($result-> num_rows>0){
-        echo "<table border='1'>";
-        $heading = $result-> fetch_assoc();
-        echo "<tr>";
-        foreach($heading as $key=>$value){
-            echo "<th>". $key . "</th>";
-        }
-        echo "</tr>";
-        echo "<tr>";
-        foreach($heading as $key=>$value){
-            echo "<td>" . $value . "</td>";
-        }
-        while($row=$result->fetch_assoc()){
-            echo "<tr>";
-            foreach($row as $key=>$value) {
-                echo "<td>" . $value. "</td>";
-            }
-            echo"</tr>";
-        }
-        echo "</table>";
-    }else{
-        echo "<strong>zero results using SQL: </strong>". $sql;
-    }
-}
 function printImage($image)
 {
     //Convert the binary data into a base64-encoded string
@@ -73,7 +48,16 @@ function getUserFollowers($userID)
 {
     global $connect;
     $sqlFollowers = "SELECT following_id FROM follow WHERE follow.user_id = $userID";
-    return $connect->query($sqlFollowers);
+    $row = $connect->query($sqlFollowers);
+    return $row->fetch_all(MYSQLI_ASSOC);
+
+}
+function getUserFollowing($userID)
+{
+    global $connect;
+    $sqlFollowing = "SELECT user_id FROM follow WHERE follow.following_id = $userID";
+    $row = $connect->query($sqlFollowing);
+    return $row->fetch_all(MYSQLI_ASSOC);
 }
 
 function createSecondaryUser($secondUser)
