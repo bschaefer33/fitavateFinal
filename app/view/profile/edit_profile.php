@@ -24,7 +24,7 @@
                     <div class="form-group col-7">
                         <div class="form-group row align-items-center justify-content-between">
                             <label class="col-2" for="displayName">Display Name</label>
-                            <input class="form-control col-4" type="text" id="displayName" name="displayName" value="<?php echo $userDisplayName; ?>" required>
+                            <input class="form-control col-4" type="text" id="userDisplayName" name="userDisplayName" value="<?php echo $userDisplayName; ?>" required>
                             <label class="col-2" for="birthday">Birthday</label>
                             <input class="form-control col-3" type="date" id="birthday" name="birthday" value="<?php echo $birthday; ?>" required>
                         </div>

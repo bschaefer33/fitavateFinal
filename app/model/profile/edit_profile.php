@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     //Update the user's information in the database
-    $sql = "UPDATE user_profile SET firstName='$first_name', lastName='$last_name', userPassword='$password', city='$city', userState='$state', birthday='$birthday', userImage='$file_dest' WHERE email='$email'";
+    $sql = "UPDATE user_profile SET userDisplayName='$userDisplayName', firstName='$first_name', lastName='$last_name', userPassword='$password', city='$city', userState='$state', birthday='$birthday', userImage='$file_dest', bio='$bio' WHERE email='$email'";
 
     if (mysqli_query($conn, $sql)) {
         echo "Record updated successfully";
