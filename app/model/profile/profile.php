@@ -18,6 +18,7 @@ $userArray = $fitineArray[0];
 $savedArray = $fitineArray[1];
 
 $resultFollowers = getUserFollowers($userID);
+$userFollowing = getUserFollowing($userID);
 //Get the user's information from the database
 
 $conn = mysqli_connect("localhost", "root", "mysql", "fitavate");
@@ -35,41 +36,16 @@ $birthday = date('m-d', strtotime($user['birthday']));
 //used to control card output for saved arrays
 $count = 0;
 
-//new fitine information
-$fitineName = ($_POST['newFitineName']);
-$viewStatus = ($_POST['tempViewStatus']);
-
-//Sets session variables for when the user wants to create a new fitine
-if (isset($_POST['fitineSubmit']) && isset($_POST['newFitineName']) && isset($_POST['tempViewStatus'])) {
-    $_SESSION['newFitine'] = $fitineName;
-    $_SESSION['tempStatus'] = $viewStatus;
-    header("Location: ?page=fitines/fitinesNew");
-}
-
-//edit current fitine and set the session variable
-if (isset($_POST['fitineEdit'])) {
-    $fitineID = $_POST['tempFitID'];
-    $_SESSION['editFitID'] = $fitineID;
-    header("Location: ?page=fitines/fitinesEdit");
-}
-
-//Deletes fitine and reloads the page
-if (isset($_POST['fitineDelete'])) {
-    $fitineID = $_POST['tempFitID'];
-    deleteUserFitine($fitineID);
-    header("Location: ?page=fitines/fitine");
-}
-
 //unfollow the saved fitine
 if (isset($_POST['unfollowFitine'])) {
-    $fitineID = $_POST['tempSaveID'];
+    $fitineID = $_POST['saveFitineID'];
     unfollowFitine($userID, $fitineID);
     header("Location: ?page=fitines/fitine");
 }
 
 //followers
-if (isset($_POST['submitView'])) {
-    $secondID = $_POST['secUserID'];
-    $_SESSION['secondUserID'] = $secondID;
+if (isset($_POST['submitViewBtn'])) {
+    $secondUser = $_POST['secUserID'];
+    $_SESSION['secondUserID'];
     header("Location: ?page=profile/secondaryUser");
 }
