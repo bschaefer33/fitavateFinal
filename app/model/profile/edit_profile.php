@@ -42,8 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $bio = $_POST['bio'];
     $userDisplayName = $_POST['userDisplayName'];
     //Check if the user has already uploaded a profile picture
-    if ($user['userImage'] !== null) {
-        $file_dest = $user['userImage'];
+    if ($row['userImage'] !== null) {
+        $file_dest = $row['userImage'];
     } else {
         $file_dest = null;
     }
