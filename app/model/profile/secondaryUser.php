@@ -3,10 +3,6 @@ session_start();
 require $config['LIB_PATH'] . 'fitineFunctions.php';
 //get set session variables
 $secUserID = $_SESSION['secondUserID'];
-
-$email = $_SESSION['email'];
-$password = $_SESSION['userPassword'];
-
 $row = secondaryUserProfile($secUserID);
 $secUserDisplayName = $row['userDisplayName'];
 $secUserBio = $row['bio'];
