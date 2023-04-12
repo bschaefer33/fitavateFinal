@@ -17,16 +17,16 @@ $fitineArray = createFitine($userID);
 $userArray = $fitineArray[0];
 $savedArray = $fitineArray[1];
 
+$followCheck = createCompareFollowingCheckList($userID);
 $resultFollowers = getUserFollowers($userID);
 $userFollowing = getUserFollowing($userID);
-//Get the user's information from the database
-
+/*Get the user's information from the database
 $conn = mysqli_connect("localhost", "root", "mysql", "fitavate");
 $sql = "SELECT * FROM user_profile WHERE email='$email' AND userPassword='$password'";
 $result = mysqli_query($conn, $sql);
 $user = mysqli_fetch_assoc($result);
 
-mysqli_close($conn);
+mysqli_close($conn);*/
 //Fetch the user's profile picture from the database
 $userImage = $user['userImage'];
 
@@ -44,8 +44,20 @@ if (isset($_POST['unfollowFitine'])) {
 }
 
 //followers
-if (isset($_POST['submitViewBtn'])) {
-    $secondUser = $_POST['secUserID'];
-    $_SESSION['secondUserID'];
+if (isset($_POST['viewProfile'])) {
+    $secondUser = $_POST['saveSecUserID'];
+    $_SESSION['secondUserID'] = $secondUser;
     header("Location: ?page=profile/secondaryUser");
+}
+
+if (isset($_POST['unfollowUser'])) {
+    $userToUnfollow = $_POST['saveSecUserID'];
+    unfollowUser($userID, $userToUnfollow);
+    header("Refresh:0");
+}
+
+if (isset($_POST['followUser'])) {
+    $userToFollow = $_POST['saveSecUserID'];
+    followUser($userID, $userToFollow);
+    header("Refresh:0");
 }

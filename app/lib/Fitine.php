@@ -112,4 +112,27 @@ class Fitine
             echo "</table>";
             echo "</div>";
     }
+    public function printFitineBody()
+    {
+        echo "<div class='table-responsive'>";
+            echo "<table class='table fitineDisplay'>";
+            echo "<thead>";
+                echo "<tr>";
+                    echo "<th scope='row'>Lift</th>";
+                    echo "<th>Muscle Group</th>";
+                    echo "<th>Weight</th>";
+                    echo "<th>Sets</th>";
+                    echo "<th>Reps</th>";
+                echo "<tr>";
+            echo "</thead>";
+            echo "<tbody>";
+                foreach ($this->fitineLifts as $lift) {
+                    echo "<tr>";
+                        $lift->printLift();
+                    echo "</tr>";
+                }
+            echo "</tbody>";
+            echo "</table>";
+            echo "</div>";
+    }
 }

@@ -13,10 +13,12 @@ $connect = mysqli_connect("localhost", "$DBF_USER", "$DBF_PASS", "$DBF_NAME");
 if ($connect->connect_error) {
     die("Connection failed: ".$connect->connect_error);
 }
+//page controller
 function get($name, $def='')
 {
     return isset($_REQUEST[$name]) ? $_REQUEST[$name] : $def;
 }
+//prints Users Image
 function printImage($image)
 {
     //Convert the binary data into a base64-encoded string
@@ -30,7 +32,7 @@ function printImage($image)
         echo '<img class="circular--portrait" src="data:image/jpeg;base64,' . $userImageEncoded . '" alt="Image" />';
     }
 }
-
+//prints Others Images (smaller)
 function printImageOthers($image)
 {
     //Convert the binary data into a base64-encoded string
@@ -44,6 +46,7 @@ function printImageOthers($image)
         echo '<img class="smallProfileImgPort" src="data:image/jpeg;base64,' . $userImageEncoded . '" alt="Image" />';
     }
 }
+//finds users followers
 function getUserFollowers($userID)
 {
     global $connect;
@@ -52,6 +55,7 @@ function getUserFollowers($userID)
     return $row->fetch_all(MYSQLI_ASSOC);
 
 }
+//finds people user is following
 function getUserFollowing($userID)
 {
     global $connect;
@@ -59,7 +63,7 @@ function getUserFollowing($userID)
     $row = $connect->query($sqlFollowing);
     return $row->fetch_all(MYSQLI_ASSOC);
 }
-
+//gets the secondary users name and image
 function createSecondaryUser($secondUser)
 {
     global $connect;
@@ -71,6 +75,7 @@ function createSecondaryUser($secondUser)
     $result = $row->fetch_assoc();
     return array("userDisplay"=>$result['userDisplayName'], "userImage"=>$result['userImage']);
 }
+//used for secondary user profile page
 function secondaryUserProfile($secondUser)
 {
     global $connect;
@@ -84,4 +89,44 @@ function secondaryUserProfile($secondUser)
                     WHERE user_profile.user_id = $secondUser";
     $result = $connect->query($sqlSecondary);
     return $result->fetch_assoc();
+}
+//creates a list of people following user
+function createCompareFollowList($userID)
+{
+    global $connect;
+    $followCheck = array();
+    $sqlCompareQuery = "SELECT following_id FROM follow WHERE user_id = $userID";
+    $row = $connect->query($sqlCompareQuery);
+    while ($result = $row->fetch_assoc()) {
+        $followID = $result['following_id'];
+        array_push($followCheck, $followID);
+    }
+    return $followCheck;
+}
+//creates a list of people the user is following
+function createCompareFollowingCheckList($userID)
+{
+    global $connect;
+    $followingCheck = array();
+    $sqlCompareQuery = "SELECT follow.user_id FROM follow WHERE follow.following_id = $userID";
+    $row = $connect->query($sqlCompareQuery);
+    while ($result = $row->fetch_assoc()) {
+        $followingID = $result['user_id'];
+        array_push($followingCheck, $followingID);
+    }
+    return $followingCheck;
+}
+
+function unfollowUser($firstUserId, $otherUser)
+{
+    global $connect;
+    $sqlUnfollow = "DELETE FROM follow WHERE follow.following_id = $firstUserId AND follow.user_id = $otherUser";
+    $connect->query($sqlUnfollow);
+}
+function followUser($userId, $otherUser)
+{
+    global $connect;
+    $sqlUnfollow = "INSERT INTO `follow`(`user_id`, `following_id`) VALUES ('".$otherUser."','".$userId."')";
+    $connect->query($sqlUnfollow);
+
 }

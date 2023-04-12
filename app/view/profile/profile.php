@@ -108,35 +108,70 @@
 						<?php foreach ($savedArray as $fitine) :?>
 							<?php if($savedCount == 0): ?>
 								<div class="card">
-									<div class="card-header row">
-										<a class="card-link col-10 fitineNameProfile" data-toggle="collapse" href="#<?= $fitine->fitineID?>"><?= $fitine->fitineName ?></a>
-										<form class="col-2" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+									<div class="card-header row align-items-center justify-content-center">
+										<a class="card-link col-6 fitineNameProfile" data-toggle="collapse" href="#<?= $fitine->fitineID?>"><?= $fitine->fitineName ?></a>
+										<h5 class="col- 3"><?php echo date('m-d-Y', strtotime($fitine->dateCreated)); ?></h5>
+										<form class="col-4" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
 											<input name= "saveFitineID" type="hidden" value="<?php echo $fitine->fitineID ?>" />
                                             <input name= "saveOwnerID" type="hidden" value="<?php echo $fitine->ownerID ?>" />
-											<input id="unfollowFitine" name="unfollowFitine" type="submit" class="btn" value="Unfollow" />
+											<input id="unfollowFitine" name="unfollowFitine" type="submit" class="btn " value="Unfollow" />
 										</form>
 									</div>
 									<div id="collapseOne" class="collapse show" data-parent="#accordion">
 										<div class="card-body">
-											<?= $fitine->printFitineProfile(); ?>
+											<div class="row justify-content-between">
+												<?php $userInfoFollowers = createSecondaryUser($fitine->ownerID); ?>
+							  					<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+													<input name= "saveSecUserID" type="hidden" value="<?php echo $fitine->ownerID; ?>" />
+													<button id="viewProfile" name="viewProfile" type="submit" class="btn col-7 viewProfBtn">
+														<?php printImageOthers($userInfoFollowers['userImage']); ?>
+														<?php echo $userInfoFollowers['userDisplay']; ?>
+													</button>
+													<?php if(in_array($fitine->owner_id, $followCheck)):?>
+														<button id="unfollowUser" name="unfollowUser" type="submit" class="btn col-4 unfollBtn" >Unfollow</button>
+													<?php else: ?>
+														<button id="followUser" name="followUser" type="submit" class="btn col-4 follBtn">Follow</button>
+													<?php endif; ?>
+												</form>
+											</div>
+											<div class="row">
+												<?= $fitine->printFitineBody(); ?>
+											</div>
 											<?php $savedCount=1; ?>
-
 										</div>
 									</div>
 								</div>
 							<?php else: ?>
 								<div class="card">
 									<div class="card-header row">
-										<a class='collapsed card-link col-10 fitineNameProfile' data-toggle='collapse' href='#<?= $fitine->fitineID?>'><?= $fitine->fitineName ?></a>
+										<a class='collapsed card-link col-6 fitineNameProfile' data-toggle='collapse' href='#<?= $fitine->fitineID?>'><?= $fitine->fitineName ?></a>
+										<h5 class="col- 3"><?php echo date('m-d-Y', strtotime($fitine->dateCreated)); ?></h5>
 										<form class="col-2" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
 											<input name= "saveFitineID" type="hidden" value="<?php echo $fitine->fitineID ?>" />
+											<input name= "saveOwnerID" type="hidden" value="<?php echo $fitine->ownerID ?>" />
 											<input id="unfollowFitine" name="unfollowFitine" type="submit" class="btn" value="Unfollow" />
 										</form>
 									</div>
 									<div id="<?= $fitine->fitineID ?>" class="collapse" data-parent="#accordion">
 										<div class="card-body">
-											<?= $fitine->printFitineProfile(); ?>
-											
+											<div class="row">
+												<?php $userInfoFollowers = createSecondaryUser($fitine->ownerID); ?>
+												<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+													<input name= "saveSecUserID" type="hidden" value="<?php echo $fitine->ownerID; ?>" />
+													<button id="viewProfile" name="viewProfile" type="submit" class="btn">
+														<?php printImageOthers($userInfoFollowers['userImage']); ?>
+														<?php echo $userInfoFollowers['userDisplay']; ?>
+													</button>
+													<?php if(in_array($fitine->owner_id, $followCheck)):?>
+														<button id="unfollowUser" name="unfollowUser" type="submit" class="btn" >Unfollow</button>
+													<?php else: ?>
+														<button id="followUser" name="followUser" type="submit" class="btn">Follow</button>
+													<?php endif; ?>
+												</form>
+											</div>
+											<div class="row">
+												<?= $fitine->printFitineBody(); ?>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -149,9 +184,20 @@
 					<?php foreach ($resultFollowers as $follower): ?>
 						<div class="card">
   							<div class="card-body">
-    							<?php $secUserInfo = createSecondaryUser($follower['following_id']); ?>
-								<?php printImageOthers($secUserInfo['userImage']); ?>
-								<?php echo $secUserInfo['userDisplay']; ?>
+								<?php $userInfoFollowers = createSecondaryUser($follower['following_id']); ?>
+							  	<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+									<input name= "saveSecUserID" type="hidden" value="<?php echo $follower['following_id']; ?>" />
+									<button id="viewProfile" name="viewProfile" type="submit" class="btn">
+										<?php printImageOthers($userInfoFollowers['userImage']); ?>
+										<?php echo $userInfoFollowers['userDisplay']; ?>
+									</button>
+									<?php if(in_array($follower['following_id'], $followCheck)):?>
+										<button id="unfollowUser" name="unfollowUser" type="submit" class="btn" >Unfollow</button>
+									<?php else: ?>
+										<button id="followUser" name="followUser" type="submit" class="btn">Follow</button>
+									<?php endif; ?>
+								</form>
+    							
   							</div>
 						</div>
 					<?php endforeach; ?>
@@ -161,9 +207,19 @@
 					<?php foreach ($userFollowing as $following): ?>
 						<div class="card">
 							<div class="card-body">
-								<?php $secUserInfo = createSecondaryUser($following['user_id']); ?>
-								<?php printImageOthers($secUserInfo['userImage']); ?>
-								<?php echo $secUserInfo['userDisplay']; ?>
+								<?php $userInfoFollowing = createSecondaryUser($following['user_id']); ?>
+							  	<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+									<input name= "saveSecUserID" type="hidden" value="<?php echo $following['user_id']; ?>" />
+									<button id="viewProfile" name="viewProfile" type="submit" class="btn">
+										<?php printImageOthers($userInfoFollowing['userImage']); ?>
+										<?php echo $userInfoFollowing['userDisplay']; ?>
+									</button>
+									<?php if(in_array($following['user_id'], $followCheck)):?>
+										<button id="unfollowUser" name="unfollowUser" type="submit" class="btn" >Unfollow</button>
+									<?php else: ?>
+										<button id="followUser" name="followUser" type="submit" class="btn">Follow</button>
+									<?php endif; ?>
+								</form>
 							</div>
 						</div>
 					<?php endforeach; ?>

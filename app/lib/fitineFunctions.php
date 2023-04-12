@@ -190,3 +190,15 @@ function saveFitine($userID,$fitineID,$ownerID)
     $sqlFitine = "INSERT INTO userFitine(user_id, fitine_id, owner_id) VALUES ('$userID', '$fitineID', '$ownerID')";
     $connect->query($sqlFitine);
 }
+function createCompareFitineList($userID)
+{
+    global $connect;
+    $fitineCheck = array();
+    $sqlCompareQuery = "SELECT userFitine.fitine_id FROM userFitine WHERE userFitine.user_id = $userID";
+    $row = $connect->query($sqlCompareQuery);
+    while ($result = $row->fetch_assoc()) {
+        $fitineID = $result['fitine_id'];
+        array_push($fitineCheck, $fitineID);
+    }
+    return $fitineCheck;
+}
