@@ -57,6 +57,7 @@
 					<?php foreach ($fitavationArray as $fitavation) :?>
 						<div class="card">
 							<div class="card-header">
+								<!--Has the user's-->
 								<?php $secondUserInfo = createSecondaryUser($fitavation['user_id']); ?>
 								<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
 									<input name= "saveSecUserID" type="hidden" value="<?php echo $fitavation['user_id']; ?>" />
