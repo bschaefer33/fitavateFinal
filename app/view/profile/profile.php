@@ -54,7 +54,31 @@
 			<div class="tab-content" id="myTabContent">
 				<!--includes fitavations-->
 				<div class="tab-pane fade show active" id="home" role="tabpanel">
+					<?php foreach ($fitavationArray as $fitavation) :?>
+						<div class="card">
+							<div class="card-header">
+								<?php $secondUserInfo = createSecondaryUser($fitavation['user_id']); ?>
+								<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+									<input name= "saveSecUserID" type="hidden" value="<?php echo $fitavation['user_id']; ?>" />
+									<button id="viewProfile" name="viewProfile" type="submit" class="btn">
+										<?php printImageOthers($secondUserInfo['userImage']); ?>
+										<?php echo $secondUserInfo['userDisplay']; ?>
+									</button>
+									<?php if(in_array($fitavation['user_id'], $followCheck)):?>
+										<button id="unfollowUser" name="unfollowUser" type="submit" class="btn" >Unfollow</button>
+									<?php else: ?>
+										<button id="followUser" name="followUser" type="submit" class="btn">Follow</button>
+									<?php endif; ?>
+								</form>
+							</div>
+							<div class="card-body">
+								<p><?= $fitavation['fitavation']?></p>
+							</div>
+							<div class="card-footer">
 
+							</div>
+						</div>
+					<?php endforeach; ?>
 				</div>
 				<!--Shows the fitines of the user-->
 				<div class="tab-pane fade" id="fitines" role="tabpanel">
@@ -197,7 +221,6 @@
 										<button id="followUser" name="followUser" type="submit" class="btn">Follow</button>
 									<?php endif; ?>
 								</form>
-    							
   							</div>
 						</div>
 					<?php endforeach; ?>

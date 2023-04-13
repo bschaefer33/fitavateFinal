@@ -130,3 +130,42 @@ function followUser($userId, $otherUser)
     $connect->query($sqlUnfollow);
 
 }
+
+function getOtherFitavations($userID)
+{
+    global $connect;
+    $usersFollowing = createCompareFollowingCheckList($userID);
+    $fitavationArray = array();
+    foreach ($usersFollowing as $otherUser) {
+        $otherUserID = $otherUser['user_id'];
+        $sql= "SELECT * FROM fitavation WHERE fitavation.user_id = $otherUserID";
+        $row = $connect->query($sql);
+        while ($result = $row->fetch_assoc()) {
+            array_push($fitavationArray, $result);
+        }
+        $userUserFollowing = createCompareFollowingCheckList($otherUserID);
+        foreach ($userUserFollowing as $secondOtherUser) {
+            $secondOtherUserID = $secondOtherUser['user_id'];
+            $sqlFollowing= "SELECT * FROM fitavation WHERE fitavation.user_id = $secondOtherUserID";
+            $rowTwo = $connect->query($sqlFollowing);
+            while ($resultTwo = $rowTwo->fetch_assoc()) {
+                if (in_array($secondOtherUser['fitavation_id'], $fitavationArray) == false) {
+                    array_push($fitavationArray, $resultTwo);
+                }
+                
+            }
+        }
+    }
+    return $fitavationArray;
+}
+function getFitavations($userID)
+{
+    global $connect;
+    $fitavationArray= array();
+    $sql= "SELECT * FROM fitavation WHERE fitavation.user_id = $userID";
+    $row = $connect->query($sql);
+    while ($result = $row->fetch_assoc()) {
+        array_push($fitavationArray, $result);
+    }
+    return $fitavationArray;
+}

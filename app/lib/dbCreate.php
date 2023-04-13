@@ -105,17 +105,21 @@ Database Testing
 
         $sqlCreateFitavationComment = "CREATE TABLE IF NOT EXISTS fitavationComment(
             fitavationComment_id INTEGER PRIMARY KEY AUTO_INCREMENT,
-            secondaryUser_id INTEGER,
-            commentMessage INTEGER,
+            fitavation_id INTEGER,
+            commenter_id INTEGER,
+            commentMessage VARCHAR(240),
             commentedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (secondaryUser_id) REFERENCES user_profile(user_id)
+            FOREIGN KEY (fitavation_id) REFERENCES fitavation(fitavation_id),
+            FOREIGN KEY (commenter_id) REFERENCES user_profile(user_id)
         )";
         runQuery($sqlCreateFitavationComment, "Creating Comments", false);
         
         $sqlCreateFitavationLike = "CREATE TABLE IF NOT EXISTS fitavationLike(
             fitavationLike_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+            fitavation_id INTEGER,
             secondaryUser_id INTEGER,
             likedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (fitavation_id) REFERENCES fitavation(fitavation_id),
             FOREIGN KEY (secondaryUser_id) REFERENCES user_profile(user_id)
         )";
         runQuery($sqlCreateFitavationLike, "Creating Fitavation Like", false);
@@ -202,14 +206,27 @@ Database Testing
         $insertUserData = "INSERT INTO user_profile(user_id, userDisplayName, email, userPassword, firstName, lastName, bio, birthday, city, userState, userImage)
             VALUES  ('1', 'Dominic', 'dominiccummings95@gmail.com', 'password', 'Dominic', 'Cummings', 'Whats up guys my name is Dominic', '2000-11-04', 'St. Paul', 'Minnesota', null),
                     ('2', 'jediKilla', 'killjedi@gmail.com', 'jedikiller', 'Kylo', 'Ren', 'I want to kill all jedis', '2000-11-04', 'St. Paul', 'Minnesota', null),
-                    ('3', 'superWinner', 'thegoat@gmail.com', 'superabowl', 'Tom', 'Brady', 'Going to keep winning', '2000-11-04', 'St. Paul', 'Minnesota', null)";
+                    ('3', 'superWinner', 'thegoat@gmail.com', 'superabowl', 'Tom', 'Brady', 'Going to keep winning', '2000-11-04', 'St. Paul', 'Minnesota', null),
+                    ('4', 'Brit', 'bschaefer33@gmail.com', 'root', 'Brittany', 'Schaefer', 'Stuff and Things', '1989-12-6', 'Finlayson', 'Minnesota', null)";
         runQuery($insertUserData, "Inserting User", false);
 
         $insertFitavationData = "INSERT INTO fitavation(fitavation_id, user_id, fitavation, createdAt, likes)
             VALUES  ('1', '1', 'This is a new fit!', '2000-11-04 22:32:33', '4'),
                     ('2', '1', 'Wow I hate the cold', '2000-11-04 22:32:33', '3'),
-                    ('3', '2', 'Just retired!', '2000-11-04 22:32:33', '48')";
+                    ('3', '4', 'Just retired!', '2000-11-04 22:32:33', '48')";
         runQuery($insertFitavationData, "Inserting Fitavation", false);
+
+        $insertFitavationCommentData = "INSERT INTO fitavationComment(fitavationComment_id, fitavation_id, commenter_id, commentMessage, commentedAt)
+            VALUES  ('1', '1', '2', 'Way to go', '2000-11-04 22:32:33'),
+                    ('2', '1', '3', 'Wow I hate the cold', '2000-11-04 22:32:33'),
+                    ('3', '2', '2', 'Just retired!', '2000-11-04 22:32:33')";
+        runQuery($insertFitavationCommentData, "Inserting Fitavation", false);
+
+        $insertFitavationLikeData = "INSERT INTO fitavationLike(fitavationLike_id, fitavation_id, secondaryUser_id, likedAt)
+            VALUES  ('1', '2', '2', '2000-11-04 22:32:33'),
+                    ('2', '3', '4', '2000-11-04 22:32:33'),
+                    ('3', '1', '2', '2000-11-04 22:32:33')";
+        runQuery($insertFitavationLikeData, "Inserting Fitavation", false);
 
         $insertFollowingData = "INSERT INTO follow(user_id, following_id)
             VALUES  ('2', '1'),

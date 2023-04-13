@@ -20,6 +20,8 @@ $savedArray = $fitineArray[1];
 $followCheck = createCompareFollowingCheckList($userID);
 $resultFollowers = getUserFollowers($userID);
 $userFollowing = getUserFollowing($userID);
+
+$fitavationArray = getFitavations($userID);
 /*Get the user's information from the database
 $conn = mysqli_connect("localhost", "root", "mysql", "fitavate");
 $sql = "SELECT * FROM user_profile WHERE email='$email' AND userPassword='$password'";

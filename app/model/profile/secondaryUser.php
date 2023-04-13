@@ -12,6 +12,8 @@ $secUserID = $_SESSION['secondUserID'];
 if ($userIDprof == $secUserID) {
     header("Location: ?page=profile/profile");
 }else {
+    //fitavations
+    $fitavationArray = getFitavations($secUserID);
     $row = secondaryUserProfile($secUserID);
     $secUserDisplayName = $row['userDisplayName'];
     $secUserBio = $row['bio'];
