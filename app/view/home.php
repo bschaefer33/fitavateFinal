@@ -48,22 +48,31 @@
             <?php foreach ($fitavationArray as $fitavation) :?>
                 <div class="card userFitavations">
                     <div class="card-header">
-                    <!--Has the user's-->
-                        <?php $secondUserInfo = createSecondaryUser($fitavation['user_id']); ?>
-                        <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-                            <input name= "saveSecUserID" type="hidden" value="<?php echo $fitavation['user_id']; ?>" />
-                            <button id="viewProfile" name="viewProfile" type="submit" class="btn viewProfile">
-                                <?php printImageOthers($secondUserInfo['userImage']); ?>
-                                <?php echo $secondUserInfo['userDisplay']; ?>
-                            </button>
-                                <?php if ($fitavation['user_id'] != $userID) : ?>
-                                    <?php if (in_array($fitavation['user_id'], $followCheck)):?>
-                                        <button id="unfollowUser" name="unfollowUser" type="submit" class="btn" >Unfollow</button>
-                                    <?php else: ?>
-                                        <button id="followUser" name="followUser" type="submit" class="btn">Follow</button>
+                            <?php $secondUserInfo = createSecondaryUser($fitavation['user_id']); ?>
+                            <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+                            <div class="row align-items-center justify-content-start">
+                                <div class="col-9">
+                                        <input name= "saveSecUserID" type="hidden" value="<?php echo $fitavation['user_id']; ?>" />
+                                        <button id="viewProfile" name="viewProfile" type="submit" class="row align-items-center justify-content-start viewProfile">
+                                            <div class="col-1">
+                                                <?php printImageOthers($secondUserInfo['userImage']); ?>
+                                            </div>
+                                            <div class="col-9">
+                                                <?php echo $secondUserInfo['userDisplay']; ?>
+                                            </div>
+                                        </button>
+                                </div>
+                                <div class="col-2">
+                                    <?php if ($fitavation['user_id'] != $userID) : ?>
+                                        <?php if (in_array($fitavation['user_id'], $followCheck)):?>
+                                            <button id="unfollowUser" name="unfollowUser" type="submit" class="btn" >Unfollow</button>
+                                        <?php else: ?>
+                                            <button id="followUser" name="followUser" type="submit" class="btn">Follow</button>
+                                        <?php endif; ?>
                                     <?php endif; ?>
-                                <?php endif; ?>
-                        </form>
+                                </div>
+                            </div>
+                            </form>
                     </div>
                     <div class="card-body">
                         <p><?= $fitavation['fitavation']?></p>
