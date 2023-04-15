@@ -105,18 +105,18 @@ function createCompareFollowingCheckList($userID)
     return $followingCheck;
 }
 //User unfollows a secondary user
-function unfollowUser($firstUserId, $otherUser)
+function unfollowUser($userId, $otherUser)
 {
     global $connect;
-    $sqlUnfollow = "DELETE FROM follow WHERE follow.following_id = $firstUserId AND follow.user_id = $otherUser";
+    $sqlUnfollow = "DELETE FROM follow WHERE follow.following_id = $userId AND follow.user_id = $otherUser";
     $connect->query($sqlUnfollow);
 }
 //User follows a secondary user
 function followUser($userId, $otherUser)
 {
     global $connect;
-    $sqlUnfollow = "INSERT INTO `follow`(`user_id`, `following_id`) VALUES ('".$otherUser."','".$userId."')";
-    $connect->query($sqlUnfollow);
+    $sqlFollow = "INSERT INTO `follow`(`user_id`, `following_id`) VALUES ('$otherUser','$userId')";
+    $connect->query($sqlFollow);
 }
 /*******************************************************
 *  Fitavations functions

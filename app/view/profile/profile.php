@@ -52,157 +52,174 @@
 				</ul>
 			</div>
 			<div class="tab-content" id="myTabContent">
-				<!--includes fitavations-->
-				<div class="tab-pane fade show active" id="home" role="tabpanel">
-					<?php foreach ($fitavationArray as $fitavation) :?>
-						<div class="card">
+				<div class="tab-pane active" id="home" role="tabpanel">
+					<h1 class="pageHeader">Fitavations</h1>
+					<h1 class="sectionHeader">Create a Fitavation</h1>
+					<div class="container fitavationFormContainer">
+						<div class="card userFitavations">
 							<div class="card-header">
-								<!--Has the user's-->
-								<?php $secondUserInfo = createSecondaryUser($fitavation['user_id']); ?>
-								<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-									<input name= "saveSecUserID" type="hidden" value="<?php echo $fitavation['user_id']; ?>" />
-									<button id="viewProfile" name="viewProfile" type="submit" class="btn">
-										<?php printImageOthers($secondUserInfo['userImage']); ?>
-										<?php echo $secondUserInfo['userDisplay']; ?>
-									</button>
-									<?php if(in_array($fitavation['user_id'], $followCheck)):?>
-										<button id="unfollowUser" name="unfollowUser" type="submit" class="btn" >Unfollow</button>
-									<?php else: ?>
-										<button id="followUser" name="followUser" type="submit" class="btn">Follow</button>
-									<?php endif; ?>
-								</form>
-							</div>
-							<div class="card-body">
-								<p><?= $fitavation['fitavation']?></p>
-							</div>
-							<div class="card-footer">
-
-							</div>
-						</div>
-					<?php endforeach; ?>
-				</div>
-				<!--Shows the fitines of the user-->
-				<div class="tab-pane fade" id="fitines" role="tabpanel">
-                <h1 class="sectionHeader">User Created Fitines</h1>
-					<div id="accordion">
-						<?php foreach ($userArray as $fitine) :?>
-                            <?php if($count == 0): ?>
-                                <?php if($fitine->viewStatus == 1): ?>
-                                    <div class="card">
-                                        <div class="card-header row">
-                                            <a class="card-link col-10 fitineNameProfile" data-toggle="collapse" href="#collapseOne"><?= $fitine->fitineName ?></a>
-											<form class="col-2" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-                                                    <input name= "saveFitineID" type="hidden" value="<?php echo $fitine->fitineID ?>" />
-                                                    <input name= "saveOwnerID" type="hidden" value="<?php echo $fitine->ownerID ?>" />
-                                            </form>
-                                        </div>
-                                        <div id="collapseOne" class="collapse show" data-parent="#accordion">
-                                            <div class="card-body">
-                                                <?= $fitine->printFitineProfile(); ?>
-                                                <?php $count=1; ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?php endif; ?>
-                                <?php elseif($count > 0): ?>
-                                    <?php if($fitine->viewStatus == 1): ?>
-                                        <div class="card">
-                                            <div class="card-header row">
-                                                <a class='collapsed card-link col-10 fitineNameProfile' data-toggle='collapse' href='#<?= $fitine->fitineID?>'><?= $fitine->fitineName ?></a>
-												<form class="col-2" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-                                                        <input name= "saveFitineID" type="hidden" value="<?php echo $fitine->fitineID ?>" />
-                                                        <input name= "saveOwnerID" type="hidden" value="<?php echo $fitine->ownerID ?>" />
-                                                        <input name="saveFitine" type="submit" class="btn" value="Save Fitine" />
-                                                    </form>
-                                            </div>
-                                            <div id="<?= $fitine->fitineID ?>" class="collapse" data-parent="#accordion">
-                                                <div class="card-body">
-                                                    <?= $fitine->printFitineProfile(); ?>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <?php endif; ?>
-                                <?php else: ?>
-                                    <h4>Error</h4>
-                                <?php endif; ?>
-						<?php endforeach; ?>
-					</div>
-					<h1 class = "sectionHeader">User's Saved Fitines</h1>
-					<div id="accordion">
-						<?php foreach ($savedArray as $fitine) :?>
-							<?php if($savedCount == 0): ?>
-								<div class="card">
-									<div class="card-header row align-items-center justify-content-center">
-										<a class="card-link col-6 fitineNameProfile" data-toggle="collapse" href="#<?= $fitine->fitineID?>"><?= $fitine->fitineName ?></a>
-										<h5 class="col- 3"><?php echo date('m-d-Y', strtotime($fitine->dateCreated)); ?></h5>
-										<form class="col-4" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-											<input name= "saveFitineID" type="hidden" value="<?php echo $fitine->fitineID ?>" />
-                                            <input name= "saveOwnerID" type="hidden" value="<?php echo $fitine->ownerID ?>" />
-											<input id="unfollowFitine" name="unfollowFitine" type="submit" class="btn " value="Unfollow" />
-										</form>
+								<div class="row align-items-center justify-content-start">
+									<div class="col-1">
+										<?php printImageOthers($userImage); ?>
 									</div>
-									<div id="collapseOne" class="collapse show" data-parent="#accordion">
-										<div class="card-body">
-											<div class="row justify-content-between">
-												<?php $userInfoFollowers = createSecondaryUser($fitine->ownerID); ?>
-							  					<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-													<input name= "saveSecUserID" type="hidden" value="<?php echo $fitine->ownerID; ?>" />
-													<button id="viewProfile" name="viewProfile" type="submit" class="btn col-7 viewProfBtn">
-														<?php printImageOthers($userInfoFollowers['userImage']); ?>
-														<?php echo $userInfoFollowers['userDisplay']; ?>
-													</button>
-													<?php if(in_array($fitine->owner_id, $followCheck)):?>
-														<button id="unfollowUser" name="unfollowUser" type="submit" class="btn col-4 unfollBtn" >Unfollow</button>
-													<?php else: ?>
-														<button id="followUser" name="followUser" type="submit" class="btn col-4 follBtn">Follow</button>
-													<?php endif; ?>
-												</form>
-											</div>
-											<div class="row">
-												<?= $fitine->printFitineBody(); ?>
-											</div>
-											<?php $savedCount=1; ?>
-										</div>
+									<div class="col-10">
+										<?php echo $userDisplayName; ?>
 									</div>
 								</div>
-							<?php else: ?>
-								<div class="card">
-									<div class="card-header row">
-										<a class='collapsed card-link col-6 fitineNameProfile' data-toggle='collapse' href='#<?= $fitine->fitineID?>'><?= $fitine->fitineName ?></a>
-										<h5 class="col- 3"><?php echo date('m-d-Y', strtotime($fitine->dateCreated)); ?></h5>
-										<form class="col-2" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-											<input name= "saveFitineID" type="hidden" value="<?php echo $fitine->fitineID ?>" />
-											<input name= "saveOwnerID" type="hidden" value="<?php echo $fitine->ownerID ?>" />
-											<input id="unfollowFitine" name="unfollowFitine" type="submit" class="btn" value="Unfollow" />
-										</form>
+							</div>
+							<form id="fitavationForm" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+								<div class="card-body">
+									<div class="form-group">
+										<input name= "fitavationUserID" type="hidden" value="<?php echo $fitavationUserID['user_id']; ?>" />
+										<textarea class="form-control" id="fitavationText" name="fitavationText" value="<?php echo $fitavationText['fitavation']; ?>" placeholder="Type your Fitavation Here..."  required></textarea>
 									</div>
-									<div id="<?= $fitine->fitineID ?>" class="collapse" data-parent="#accordion">
-										<div class="card-body">
-											<div class="row">
-												<?php $userInfoFollowers = createSecondaryUser($fitine->ownerID); ?>
-												<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-													<input name= "saveSecUserID" type="hidden" value="<?php echo $fitine->ownerID; ?>" />
-													<button id="viewProfile" name="viewProfile" type="submit" class="btn">
-														<?php printImageOthers($userInfoFollowers['userImage']); ?>
-														<?php echo $userInfoFollowers['userDisplay']; ?>
+								</div>
+								<div class="card-footer">
+									<div class="row justify-content-end postFooter">
+										<input id="submitFitavation" name="submitFitavation" type="submit" value="Post Fitavation" class="btn postFit" />
+									</div>
+								</div>
+							</form>
+							
+						</div>
+					</div>
+					<h1 class="sectionHeader">Explore Fitavations</h1>
+					<div class="container fitavationContainer">
+						<?php foreach ($fitavationArray as $fitavation) :?>
+							<div class="card userFitavations">
+								<div class="card-header">
+										<?php $secondUserInfo = createSecondaryUser($fitavation['user_id']); ?>
+										<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+										<div class="row align-items-center justify-content-start">
+											<div class="col-9">
+													<input name= "saveSecUserID" type="hidden" value="<?php echo $fitavation['user_id']; ?>" />
+													<button id="viewProfile" name="viewProfile" type="submit" class="row align-items-center justify-content-start viewProfile">
+														<div class="col-1">
+															<?php printImageOthers($secondUserInfo['userImage']); ?>
+														</div>
+														<div class="col-9">
+															<?php echo $secondUserInfo['userDisplay']; ?>
+														</div>
 													</button>
-													<?php if(in_array($fitine->owner_id, $followCheck)):?>
+											</div>
+											<div class="col-2">
+												<?php if ($fitavation['user_id'] != $userID) : ?>
+													<?php if (in_array($fitavation['user_id'], $followCheck)):?>
 														<button id="unfollowUser" name="unfollowUser" type="submit" class="btn" >Unfollow</button>
 													<?php else: ?>
 														<button id="followUser" name="followUser" type="submit" class="btn">Follow</button>
 													<?php endif; ?>
-												</form>
+												<?php endif; ?>
 											</div>
-											<div class="row">
-												<?= $fitine->printFitineBody(); ?>
+										</div>
+										</form>
+								</div>
+								<div class="card-body">
+									<p><?= $fitavation['fitavation']?></p>
+								</div>
+								<div class="card-footer">
+									<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+								
+									</form>
+								</div>
+							</div>
+						<?php endforeach; ?>
+					</div>
+				</div>
+				<!--Shows the fitines of the user-->
+				<div class="tab-pane fade" id="fitines" role="tabpanel">
+					<h1 class="pageHeader">Fitines</h1>
+					<h1 class="sectionHeader">My Fitines</h1>
+					<div class="fitineTable">
+						<div id="accordion">
+							<div class="card">
+								<div class="card-header">
+									<a class="card-link" data-toggle="collapse" href="#collapseOne">
+										Create New Fitine
+									</a>
+								</div>
+								<div id="collapseOne" class="collapse show" data-parent="#accordion">
+									<div class="card-body">
+									<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" name="startNewFitine" >
+											<div class ="form-group">
+												<label for="newFitineName">Fitine Name</label>
+												<input type="text" class="form-control" id="newFitineName" name="newFitineName" />
 											</div>
+											<div class="form-check form-check-inline">
+												<input class="form-check-input" type="radio" name="tempViewStatus" id="public" value="1" />
+												<label class="form-check-label" for="public">Public</label>
+											</div>
+											<div class="form-check form-check-inline">
+												<input class="form-check-input" type="radio" name="tempViewStatus" id="private" value="0"/>
+												<label class="form-check-label" for="private">Private</label>
+											</div>
+											<div class="form-inline justify-content-end">
+												<input class="btn fitineSubmit" name="fitineSubmit" type="submit" value="New Fitine" />
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<?php foreach ($userArray as $fitine) :?>
+								<div class="card">
+									<div class='card-header'>
+										<a class='collapsed card-link' data-toggle='collapse' href='#<?= $fitine->fitineID?>'><?= $fitine->fitineName ?></a>
+									</div>
+									<div id="<?= $fitine->fitineID ?>" class="collapse" data-parent="#accordion">
+										<div class="card-body">
+											<?= $fitine->printFitine(); ?>
+											<form class="form-row justify-content-between m-3" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+												<input name= "tempFitID" type="hidden" value="<?php echo $fitine->fitineID ?>" />
+												<input id="fitineEdit" name="fitineEdit" type="submit" class="btn" value="Edit" />
+												<input id="fitineDelete" name="fitineDelete" type="submit" class="btn" value="Delete"/>
+											</form>
 										</div>
 									</div>
 								</div>
-							<?php endif ?>
-						<?php endforeach; ?>
-                    </div>
+							<?php endforeach; ?>
+						</div>
+					</div>
+
+					<h1 class = "sectionHeader">Saved Fitines</h1>
+					<div class="fitineTable">
+						<div id="accordion">
+							
+							<?php foreach ($savedArray as $fitine) :?>
+								<?php if($count == 0): ?>
+									<div class="card">
+										<div class="card-header">
+											<a class="collapsed card-link" data-toggle="collapse" href="#collapseOn"><?= $fitine->fitineName ?></a>
+										</div>
+										<div id="collapseOn" class="collapse show" data-parent="#accordion">
+											<div class="card-body">
+												<?= $fitine->printFitine(); ?>
+												<?php $count=1; ?>
+												<form class="form-row justify-content-end m-3" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+													<input name= "tempSaveID" type="hidden" value="<?php echo $fitine->fitineID ?>" />
+													<input id="unfollowFitine" name="unfollowFitine" type="submit" class="btn" value="Unfollow" />
+												</form>
+											</div>
+										</div>
+									</div>
+								<?php else: ?>
+									<div class="card">
+										<div class="card-header">
+											<a class='collapsed card-link' data-toggle='collapse' href='#<?= $fitine->fitineID?>'><?= $fitine->fitineName ?></a>
+										</div>
+										<div id="<?= $fitine->fitineID ?>" class="collapse" data-parent="#accordion">
+											<div class="card-body">
+												<?= $fitine->printFitine(); ?>
+												<form class="form-row justify-content-end m-3" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+													<input name= "tempSaveID" type="hidden" value="<?php echo $fitine->fitineID ?>" />
+													<input id="unfollowFitine" name="unfollowFitine" type="submit" class="btn" value="Unfollow" />
+												</form>
+											</div>
+										</div>
+									</div>
+								<?php endif ?>
+							<?php endforeach; ?>
+						</div>
+					</div>
 				</div>
 				<!--Shows the user's follower-->
 				<div class="tab-pane fade" id="followers" role="tabpanel">

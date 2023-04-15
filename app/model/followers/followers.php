@@ -1,10 +1,26 @@
 <?php
-//Establish our database user name password and the name of the database
-$DBF_PASS = "mysql";
-$DBF_USER = "root";
-$DBF_NAME = "fitavate";
-//Connect our database to the program
-$connect = mysqli_connect("localhost", "$DBF_USER", "$DBF_PASS", "$DBF_NAME");
+session_start();
+//get set session variables
+$userID = $_SESSION['user_id'];
+$email = $_SESSION['email'];
+$resultFollowers = getUserFollowers($userID);
+$userFollowing = createCompareFollowingCheckList($userID);
 
-$sql = "SELECT * FROM follow WHERE follow.user_id = 1";
-$result = $connect->query($sql);
+//followers
+if (isset($_POST['viewProfile'])) {
+  $secondUser = $_POST['saveSecUserID'];
+  $_SESSION['secondUserID'] = $secondUser;
+  header("Location: ?page=profile/secondaryUser");
+}
+
+if (isset($_POST['unfollowUser'])) {
+  $userToUnfollow = $_POST['saveSecUserID'];
+  unfollowUser($userID, $userToUnfollow);
+  header("Refresh:0");
+}
+
+if (isset($_POST['followUser'])) {
+  $userToFollow = $_POST['saveSecUserID'];
+  followUser($userID, $userToFollow);
+  header("Refresh:0");
+}

@@ -21,7 +21,7 @@ $followCheck = createCompareFollowingCheckList($userID);
 $resultFollowers = getUserFollowers($userID);
 $userFollowing = createCompareFollowingCheckList($userID);
 
-$fitavationArray = getFitavations($userID);
+$fitavationArray = getOtherFitavations($userID);
 /*Get the user's information from the database
 $conn = mysqli_connect("localhost", "root", "mysql", "fitavate");
 $sql = "SELECT * FROM user_profile WHERE email='$email' AND userPassword='$password'";
