@@ -1,7 +1,7 @@
 <?php
 session_start();
 /*******************************************************
-*  Functions are in alphabetical order
+*  Functions are sorted by use
 *******************************************************/
 //Establish our database user name password and the name of the database
 $DBF_PASS = "mysql";
@@ -19,6 +19,11 @@ function get($name, $def='')
     return isset($_REQUEST[$name]) ? $_REQUEST[$name] : $def;
 }
 //prints Users Image
+/*******************************************************
+*  Profile functions
+*******************************************************/
+/*****************    User's Profile    ***************/
+//userTemplate image
 function printImage($image)
 {
     //Convert the binary data into a base64-encoded string
@@ -32,6 +37,7 @@ function printImage($image)
         echo '<img class="circular--portrait" src="data:image/jpeg;base64,' . $userImageEncoded . '" alt="Image" />';
     }
 }
+/*****************    Secondary User's Profile    ***************/
 //prints Others Images (smaller)
 function printImageOthers($image)
 {
@@ -46,24 +52,7 @@ function printImageOthers($image)
         echo '<img class="smallProfileImgPort" src="data:image/jpeg;base64,' . $userImageEncoded . '" alt="Image" />';
     }
 }
-//finds users followers
-function getUserFollowers($userID)
-{
-    global $connect;
-    $sqlFollowers = "SELECT following_id FROM follow WHERE follow.user_id = $userID";
-    $row = $connect->query($sqlFollowers);
-    return $row->fetch_all(MYSQLI_ASSOC);
-
-}
-//finds people user is following
-function getUserFollowing($userID)
-{
-    global $connect;
-    $sqlFollowing = "SELECT user_id FROM follow WHERE follow.following_id = $userID";
-    $row = $connect->query($sqlFollowing);
-    return $row->fetch_all(MYSQLI_ASSOC);
-}
-//gets the secondary users name and image
+//gets the secondary users name and image file
 function createSecondaryUser($secondUser)
 {
     global $connect;
@@ -90,18 +79,17 @@ function secondaryUserProfile($secondUser)
     $result = $connect->query($sqlSecondary);
     return $result->fetch_assoc();
 }
-//creates a list of people following user
-function createCompareFollowList($userID)
+/*******************************************************
+*  Follow/Following Functions
+*******************************************************/
+//creates a list of followers that are following the user
+function getUserFollowers($userID)
 {
     global $connect;
-    $followCheck = array();
-    $sqlCompareQuery = "SELECT following_id FROM follow WHERE user_id = $userID";
-    $row = $connect->query($sqlCompareQuery);
-    while ($result = $row->fetch_assoc()) {
-        $followID = $result['following_id'];
-        array_push($followCheck, $followID);
-    }
-    return $followCheck;
+    $sqlFollowers = "SELECT following_id FROM follow WHERE follow.user_id = $userID";
+    $row = $connect->query($sqlFollowers);
+    return $row->fetch_all(MYSQLI_ASSOC);
+
 }
 //creates a list of people the user is following
 function createCompareFollowingCheckList($userID)
@@ -116,20 +104,24 @@ function createCompareFollowingCheckList($userID)
     }
     return $followingCheck;
 }
-
+//User unfollows a secondary user
 function unfollowUser($firstUserId, $otherUser)
 {
     global $connect;
     $sqlUnfollow = "DELETE FROM follow WHERE follow.following_id = $firstUserId AND follow.user_id = $otherUser";
     $connect->query($sqlUnfollow);
 }
+//User follows a secondary user
 function followUser($userId, $otherUser)
 {
     global $connect;
     $sqlUnfollow = "INSERT INTO `follow`(`user_id`, `following_id`) VALUES ('".$otherUser."','".$userId."')";
     $connect->query($sqlUnfollow);
-
 }
+/*******************************************************
+*  Fitavations functions
+*******************************************************/
+//helper function that creates a list to get fitavations from
 function fitavationFollowList($userID)
 {
     $userFollowingArray = array();
@@ -138,18 +130,16 @@ function fitavationFollowList($userID)
         array_push($userFollowingArray, $following);
         $followingFollow = createCompareFollowingCheckList($following['user_id']);
         foreach ($followingFollow as $follow) {
-            if (!in_array($follow['user_id'], $userFollowingArray)) {
-                array_push($userFollowingArray, $follow['user_id']);
-            }
+            array_push($userFollowingArray, $follow['user_id']);
         }
     }
-    return $userFollowingArray;
-    
+    return array_unique($userFollowingArray);
 }
 function getOtherFitavations($userID)
 {
     global $connect;
-    $userArray = createCompareFollowingCheckList($userID);
+    $userArray = fitavationFollowList($userID);
+    $createdAt = [];
     $fitavationArray = array();
     foreach ($userArray as $otherUser) {
         $otherUserID = $otherUser['user_id'];
@@ -158,18 +148,15 @@ function getOtherFitavations($userID)
         while ($result = $row->fetch_assoc()) {
             array_push($fitavationArray, $result);
         }
-        $userUserFollowing = createCompareFollowingCheckList($otherUserID);
-        foreach ($userUserFollowing as $secondOtherUser) {
-
-            $secondOtherUserID = $secondOtherUser['user_id'];
-            $sqlFollowing= "SELECT * FROM fitavation WHERE fitavation.user_id = $secondOtherUserID";
-            $rowTwo = $connect->query($sqlFollowing);
-            while ($resultTwo = $rowTwo->fetch_assoc()) {
-               
-                
-            }
-        }
     }
+    $userFitavationArray = getFitavations($userID);
+    foreach ($userFitavationArray as $userFitavation) {
+        array_push($fitavationArray, $userFitavation);
+    }
+    foreach ($fitavationArray as $key => $row) {
+        $createdAt[$key] = $row['createdAt'];
+    }
+    array_multisort($createdAt, SORT_DESC, $fitavationArray);
     return $fitavationArray;
 }
 function getFitavations($userID)
@@ -182,4 +169,10 @@ function getFitavations($userID)
         array_push($fitavationArray, $result);
     }
     return $fitavationArray;
+}
+function postFitavation($userID, $fitavationText)
+{
+    global $connect;
+    $sqlFitavation= "INSERT INTO `fitavation`(`user_id`, `fitavation`, `likes`) VALUES ('$userID', '$fitavationText', '0')";
+    $connect->query($sqlFitavation);
 }

@@ -27,7 +27,9 @@ body{
       padding-right: 0;
       padding-left: 0;
 }
-
+.viewProfile {
+    background-color: rgba(255, 255, 255, 0);
+}
 /**********************  Header  ***********************/
 .headerContainer{
     background-color: #707070;
@@ -277,9 +279,39 @@ body{
 /*******   Body   **********/
 
 /*******  Footer  **********/
-
-
-
+/****************************************************
+*                 Home/fitavations                  *
+****************************************************/ 
+.fitavationFormContainer{
+    padding: 0 2%;
+    padding-bottom: 3%;
+    border-bottom: .2rem solid goldenrod;
+    margin-bottom: 3%;
+}
+.userFitavations .card-header{
+    background-color: #707070ab;
+    border-bottom: .5rem solid goldenrod;
+    font-size: 1.5rem;
+}
+.userFitavations .card-footer{
+    border-top: .5rem solid goldenrod;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    background-color: #707070ab;
+}
+.userFitavations{
+    margin: 1% 2%;
+}
+.postFooter{
+    padding-right: 3%;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.postFit{
+    padding: .5%;
+    background-color: #5e0b1586;
+    color: white;
+}
 /****************************
 *           Desktop         *
 ****************************/  

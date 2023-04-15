@@ -28,7 +28,7 @@ if ($userIDprof == $secUserID) {
     
     //follower information
     $secondUserFollowers = getUserFollowers($secUserID);
-    $secondUserFollowing = getUserFollowing($secUserID);
+    $secondUserFollowing = createCompareFollowingCheckList($secUserID);
     /**************************************************
      *                 FitinesTab                      *
      **************************************************/

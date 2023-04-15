@@ -26,3 +26,10 @@ if (isset($_POST['followUser'])) {
     followUser($userID, $userToFollow);
     header("Refresh:0");
 }
+
+if (isset($_POST['submitFitavation'])) {
+    $fitavationUserID = $_POST['fitavationUserID'];
+    $fitavationText = $_POST['fitavationText'];
+    postFitavation($userID, $fitavationText);
+    header("Refresh:0");
+}
