@@ -30,7 +30,7 @@ body{
 .viewProfile {
     background-color: rgba(255, 255, 255, 0);   
 }
-button {
+.viewProfile {
     background-color: transparent;
     border-width: 0;
     font-family: inherit;
@@ -319,6 +319,21 @@ button {
 }
 .postFit{
     padding: .5%;
+    background-color: #5e0b1586;
+    color: white;
+}
+.fitavationFooter{
+    padding-right: 3%;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.deleteFitavation{
+    padding: .5% 2%;
+    background-color: #5e0b1586;
+    color: white;
+}
+.editFitavation{
+    padding: .5% 2%;
     background-color: #5e0b1586;
     color: white;
 }
