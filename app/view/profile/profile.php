@@ -53,78 +53,7 @@
 			</div>
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane active" id="home" role="tabpanel">
-					<h1 class="pageHeader">Fitavations</h1>
-					<h1 class="sectionHeader">Create a Fitavation</h1>
-					<div class="container fitavationFormContainer">
-						<div class="card userFitavations">
-							<div class="card-header">
-								<div class="row align-items-center justify-content-start">
-									<div class="col-1">
-										<?php printImageOthers($userImage); ?>
-									</div>
-									<div class="col-10">
-										<?php echo $userDisplayName; ?>
-									</div>
-								</div>
-							</div>
-							<form id="fitavationForm" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-								<div class="card-body">
-									<div class="form-group">
-										<input name= "fitavationUserID" type="hidden" value="<?php echo $fitavationUserID['user_id']; ?>" />
-										<textarea class="form-control" id="fitavationText" name="fitavationText" value="<?php echo $fitavationText['fitavation']; ?>" placeholder="Type your Fitavation Here..."  required></textarea>
-									</div>
-								</div>
-								<div class="card-footer">
-									<div class="row justify-content-end postFooter">
-										<input id="submitFitavation" name="submitFitavation" type="submit" value="Post Fitavation" class="btn postFit" />
-									</div>
-								</div>
-							</form>
-							
-						</div>
-					</div>
-					<h1 class="sectionHeader">Explore Fitavations</h1>
-					<div class="container fitavationContainer">
-						<?php foreach ($fitavationArray as $fitavation) :?>
-							<div class="card userFitavations">
-								<div class="card-header">
-										<?php $secondUserInfo = createSecondaryUser($fitavation['user_id']); ?>
-										<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-										<div class="row align-items-center justify-content-start">
-											<div class="col-9">
-													<input name= "saveSecUserID" type="hidden" value="<?php echo $fitavation['user_id']; ?>" />
-													<button id="viewProfile" name="viewProfile" type="submit" class="row align-items-center justify-content-start viewProfile">
-														<div class="col-1">
-															<?php printImageOthers($secondUserInfo['userImage']); ?>
-														</div>
-														<div class="col-9">
-															<?php echo $secondUserInfo['userDisplay']; ?>
-														</div>
-													</button>
-											</div>
-											<div class="col-2">
-												<?php if ($fitavation['user_id'] != $userID) : ?>
-													<?php if (in_array($fitavation['user_id'], $followCheck)):?>
-														<button id="unfollowUser" name="unfollowUser" type="submit" class="btn" >Unfollow</button>
-													<?php else: ?>
-														<button id="followUser" name="followUser" type="submit" class="btn">Follow</button>
-													<?php endif; ?>
-												<?php endif; ?>
-											</div>
-										</div>
-										</form>
-								</div>
-								<div class="card-body">
-									<p><?= $fitavation['fitavation']?></p>
-								</div>
-								<div class="card-footer">
-									<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-								
-									</form>
-								</div>
-							</div>
-						<?php endforeach; ?>
-					</div>
+
 				</div>
 				<!--Shows the fitines of the user-->
 				<div class="tab-pane fade" id="fitines" role="tabpanel">
@@ -223,47 +152,11 @@
 				</div>
 				<!--Shows the user's follower-->
 				<div class="tab-pane fade" id="followers" role="tabpanel">
-					<?php foreach ($resultFollowers as $follower): ?>
-						<div class="card">
-  							<div class="card-body">
-								<?php $userInfoFollowers = createSecondaryUser($follower['following_id']); ?>
-							  	<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-									<input name= "saveSecUserID" type="hidden" value="<?php echo $follower['following_id']; ?>" />
-									<button id="viewProfile" name="viewProfile" type="submit" class="btn">
-										<?php printImageOthers($userInfoFollowers['userImage']); ?>
-										<?php echo $userInfoFollowers['userDisplay']; ?>
-									</button>
-									<?php if(in_array($follower['following_id'], $followCheck)):?>
-										<button id="unfollowUser" name="unfollowUser" type="submit" class="btn" >Unfollow</button>
-									<?php else: ?>
-										<button id="followUser" name="followUser" type="submit" class="btn">Follow</button>
-									<?php endif; ?>
-								</form>
-  							</div>
-						</div>
-					<?php endforeach; ?>
+					
 				</div>
 				<!--Shows who the user is following-->
 				<div class="tab-pane fade" id="following" role="tabpanel">
-					<?php foreach ($userFollowing as $following): ?>
-						<div class="card">
-							<div class="card-body">
-								<?php $userInfoFollowing = createSecondaryUser($following['user_id']); ?>
-							  	<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-									<input name= "saveSecUserID" type="hidden" value="<?php echo $following['user_id']; ?>" />
-									<button id="viewProfile" name="viewProfile" type="submit" class="btn">
-										<?php printImageOthers($userInfoFollowing['userImage']); ?>
-										<?php echo $userInfoFollowing['userDisplay']; ?>
-									</button>
-									<?php if(in_array($following['user_id'], $followCheck)):?>
-										<button id="unfollowUser" name="unfollowUser" type="submit" class="btn" >Unfollow</button>
-									<?php else: ?>
-										<button id="followUser" name="followUser" type="submit" class="btn">Follow</button>
-									<?php endif; ?>
-								</form>
-							</div>
-						</div>
-					<?php endforeach; ?>
+					
 				</div>
 			</div>
 		</div>

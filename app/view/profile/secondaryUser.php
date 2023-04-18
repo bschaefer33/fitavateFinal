@@ -51,31 +51,7 @@
 			<div class="tab-content" id="myTabContent">
 				<!--includes fitavations-->
 				<div class="tab-pane fade show active" id="home" role="tabpanel">
-					<?php foreach ($fitavationArray as $fitavation) :?>
-						<div class="card">
-							<div class="card-header">
-								<?php $secondUserInfo = createSecondaryUser($fitavation['user_id']); ?>
-								<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-									<input name= "saveSecUserID" type="hidden" value="<?php echo $fitavation['user_id']; ?>" />
-									<button id="viewProfile" name="viewProfile" type="submit" class="btn">
-										<?php printImageOthers($secondUserInfo['userImage']); ?>
-										<?php echo $secondUserInfo['userDisplay']; ?>
-									</button>
-									<?php if(in_array($fitavation['user_id'], $followCheck)):?>
-										<button id="unfollowUser" name="unfollowUser" type="submit" class="btn" >Unfollow</button>
-									<?php else: ?>
-										<button id="followUser" name="followUser" type="submit" class="btn">Follow</button>
-									<?php endif; ?>
-								</form>
-							</div>
-							<div class="card-body">
-								<p><?= $fitavation['fitavation']?></p>
-							</div>
-							<div class="card-footer">
-
-							</div>
-						</div>
-					<?php endforeach; ?>
+					
                 </div>
                 <!--Shows the fitines of the user-->
                 <div class="tab-pane fade" id="fitines" role="tabpanel">
@@ -202,54 +178,11 @@
                 </div>
                 <!--Shows the user's follower-->
 				<div class="tab-pane fade" id="followers" role="tabpanel">
-                    <?php foreach ($secondUserFollowers as $otherFollower): ?>
-						<div class="card">
-  							<div class="card-body">
-								<?php $otherUserInfo = createSecondaryUser($otherFollower['following_id']); ?>
-							  	<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-									<input name= "saveOtherUserID" type="hidden" value="<?php echo $otherFollower['following_id']; ?>" />
-									<button id="viewProfile" name="viewProfile" type="submit" class="btn">
-										<?php printImageOthers($otherUserInfo['userImage']); ?>
-										<?php echo $otherUserInfo['userDisplay']; ?>
-									</button>
-                                    <?php if($otherFollower['following_id'] == $userIDprof) : ?>
-                                        <input id="unfollowOtherUser" name="unfollowOtherUser" type="submit" class="btn" value="Unfollow" style="visibility: hidden" />
-                                        <input id="followOtherUser" name="followOtherUser" type="submit" class="btn" value="Follow" style="visibility: hidden"/>
-									<?php elseif(in_array($otherFollower['following_id'], $userFollowCheck)):?>
-										<input id="unfollowOtherUser" name="unfollowOtherUser" type="submit" class="btn" value="Unfollow" />
-									<?php else: ?>
-										<input id="followOtherUser" name="followOtherUser" type="submit" class="btn" value="Follow" />
-									<?php endif; ?>
-								</form>
-    							
-  							</div>
-						</div>
-					<?php endforeach; ?>
+                    
                 </div>
                 <!--Shows who the user is following-->
 				<div class="tab-pane fade" id="following" role="tabpanel">
-                <?php foreach ($secondUserFollowing as $otherFollowing): ?>
-						<div class="card">
-							<div class="card-body">
-								<?php $userInfoFollowing = createSecondaryUser($otherFollowing['user_id']); ?>
-							  	<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-									<input name= "saveOtherUserID" type="hidden" value="<?php echo $otherFollowing['user_id']; ?>" />
-									<button id="viewProfile" name="viewProfile" type="submit" class="btn">
-										<?php printImageOthers($userInfoFollowing['userImage']); ?>
-										<?php echo $userInfoFollowing['userDisplay']; ?>
-									</button>
-                                    <?php if($otherFollowing['user_id'] == $userIDprof) :?>
-                                        <input id="unfollowOtherUser" name="unfollowOtherUser" type="submit" class="btn" value="Unfollow" style="visibility: hidden" />
-                                        <input id="followOtherUser" name="followOtherUser" type="submit" class="btn" value="Follow" style="visibility: hidden"/>
-									<?php elseif(in_array($following['user_id'], $userFollowCheck)):?>
-										<button id="unfollowOtherUser" name="unfollowUser" type="submit" class="btn" >Unfollow</button>
-									<?php else: ?>
-										<button id="followOtherUser" name="followUser" type="submit" class="btn">Follow</button>
-									<?php endif; ?>
-								</form>
-							</div>
-						</div>
-					<?php endforeach; ?>
+                
                 </div>
             </div>
         </div>
