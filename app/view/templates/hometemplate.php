@@ -42,7 +42,6 @@ $userImage = $_SESSION['userImage'];
                 <nav class="navbar">
                     <ul>
                         <li class="navbar-nav"><a class="nav-link" href="?page=home">Home</a></li>
-                        <li class="navbar-nav"><a class="nav-link" href="?page=fitavations/fitavation">My Fitavations</a></li>
                         <li class="navbar-nav"><a class="nav-link" href="?page=fitines/fitine">FitTines</a></li>
                         <li class="navbar-nav"><a class="nav-link" href="?page=followers/followers">Followers</a></li>
                         <li class="navbar-nav"><a class="nav-link" href="?page=following/following">Following</a></li>
